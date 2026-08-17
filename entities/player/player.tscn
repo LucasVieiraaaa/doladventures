@@ -118,6 +118,7 @@ script = ExtResource("1_symyc")
 shape = SubResource("CapsuleShape2D_fdm2o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_fdm2o")
 animation = &"jump"
 autoplay = "idle"
