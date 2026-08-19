@@ -111,7 +111,7 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="player" type="CharacterBody2D" unique_id=701081553]
+[node name="player" type="CharacterBody2D" unique_id=701081553 groups=["Player"]]
 script = ExtResource("1_symyc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584861181]
@@ -122,8 +122,3 @@ z_index = 1
 sprite_frames = SubResource("SpriteFrames_fdm2o")
 animation = &"jump"
 autoplay = "idle"
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=817133291]
-limit_left = 0
-limit_bottom = 200
-position_smoothing_enabled = true
