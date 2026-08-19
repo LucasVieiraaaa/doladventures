@@ -112,6 +112,8 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D" unique_id=701081553 groups=["Player"]]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_symyc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584861181]
