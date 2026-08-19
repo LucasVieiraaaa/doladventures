@@ -95,6 +95,7 @@ tile_set = ExtResource("9_jo4av")
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("10_jxvlp")]
 position = Vector2(942, 183)
+next_level = "tropic"
 
 [node name="CollisionShape2D" parent="LevelEnd" index="0" unique_id=747925018]
 position = Vector2(-4.5, -79.5)
