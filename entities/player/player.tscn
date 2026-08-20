@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://kg54a8a0jhlb" path="res://scripts/player.gd" id="1_symyc"]
 [ext_resource type="Texture2D" uid="uid://bgthnaptu5uae" path="res://sprites/1 - Penguin/Idle (16 x 16).png" id="2_abrql"]
+[ext_resource type="Texture2D" uid="uid://klm303sbljav" path="res://sprites/1 - Penguin/Ducking (16 x 16).png" id="2_fkugw"]
+[ext_resource type="Texture2D" uid="uid://d1h3aysjn2c6w" path="res://sprites/1 - Penguin/Falling (16 x 16).png" id="3_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://db2duxlu353f3" path="res://sprites/1 - Penguin/Jump (16 x 16).png" id="3_bls4j"]
 [ext_resource type="Texture2D" uid="uid://d0wir5yd0ebgy" path="res://sprites/1 - Penguin/Waddling (16 x 16).png" id="3_sglur"]
 
@@ -59,6 +61,22 @@ region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fdm2o"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fkugw")
+}],
+"loop": 1,
+"name": &"duck",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8fjmc")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sglur")
@@ -122,4 +140,4 @@ shape = SubResource("CapsuleShape2D_fdm2o")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"idle"
+animation = &"fall"

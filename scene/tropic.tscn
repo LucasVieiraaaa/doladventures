@@ -91,7 +91,7 @@ limit_top = 0
 limit_right = 1425
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("10_d18o5")]
-position = Vector2(1392, 118)
+position = Vector2(1440, 118)
 next_level = "forest"
 
 [node name="CollisionShape2D" parent="LevelEnd" index="0" unique_id=747925018]

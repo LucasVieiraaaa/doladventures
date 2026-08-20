@@ -17,7 +17,7 @@ size = Vector2(21, 207)
 [node name="Forest" type="Node2D" unique_id=264271669]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_e2knd")]
-position = Vector2(11, 156)
+position = Vector2(13, 183)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=861958128]
 
