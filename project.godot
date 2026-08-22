@@ -30,6 +30,8 @@ project/assembly_name="doladventures"
 [global_group]
 
 Player=""
+Enemies=""
+LethalArea=""
 
 [input]
 
@@ -65,6 +67,7 @@ duck={
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="level_end"
+2d_physics/layer_5="lethan_area"
 
 [physics]
 
