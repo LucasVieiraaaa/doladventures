@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmld0m3lwlay1"
-path="res://.godot/imported/DS _ DSi - Jump Ultimate Stars - Fighters - Naruto Uzumaki.png-bea09f52b4ad43a3030fb0226d4a2ced.ctex"
+uid="uid://bkviyn3yrevlt"
+path="res://.godot/imported/Naruto.png-95223b435589a55d45d2b17f87864772.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/2 - Dolabela/DS _ DSi - Jump Ultimate Stars - Fighters - Naruto Uzumaki.png"
-dest_files=["res://.godot/imported/DS _ DSi - Jump Ultimate Stars - Fighters - Naruto Uzumaki.png-bea09f52b4ad43a3030fb0226d4a2ced.ctex"]
+source_file="res://sprites/2 - Dolabela/Naruto.png"
+dest_files=["res://.godot/imported/Naruto.png-95223b435589a55d45d2b17f87864772.ctex"]
 
 [params]
 

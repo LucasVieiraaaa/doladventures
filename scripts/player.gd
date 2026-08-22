@@ -33,6 +33,7 @@ var jump_count = 0;
 @export var max_jump_count = 2;
 var direction = 0;
 var status: PlayerState;
+var isDead = false;
 
 func _ready() -> void:
 	go_to_idle_state()
@@ -100,10 +101,12 @@ func exit_from_duck_state():
 	set_larger_collider();
 	
 func go_to_dead_state():
-	status = PlayerState.dead
-	anim.play("dead")
-	velocity.x = 0
-	reload_timer.start()
+	if not isDead:
+		status = PlayerState.dead
+		anim.play("dead")
+		velocity.x = 0
+		isDead = true;
+		reload_timer.start()
 	
 func idle_state(delta):
 	apply_gravity(delta)
@@ -201,10 +204,10 @@ func wall_state(delta):
 	velocity.y += wall_acceleration * delta
 	
 	if left_wall_detector.is_colliding():
-		anim.flip_h = false;
+		anim.flip_h = true;
 		direction = 1
 	elif right_wall_detector.is_colliding():
-		anim.flip_h = true
+		anim.flip_h = false
 		direction = -1
 	else:
 		go_to_fall_state()
@@ -252,7 +255,7 @@ func set_small_collider():
 func set_larger_collider():
 	collision_shape.shape.radius = 6;
 	collision_shape.shape.height = 16;
-	collision_shape.position.y = 0;	
+	collision_shape.position.y = -5;	
 	
 	hitbox_collision_shape.shape.size.y = 15
 	hitbox_collision_shape.position.y = 0.5
