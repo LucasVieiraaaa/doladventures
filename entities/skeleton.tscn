@@ -193,7 +193,7 @@ target_position = Vector2(0, 22)
 
 [node name="PlayerDetector" type="RayCast2D" parent="." unique_id=1603230802]
 position = Vector2(0, 15)
-target_position = Vector2(57.291645, 0)
+target_position = Vector2(93.74996, 1)
 collision_mask = 2
 
 [node name="BoneStartPosition" type="Node2D" parent="." unique_id=1523132738]

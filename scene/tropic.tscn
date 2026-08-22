@@ -111,6 +111,6 @@ tile_set = ExtResource("3_ry6l7")
 
 [node name="Skeleton" parent="." unique_id=614385962 instance=ExtResource("11_t8vtq")]
 z_index = 1
-position = Vector2(85, 146)
+position = Vector2(624, 143)
 
 [editable path="LevelEnd"]
