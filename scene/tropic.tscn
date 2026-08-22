@@ -32,7 +32,7 @@ size = Vector2(20, 169)
 [node name="Tropic" type="Node2D" unique_id=1478722785]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_bmxgx")]
-position = Vector2(50, 150)
+position = Vector2(50, 152)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=149437379]
 
