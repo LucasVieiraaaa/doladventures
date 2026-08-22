@@ -187,10 +187,16 @@ sprite_frames = SubResource("SpriteFrames_fdm2o")
 animation = &"dead"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1776218873]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_mhk8t")
 debug_color = Color(0.89798, 0.0335171, 0.761016, 0.41960785)
 
+[node name="ReloadTimer" type="Timer" parent="." unique_id=516596221]
+one_shot = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

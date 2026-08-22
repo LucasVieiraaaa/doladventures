@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dnp6jnnmy2no1"]
 
-[ext_resource type="Script" uid="uid://bdcsh5csaceyt" path="res://entities/skeleton.gd" id="1_yag7t"]
+[ext_resource type="Script" uid="uid://bdcsh5csaceyt" path="res://scripts/skeleton.gd" id="1_yag7t"]
 [ext_resource type="Texture2D" uid="uid://bxp57mfgmbwqn" path="res://sprites/3 - Skeleton/Crumbling_Into_Bone_Pile (32 x 32).png" id="2_fpmxe"]
 [ext_resource type="Texture2D" uid="uid://q33hmy8ux644" path="res://sprites/3 - Skeleton/Limping_Movement (32 x 32).png" id="2_yag7t"]
 
@@ -122,7 +122,7 @@ script = ExtResource("1_yag7t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1169315581]
 sprite_frames = SubResource("SpriteFrames_mhk8t")
-animation = &"dead"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1186519970]
 position = Vector2(1.0416663, 3)
@@ -132,8 +132,18 @@ shape = SubResource("CapsuleShape2D_mhk8t")
 [node name="Hitbox" type="Area2D" parent="." unique_id=1537984818]
 position = Vector2(0, -1)
 scale = Vector2(1.174052, 1.2267096)
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=247213283]
 position = Vector2(1.0416667, 2)
 shape = SubResource("RectangleShape2D_mhk8t")
 debug_color = Color(0.96547633, 0.06911551, 0.44180343, 0.41960785)
+
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=1937314871]
+position = Vector2(0, 13)
+target_position = Vector2(19.791658, 0)
+
+[node name="GroundDetector" type="RayCast2D" parent="." unique_id=297852582]
+position = Vector2(16.66666, 1)
+target_position = Vector2(0, 22)

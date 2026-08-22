@@ -7,11 +7,14 @@ enum SkeletonState {
 
 var status : SkeletonState
 
-const SPEED = 300.0
+const SPEED = 10.0
 const JUMP_VELOCITY = -400.0
+var direction = 1
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $Hitbox
+@onready var wall_detector: RayCast2D = $WallDetector
+@onready var ground_detector: RayCast2D = $GroundDetector
 
 
 func _physics_process(delta: float) -> void:
@@ -37,9 +40,15 @@ func go_to_dead_state():
 	status = SkeletonState.dead
 	anim.play("dead")
 	hitbox.process_mode = Node.PROCESS_MODE_DISABLED
+	velocity =  Vector2.ZERO
 	
 func walk_state(_delta):
-	pass
+	velocity.x = SPEED * direction
+	
+	if wall_detector.is_colliding() || not 	ground_detector.is_colliding():
+		scale.x *= -1
+		direction *= -1
+		
 	
 func dead_state(_delta):
 	pass
