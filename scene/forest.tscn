@@ -16,6 +16,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxvlp"]
 size = Vector2(21, 207)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhk8t"]
+size = Vector2(20, 193)
+
 [node name="Forest" type="Node2D" unique_id=264271669]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_e2knd")]
@@ -80,7 +83,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 2880, 208)
 
 [node name="Camera" parent="." unique_id=1411746104 instance=ExtResource("8_qxlj4")]
-position = Vector2(17, 143)
+position = Vector2(12, 181)
 limit_top = 0
 limit_right = 950
 
@@ -110,5 +113,16 @@ shape = SubResource("RectangleShape2D_jxvlp")
 
 [node name="Skeleton2" parent="." unique_id=783631818 instance=ExtResource("7_gwku7")]
 position = Vector2(392, 128)
+
+[node name="Skeleton" parent="." unique_id=614385962 instance=ExtResource("7_gwku7")]
+position = Vector2(174, 144)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=906576783]
+position = Vector2(-16, 80)
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=437465599]
+position = Vector2(8, 16.5)
+shape = SubResource("RectangleShape2D_mhk8t")
 
 [editable path="LevelEnd"]
