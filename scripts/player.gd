@@ -170,7 +170,7 @@ func fall_state(delta):
 		else:
 			go_to_walking_state()	
 		return
-	if left_wall_detector.is_colliding() || right_wall_detector.is_colliding():
+	if (left_wall_detector.is_colliding() || right_wall_detector.is_colliding()) && is_on_wall():
 		go_to_wall_state()
 		return
 
