@@ -38,7 +38,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"bone",
-"speed": 10.0
+"speed": 15.0
 }]
 
 [node name="SpinningBone" type="Area2D" unique_id=1109439407]

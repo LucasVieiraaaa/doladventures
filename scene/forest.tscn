@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dwf8ijq0ui3gx" path="res://entities/camera.tscn" id="8_qxlj4"]
 [ext_resource type="TileSet" uid="uid://b2471mry42c1b" path="res://tiles/decoration.tres" id="9_jo4av"]
 [ext_resource type="PackedScene" uid="uid://bi7y72mouwr30" path="res://entities/level_end.tscn" id="10_jxvlp"]
-[ext_resource type="PackedScene" uid="uid://rprq2p5g3r0w" path="res://entities/spinning_bone.tscn" id="12_64es3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxvlp"]
 size = Vector2(21, 207)
@@ -108,8 +107,5 @@ position = Vector2(243, 175)
 
 [node name="Skeleton2" parent="." unique_id=783631818 instance=ExtResource("7_gwku7")]
 position = Vector2(392, 128)
-
-[node name="SpinningBone" parent="." unique_id=1109439407 instance=ExtResource("12_64es3")]
-position = Vector2(140, 130)
 
 [editable path="LevelEnd"]
