@@ -87,6 +87,9 @@ func exit_from_duck_state():
 	set_larger_collider();
 	
 func go_to_dead_state():
+	if status != PlayerState.dead:
+		return
+	
 	status = PlayerState.dead
 	anim.play("dead")
 	velocity.x = 0
@@ -217,13 +220,17 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	elif area.is_in_group("LethalArea"):
 		hit_lethal_area()
 		
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("LethalArea"):
+		status = PlayerState.dead
+		go_to_dead_state()
+		
 func hit_enemy(area: Area2D):
 	if velocity.y > 0:
 		area.get_parent().take_damage()
 		go_to_jump_state()
 	else:
-		if status != PlayerState.dead:
-			go_to_dead_state()
+		go_to_dead_state()
 
 func hit_lethal_area():
 	go_to_dead_state()
