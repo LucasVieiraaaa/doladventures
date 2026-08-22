@@ -27,13 +27,17 @@ enum PlayerState {
 @export var wall_acceleration = 40;
 @export var wall_jump_vellocity = 240
 
-const JUMP_VELOCITY = -285.0;
+const JUMP_VELOCITY = -260.0;
 
 var jump_count = 0;
 @export var max_jump_count = 2;
 var direction = 0;
 var status: PlayerState;
 var isDead = false;
+
+@export var maxHealth = 3;
+var health = maxHealth;
+var whatHitYou: String
 
 func _ready() -> void:
 	go_to_idle_state()
@@ -101,11 +105,14 @@ func exit_from_duck_state():
 	set_larger_collider();
 	
 func go_to_dead_state():
-	if not isDead:
+	getDamage()
+
+	if not isDead && health == 0:
 		status = PlayerState.dead
-		anim.play("dead")
 		velocity.x = 0
 		isDead = true;
+		killHitBox()
+		anim.play("dead")
 		reload_timer.start()
 	
 func idle_state(delta):
@@ -225,7 +232,6 @@ func wall_state(delta):
 func dead_state(delta):
 	apply_gravity(delta)
 
-
 func update_direction():
 	direction = Input.get_axis("left", "right")
 	
@@ -264,13 +270,15 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemies"):
 		hit_enemy(area)
 	elif area.is_in_group("LethalArea"):
+		whatHitYou = area.name
 		hit_lethal_area()
 		
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("LethalArea"):
 		status = PlayerState.dead
+		whatHitYou = body.name
 		go_to_dead_state()
-		
+	
 func hit_enemy(area: Area2D):
 	if velocity.y > 0:
 		area.get_parent().take_damage()
@@ -283,8 +291,23 @@ func hit_lethal_area():
 	go_to_dead_state()
 
 func _on_reload_timer_timeout() -> void:
+	set_larger_collider()
 	get_tree().reload_current_scene()
 
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+func getDamage():
+	anim.play("damage")
+	print("aqui: ", whatHitYou)
+	match self.whatHitYou:
+		"SpinningBone":
+			health -= 1
+		"Lava":
+			health -= health
+			
+func killHitBox():
+	hitbox_collision_shape.shape.size.y = 0
+	hitbox_collision_shape.position.y = 0
+	

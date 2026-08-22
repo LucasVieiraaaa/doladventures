@@ -23,6 +23,18 @@ region = Rect2(126, 584, 63, 66)
 atlas = ExtResource("4_fkugw")
 region = Rect2(189, 584, 63, 66)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkugw"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(335, 662, 61, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1t22"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(396, 662, 60, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50fht"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(476, 671, 62, 70)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bls4j"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(558, 1800, 50, 63)
@@ -50,6 +62,14 @@ region = Rect2(153, 335, 51, 57)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7thud"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(100, 490, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq0jh"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(106, 1248, 53, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpopc"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(53, 1248, 53, 89)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wlsy"]
 atlas = ExtResource("4_fkugw")
@@ -102,13 +122,27 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gx6sm")
+}],
+"loop": 0,
+"name": &"damage",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yqrof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkugw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1t22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50fht")
 }],
 "loop": 0,
 "name": &"dead",
-"speed": 4.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,6 +184,17 @@ animations = [{
 "loop": 1,
 "name": &"jump",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq0jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpopc")
+}],
+"loop": 0,
+"name": &"jutsu",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -216,8 +261,7 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"slide"
-frame_progress = 0.780985
+animation = &"jutsu"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]
 position = Vector2(0, -2)
