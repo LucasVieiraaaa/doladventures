@@ -377,7 +377,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"jutsu",
-"speed": 4.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -435,6 +435,7 @@ size = Vector2(30.75, 34.25)
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_symyc")
+bushin_max_combo = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584861181]
 z_index = 2
@@ -447,7 +448,7 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"jump"
+animation = &"jutsu"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]
 position = Vector2(0, -2)

@@ -20,6 +20,7 @@ var can_throw = true
 @onready var wall_detector: RayCast2D = $WallDetector
 @onready var ground_detector: RayCast2D = $GroundDetector
 @onready var player_detector: RayCast2D = $PlayerDetector
+@onready var player_is_protected_detector: RayCast2D = $PlayerIsProtectedDetector
 @onready var bone_start_position: Node2D = $BoneStartPosition
 
 func _physics_process(delta: float) -> void:
@@ -60,7 +61,7 @@ func walk_state(_delta):
 		scale.x *= -1
 		direction *= -1
 		
-	if player_detector.is_colliding():
+	if player_detector.is_colliding() && ! player_is_protected_detector.is_colliding():
 		go_to_attack_state()
 		return
 		

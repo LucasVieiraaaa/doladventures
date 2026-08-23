@@ -66,7 +66,6 @@ grow_vertical = 2
 script = ExtResource("1_2fir4")
 
 [node name="AudioStreamPlayer" parent="." unique_id=420972019 instance=ExtResource("2_wxbcn")]
-volume_db = -5.0
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=609587275]
 layout_mode = 1

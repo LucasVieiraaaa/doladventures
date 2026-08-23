@@ -30,14 +30,14 @@ var isAudioPlaying: bool = false;
 @onready var attack_area_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 const PLAYER_CLONE = preload("uid://hu2rp4qv7ngl")
 
-@export var max_speed = 140.0
+@export var max_speed = 120.0
 @export var acceleration = 400
 @export var deceleration = 500
 @export var slide_deceleration = 100
 @export var wall_acceleration = 40
 @export var wall_jump_vellocity = 240
 
-const JUMP_VELOCITY = -280.0
+const JUMP_VELOCITY = -285.0
 
 var jump_count = 0
 @export var max_jump_count = 2
@@ -375,6 +375,7 @@ func hit_enemy(area: Area2D):
 		#go_to_jump_state()
 		anim.play("air_attack")
 		velocity = Vector2.ZERO
+		pass
 	else:
 		pass
 
