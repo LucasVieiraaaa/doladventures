@@ -375,7 +375,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"jutsu",
-"speed": 10.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -445,8 +445,9 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"air_attack"
-frame_progress = 0.34090877
+animation = &"jutsu"
+frame = 1
+frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]
 position = Vector2(0, -2)

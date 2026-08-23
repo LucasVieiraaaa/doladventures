@@ -9,7 +9,8 @@ enum PlayerState {
 	slide,
 	dead,
 	wall,
-	attack
+	attack,
+	jutsu
 }
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -19,6 +20,7 @@ enum PlayerState {
 @onready var left_wall_detector: RayCast2D = $LeftWallDetector
 @onready var right_wall_detector: RayCast2D = $RightWallDetector
 @onready var attack_area_shape: CollisionShape2D = $AttackArea/CollisionShape2D
+const PLAYER_CLONE = preload("uid://hu2rp4qv7ngl")
 
 @export var max_speed = 140.0
 @export var acceleration = 400
@@ -66,6 +68,8 @@ func _physics_process(delta: float) -> void:
 			dead_state(delta)
 		PlayerState.attack:
 			attack_state(delta)
+		PlayerState.jutsu:
+			jutsu_state(delta)
 			
 	move_and_slide()
 
@@ -122,7 +126,13 @@ func go_to_wall_state():
 	anim.play("wall")
 	velocity = Vector2.ZERO
 	jump_count = 0
-	
+
+func go_to_jutsu_state():
+	status = PlayerState.jutsu
+	velocity.x = 0 
+	anim.play("jutsu")
+	spawn_clone() 
+		
 func exit_from_duck_state():
 	set_larger_collider()
 	
@@ -156,6 +166,11 @@ func idle_state(delta):
 	if Input.is_action_pressed("duck"):
 		go_to_duck_state()
 		return
+		
+	if Input.is_action_just_pressed("bushin_attack"):
+		go_to_jutsu_state()
+		return
+		
 		 
 func walk_state(delta):
 	apply_gravity(delta)
@@ -278,6 +293,10 @@ func update_direction():
 	elif direction > 0:
 		anim.flip_h = false
 		$AttackArea.scale.x = 1
+		
+func jutsu_state(delta: float) -> void:
+	apply_gravity(delta)
+	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
 
 func move(delta):
 	update_direction()
@@ -367,9 +386,28 @@ func _on_animation_finished() -> void:
 				go_to_idle_state()
 		else:
 			go_to_idle_state()
+			
+	elif status == PlayerState.jutsu:
+		go_to_idle_state() 
 
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
 	var entity = area.get_parent()
 	if entity.has_method("take_damage"):
 		entity.take_damage()
+		
+func spawn_clone():
+	var clone = PLAYER_CLONE.instantiate()
+	
+	# Adiciona o clone à cena principal como irmão do player (para não mover junto com ele)
+	get_parent().add_child(clone)
+	
+	# Define a posição inicial e o lado para onde o clone vai correr
+	clone.global_position = global_position
+	
+	# Se direction for 0 (parado), usamos o flip do sprite para saber pra onde o player está olhando
+	var facing_dir = direction
+	if facing_dir == 0:
+		facing_dir = -1 if anim.flip_h else 1
+		
+	clone.set_direction(facing_dir)
