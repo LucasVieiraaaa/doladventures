@@ -6,30 +6,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhk8t"]
 height = 27.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mmk7k"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(544, 2153, 66, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g3pa7"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(610, 2153, 66, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7otdo"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(676, 2153, 66, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c112w"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(742, 2153, 66, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u37te"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(795, 2153, 66, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ssgi7"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(861, 2153, 66, 70)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_wuv6x"]
 atlas = ExtResource("2_igcrf")
 region = Rect2(0, 1001, 56, 77)
@@ -134,10 +110,6 @@ region = Rect2(106, 1248, 53, 89)
 atlas = ExtResource("2_igcrf")
 region = Rect2(53, 1248, 53, 89)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7thud"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(100, 490, 50, 60)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_a1qjk"]
 atlas = ExtResource("2_igcrf")
 region = Rect2(0, 414, 56, 56)
@@ -172,29 +144,6 @@ region = Rect2(392, 414, 56, 56)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mrmfd"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mmk7k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g3pa7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7otdo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c112w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u37te")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ssgi7")
-}],
-"loop": 0,
-"name": &"air_attack",
-"speed": 7.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wuv6x")
@@ -286,58 +235,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_igcrf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mrmfd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_383pu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rm0fc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kym5a")
-}],
-"loop": 0,
-"name": &"dead2",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_8fjmc")
 }],
 "loop": 1,
 "name": &"fall",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_igcrf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mrmfd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_383pu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wq0jh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qpopc")
-}],
-"loop": 0,
-"name": &"init",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7thud")
-}],
-"loop": 1,
-"name": &"jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -398,8 +299,10 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_mrmfd")
-animation = &"dead2"
+animation = &"dead"
 autoplay = "walk"
+frame = 5
+frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1775493887]
 collision_mask = 4

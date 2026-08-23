@@ -191,7 +191,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ssgi7")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"air_attack",
 "speed": 7.0
 }, {
@@ -282,26 +282,6 @@ animations = [{
 }],
 "loop": 0,
 "name": &"dead",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_igcrf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mrmfd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_383pu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rm0fc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kym5a")
-}],
-"loop": 0,
-"name": &"dead2",
 "speed": 10.0
 }, {
 "frames": [{
@@ -398,7 +378,7 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_mrmfd")
-animation = &"dead2"
+animation = &"jump"
 autoplay = "walk"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1775493887]

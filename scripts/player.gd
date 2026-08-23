@@ -37,12 +37,18 @@ var direction = 0
 var status: PlayerState
 var isDead = false
 
+#Health Variables
 @export var maxHealth = 3
 var health = maxHealth
 var whatHitYou: String
 
+#Combo Variables
 var combo_step: int = 0
 var combo_buffered: bool = false 
+
+#Bushin Variables
+var bushin_combo: int = 0
+@export var bushin_max_combo: int = 4
 
 func _ready() -> void:
 	anim.animation_finished.connect(_on_animation_finished)
@@ -128,11 +134,15 @@ func go_to_wall_state():
 	jump_count = 0
 
 func go_to_jutsu_state():
-	status = PlayerState.jutsu
-	velocity.x = 0 
-	anim.play("jutsu")
-	spawn_clone() 
-		
+	if bushin_combo <= bushin_max_combo:
+		status = PlayerState.jutsu
+		velocity.x = 0 
+		anim.play("jutsu")
+		spawn_clone() 
+	else:
+		await get_tree().create_timer(2.0).timeout
+		bushin_combo = 0;
+
 func exit_from_duck_state():
 	set_larger_collider()
 	
@@ -397,17 +407,17 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		entity.take_damage()
 		
 func spawn_clone():
-	var clone = PLAYER_CLONE.instantiate()
+	bushin_combo += 1;
 	
-	# Adiciona o clone à cena principal como irmão do player (para não mover junto com ele)
-	get_parent().add_child(clone)
+	if bushin_combo <= bushin_max_combo:
+		var clone = PLAYER_CLONE.instantiate()
+		get_parent().add_child(clone)
+		var facing_dir = direction
+		if facing_dir == 0:
+			facing_dir = -1 if anim.flip_h else 1
 	
-	# Define a posição inicial e o lado para onde o clone vai correr
-	clone.global_position = global_position
-	
-	# Se direction for 0 (parado), usamos o flip do sprite para saber pra onde o player está olhando
-	var facing_dir = direction
-	if facing_dir == 0:
-		facing_dir = -1 if anim.flip_h else 1
+	# Nasce 25 pixels à frente do player
+		clone.global_position = global_position + Vector2(25 * facing_dir, 0)
+		clone.set_direction(facing_dir)
+
 		
-	clone.set_direction(facing_dir)
