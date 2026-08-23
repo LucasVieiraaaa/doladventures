@@ -252,11 +252,11 @@ func can_jump() -> bool:
 	
 func set_small_collider():
 	collision_shape.shape.radius = 5;
-	collision_shape.shape.height = 10;
-	collision_shape.position.y = 3;	
+	collision_shape.shape.height = 5;
+	collision_shape.position.y = 8;	
 	
-	hitbox_collision_shape.shape.size.y = 10
-	hitbox_collision_shape.position.y = 3
+	hitbox_collision_shape.shape.size.y = 4
+	hitbox_collision_shape.position.y = 5
 	
 func set_larger_collider():
 	collision_shape.shape.radius = 6;
