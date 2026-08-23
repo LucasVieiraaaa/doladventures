@@ -12,8 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bi7y72mouwr30" path="res://entities/level_end.tscn" id="10_d18o5"]
 [ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/skeleton.tscn" id="11_t8vtq"]
 
-[sub_resource type="GDScript" id="GDScript_ytc0w"]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_mhk8t"]
 animations = [{
 "frames": [{
@@ -35,7 +33,6 @@ size = Vector2(20, 169)
 size = Vector2(20, 193)
 
 [node name="Tropic" type="Node2D" unique_id=1478722785]
-script = SubResource("GDScript_ytc0w")
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_bmxgx")]
 position = Vector2(50, 152)
@@ -122,14 +119,6 @@ position = Vector2(552.00006, 143)
 [node name="Skeleton2" parent="." unique_id=299806680 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(816.00006, 31)
-
-[node name="Skeleton3" parent="." unique_id=1478441836 instance=ExtResource("11_t8vtq")]
-z_index = 1
-position = Vector2(418, 142)
-
-[node name="Skeleton4" parent="." unique_id=485366068 instance=ExtResource("11_t8vtq")]
-z_index = 1
-position = Vector2(1267.0001, 127)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=823840094]
 position = Vector2(-16, 80)

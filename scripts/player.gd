@@ -323,6 +323,7 @@ func hit_enemy(area: Area2D):
 		area.get_parent().take_damage()
 		#go_to_jump_state()
 		anim.play("air_attack")
+		velocity = Vector2.ZERO
 	else:
 		pass
 
