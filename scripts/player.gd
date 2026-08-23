@@ -27,7 +27,7 @@ enum PlayerState {
 @export var wall_acceleration = 40;
 @export var wall_jump_vellocity = 240
 
-const JUMP_VELOCITY = -260.0;
+const JUMP_VELOCITY = -280.0;
 
 var jump_count = 0;
 @export var max_jump_count = 2;

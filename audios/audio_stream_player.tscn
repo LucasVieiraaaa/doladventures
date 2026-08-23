@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dp5wag065ljf4"]
+
+[ext_resource type="AudioStream" uid="uid://bawn4vur65de6" path="res://audios/任務_spotdown.org.wav" id="1_2ovm4"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=420972019]
+stream = ExtResource("1_2ovm4")
+volume_db = 10.0
+autoplay = true

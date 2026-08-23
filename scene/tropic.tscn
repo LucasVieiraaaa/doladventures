@@ -29,6 +29,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d18o5"]
 size = Vector2(20, 169)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8vtq"]
+size = Vector2(20, 193)
+
 [node name="Tropic" type="Node2D" unique_id=1478722785]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_bmxgx")]
@@ -112,5 +115,13 @@ tile_set = ExtResource("3_ry6l7")
 [node name="Skeleton" parent="." unique_id=614385962 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(624, 143)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=823840094]
+position = Vector2(-16, 80)
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=126227495]
+position = Vector2(8, 16.5)
+shape = SubResource("RectangleShape2D_t8vtq")
 
 [editable path="LevelEnd"]

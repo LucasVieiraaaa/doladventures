@@ -104,7 +104,7 @@ tile_map_data = PackedByteArray("AAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAA
 tile_set = ExtResource("10_64es3")
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("10_jxvlp")]
-position = Vector2(942, 183)
+position = Vector2(966, 183)
 next_level = "tropic"
 
 [node name="CollisionShape2D" parent="LevelEnd" index="0" unique_id=747925018]
