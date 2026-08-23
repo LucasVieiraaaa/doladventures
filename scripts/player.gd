@@ -13,6 +13,14 @@ enum PlayerState {
 	jutsu
 }
 
+
+#Player Sounds
+@onready var kage_bunshin: AudioStreamPlayer = $Sounds/KageBunshin
+@onready var bunshin: AudioStreamPlayer = $Sounds/Bunshin
+var isAudioPlaying: bool = false;
+
+
+
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var reload_timer: Timer = $ReloadTimer
@@ -49,6 +57,7 @@ var combo_buffered: bool = false
 #Bushin Variables
 var bushin_combo: int = 0
 @export var bushin_max_combo: int = 4
+var isMakingClones: bool = false
 
 func _ready() -> void:
 	anim.animation_finished.connect(_on_animation_finished)
@@ -134,12 +143,25 @@ func go_to_wall_state():
 	jump_count = 0
 
 func go_to_jutsu_state():
-	if bushin_combo <= bushin_max_combo:
+	bushin_combo += 1;
+	
+	if bushin_combo < bushin_max_combo:
+		if !isAudioPlaying:
+			isAudioPlaying = true;
+			if bushin_combo == 0 || bushin_combo == 1:
+				kage_bunshin.play()
+				bunshin.play()
+				isAudioPlaying = false;
+			else:
+				bunshin.play()
+				isAudioPlaying = false;
+			
+		
 		status = PlayerState.jutsu
 		velocity.x = 0 
 		anim.play("jutsu")
 		spawn_clone() 
-	else:
+	elif bushin_combo == bushin_max_combo:
 		await get_tree().create_timer(2.0).timeout
 		bushin_combo = 0;
 
@@ -407,8 +429,6 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		entity.take_damage()
 		
 func spawn_clone():
-	bushin_combo += 1;
-	
 	if bushin_combo <= bushin_max_combo:
 		var clone = PLAYER_CLONE.instantiate()
 		get_parent().add_child(clone)

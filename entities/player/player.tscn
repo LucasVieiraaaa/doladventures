@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dwb68mxuqia16"]
 
 [ext_resource type="Script" uid="uid://kg54a8a0jhlb" path="res://scripts/player.gd" id="1_symyc"]
+[ext_resource type="AudioStream" uid="uid://cpj5abyimahc" path="res://audios/jutsu/kage-bunshin-no-jutsu.mp3" id="3_sglur"]
+[ext_resource type="AudioStream" uid="uid://dduhqq6qalq5q" path="res://audios/jutsu/bunshin-sound.mp3" id="4_bls4j"]
 [ext_resource type="Texture2D" uid="uid://bkviyn3yrevlt" path="res://sprites/2 - Dolabela/Naruto.png" id="4_fkugw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
@@ -445,7 +447,7 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"jutsu"
+animation = &"jump"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]
 position = Vector2(0, -2)
@@ -477,6 +479,16 @@ position = Vector2(7.625, -6.875)
 shape = SubResource("RectangleShape2D_g0080")
 disabled = true
 debug_color = Color(0, 0.7061627, 0.66481316, 0.41960785)
+
+[node name="Sounds" type="Node" parent="." unique_id=1902925776]
+
+[node name="KageBunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1586425877]
+stream = ExtResource("3_sglur")
+volume_db = -16.0
+
+[node name="Bunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1150717225]
+stream = ExtResource("4_bls4j")
+volume_db = -32.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

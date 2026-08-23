@@ -4,6 +4,10 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 const JUMP_VELOCITY = -320.0
 
+#Clone Sounds
+@onready var poof: AudioStreamPlayer = $Sounds/Poof
+
+
 var direction: int = 1
 var isBushinOver: bool = false
 var isAttacking: bool = false
@@ -82,6 +86,8 @@ func make_clone_jump():
 
 func destroy_bushin(didSomething: bool):
 	isBushinOver = true
+	poof.play()
+	
 	if(didSomething):
 		anim.play("dead2")
 	else:
@@ -89,6 +95,5 @@ func destroy_bushin(didSomething: bool):
 		
 	velocity = Vector2.ZERO
 	await get_tree().create_timer(0.7).timeout
-	
 	queue_free()
 	
