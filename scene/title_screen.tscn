@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bbl8cqgrri81r" path="res://scripts/title_screen.gd" id="1_2fir4"]
 [ext_resource type="Texture2D" uid="uid://ksxoh1friwc2" path="res://sprites/Seasonal Tilesets/1 - Grassland/Background parts/_Complete_static_BG_(288 x 208).png" id="1_pkupl"]
 [ext_resource type="Texture2D" uid="uid://qp0lqs2fjr1j" path="res://sprites/UI/dolabela-adventures.png" id="2_i58fu"]
-[ext_resource type="PackedScene" uid="uid://dp5wag065ljf4" path="res://audios/sound_track_001.tscn" id="2_wxbcn"]
+[ext_resource type="AudioStream" uid="uid://enbyu851fbtd" path="res://audios/misc/bamboo-hit-sound-effect.mp3" id="4_wxbcn"]
 
 [sub_resource type="Theme" id="Theme_i58fu"]
 Button/font_sizes/font_size = 10
@@ -64,8 +64,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2fir4")
-
-[node name="AudioStreamPlayer" parent="." unique_id=420972019 instance=ExtResource("2_wxbcn")]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=609587275]
 layout_mode = 1
@@ -132,6 +130,9 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_i58fu")
 expand_mode = 3
+
+[node name="BambooSound" type="AudioStreamPlayer" parent="." unique_id=1771195212]
+stream = ExtResource("4_wxbcn")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

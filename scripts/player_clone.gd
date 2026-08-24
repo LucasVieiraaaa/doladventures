@@ -24,6 +24,7 @@ var isAttacking: bool = false
 var isInitializing: bool = true
 
 func _ready() -> void:
+	isInitializing = true
 	anim.play("init")
 	velocity = Vector2.ZERO
 	await get_tree().create_timer(0.5).timeout
@@ -42,7 +43,12 @@ func _physics_process(delta: float) -> void:
 
 		velocity.x = speed * direction
 		if velocity.y > 0.1:
-			anim.play("fall")
+			if not is_on_floor() && isInitializing:
+				anim.play("init")
+				await get_tree().create_timer(0.3).timeout
+				anim.play("air_attack")
+			else:
+				anim.play("fall")
 		else:
 			anim.play("walk")
 			if wall_detector.is_colliding():
@@ -101,7 +107,12 @@ func _try_damage_entity(node: Node) -> void:
 		if velocity.y == 0:
 			anim.play("attack_1")
 		else:
-			anim.play("air_attack")
+			if not is_on_floor() && isInitializing:
+				anim.play("init")
+				await get_tree().create_timer(0.3).timeout
+				anim.play("air_attack")
+			else:
+				anim.play("air_attack")
 			
 		node.take_damage()
 		isAttacking = true;

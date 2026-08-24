@@ -32,14 +32,17 @@ var isAudioPlaying: bool = false;
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var hitbox_collision_shape: CollisionShape2D = $Hitbox/CollisionShape2D
+
+@onready var water_detector: RayCast2D = $WaterDetector
 @onready var left_wall_detector: RayCast2D = $LeftWallDetector
 @onready var right_wall_detector: RayCast2D = $RightWallDetector
+
 @onready var attack_area_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 
 const PLAYER_CLONE = preload("uid://hu2rp4qv7ngl")
 var clone_spawn_direction: int = 0
 
-@export var max_speed = 120.0
+@export var max_speed = 100.0
 @export var acceleration = 400
 @export var deceleration = 500
 @export var slide_deceleration = 100
@@ -418,6 +421,9 @@ func _on_reload_timer_timeout() -> void:
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	if water_detector.is_colliding():
+		pass
 		
 func getDamage():
 	if health > 0:

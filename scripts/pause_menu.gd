@@ -15,6 +15,7 @@ func _input(_event: InputEvent) -> void:
 		else:
 			visible = true
 			get_tree().paused = true
+			
 
 func _on_button_pressed() -> void:
 	visible = false
