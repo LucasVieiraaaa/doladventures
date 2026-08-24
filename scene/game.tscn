@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://b7q83vvmslvgh"]
 
 [ext_resource type="PackedScene" uid="uid://dwb68mxuqia16" path="res://entities/player/player.tscn" id="1_5kiuu"]
+[ext_resource type="PackedScene" uid="uid://5q3wq8of7ipl" path="res://scene/pause_menu.tscn" id="1_qpk70"]
 [ext_resource type="PackedScene" uid="uid://dwf8ijq0ui3gx" path="res://entities/camera.tscn" id="1_xlg7c"]
 [ext_resource type="TileSet" uid="uid://c47hqqhjal4us" path="res://tiles/terrain.tres" id="2_33cqm"]
 [ext_resource type="TileSet" uid="uid://b2471mry42c1b" path="res://tiles/decoration.tres" id="3_xwcet"]
@@ -11,6 +12,8 @@
 size = Vector2(20, 145)
 
 [node name="Game" type="Node2D" unique_id=1781356822]
+
+[node name="PauseMenu" parent="." unique_id=995015526 instance=ExtResource("1_qpk70")]
 
 [node name="Camera" parent="." unique_id=1411746104 instance=ExtResource("1_xlg7c")]
 
