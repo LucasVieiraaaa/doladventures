@@ -28,7 +28,7 @@ tile_map_data = PackedByteArray("AAAGAAgAAAAFAAEAAAANAAMAAAAFAAEAAAAQAAcAAAAOAAU
 tile_set = ExtResource("3_xwcet")
 
 [node name="Skeleton" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
-position = Vector2(105, 51)
+position = Vector2(612, 78)
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("4_xwcet")]
 position = Vector2(649, 86)

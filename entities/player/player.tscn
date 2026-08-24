@@ -472,7 +472,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="LeftWallDetector" type="RayCast2D" parent="." unique_id=1329021728]
-target_position = Vector2(-8, 0)
+target_position = Vector2(-10, 0)
 
 [node name="RightWallDetector" type="RayCast2D" parent="." unique_id=1902501674]
 target_position = Vector2(8, 0)

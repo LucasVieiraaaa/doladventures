@@ -197,6 +197,7 @@ func go_to_dead_state():
 		killHitBox()
 		died_soud.play()
 		anim.play("dead")
+		set_small_collider()
 		reload_timer.start()
 	
 func idle_state(delta):
