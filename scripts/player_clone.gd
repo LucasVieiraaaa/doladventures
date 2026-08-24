@@ -142,6 +142,6 @@ func setup_direction(new_direction: int) -> void:
 	anim.flip_h = direction < 0
 	
 func beenHit(hitbox: String):
-	if hitbox == "SpinningBone":
+	if hitbox == "Shuriken":
 		destroy_bushin(true)
 	

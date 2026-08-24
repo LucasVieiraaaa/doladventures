@@ -107,6 +107,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func go_to_idle_state():
+	if isDead:
+		return
 	status = PlayerState.idle
 	combo_step = 0
 	combo_buffered = false
@@ -204,6 +206,7 @@ func idle_state(delta):
 	apply_gravity(delta)
 	
 	move(delta)
+
 	if velocity.x != 0:
 		go_to_walking_state()
 		return
@@ -354,6 +357,8 @@ func jutsu_state(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
 
 func move(delta):
+	if isDead:
+		return
 	update_direction()
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * max_speed, acceleration * delta)
@@ -418,12 +423,16 @@ func getDamage():
 	if health > 0:
 		hurt_sound.play()
 		anim.play("damage")
+		velocity = Vector2.ZERO
 		
 	match self.whatHitYou:
-		"SpinningBone":
+		"Shuriken":
 			health -= 1
 		"Lava":
 			health = 0
+			
+	await get_tree().create_timer(0.5).timeout
+	go_to_idle_state()
 			
 func killHitBox():
 	hitbox_collision_shape.shape.size.y = 0

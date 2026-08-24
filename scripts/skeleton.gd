@@ -6,7 +6,7 @@ enum SkeletonState {
 	attack
 }
 
-const SPINNING_BONE = preload("uid://rprq2p5g3r0w")
+const shuriken = preload("uid://rprq2p5g3r0w")
 
 var status : SkeletonState
 
@@ -83,7 +83,7 @@ func attack_state(_delta):
 		can_throw = false;
 
 func throw_bone():
-	var new_bone =  SPINNING_BONE.instantiate()
+	var new_bone =  shuriken.instantiate()
 	add_sibling(new_bone)
 	new_bone.position = bone_start_position.global_position
 	new_bone.set_direction(self.direction)
