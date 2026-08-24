@@ -1,15 +1,7 @@
 [gd_scene format=3 uid="uid://dwb68mxuqia16"]
 
 [ext_resource type="Script" uid="uid://kg54a8a0jhlb" path="res://scripts/player.gd" id="1_symyc"]
-[ext_resource type="AudioStream" uid="uid://cpj5abyimahc" path="res://audios/jutsu/kage-bunshin-no-jutsu.mp3" id="3_sglur"]
-[ext_resource type="AudioStream" uid="uid://dduhqq6qalq5q" path="res://audios/jutsu/bunshin-sound.mp3" id="4_bls4j"]
 [ext_resource type="Texture2D" uid="uid://bkviyn3yrevlt" path="res://sprites/2 - Dolabela/Naruto.png" id="4_fkugw"]
-[ext_resource type="AudioStream" uid="uid://vemq2tfo54h2" path="res://audios/naruto/naruto_damage_01.wav" id="5_8fjmc"]
-[ext_resource type="AudioStream" uid="uid://cwsfwi8ap40lq" path="res://audios/naruto/naruto_damage_02.wav" id="6_qiwj3"]
-[ext_resource type="AudioStream" uid="uid://0282l7sob0hp" path="res://audios/moves/jump.wav" id="7_qiwj3"]
-[ext_resource type="AudioStream" uid="uid://bhse4atmqxkhv" path="res://audios/moves/foot_step.wav" id="8_26q78"]
-[ext_resource type="AudioStream" uid="uid://bqgx4p1ojxk13" path="res://audios/naruto/naruto_hurt.wav" id="9_bectd"]
-[ext_resource type="AudioStream" uid="uid://d0i0nejsknrrc" path="res://audios/naruto/naruto_died.wav" id="10_wvtmh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
 radius = 6.0
@@ -314,7 +306,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"damage",
-"speed": 6.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -383,7 +375,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"jutsu",
-"speed": 6.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -441,12 +433,11 @@ size = Vector2(30.75, 34.25)
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_symyc")
-bushin_max_combo = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584861181]
 z_index = 2
-position = Vector2(-2, -2)
-scale = Vector2(1, 1.6400014)
+position = Vector2(-1, -5)
+scale = Vector2(1, 1.8000009)
 shape = SubResource("CapsuleShape2D_fdm2o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
@@ -454,7 +445,7 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"damage"
+animation = &"jutsu"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]
 position = Vector2(0, -2)
@@ -472,7 +463,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="LeftWallDetector" type="RayCast2D" parent="." unique_id=1329021728]
-target_position = Vector2(-10, 0)
+target_position = Vector2(-8, 0)
 
 [node name="RightWallDetector" type="RayCast2D" parent="." unique_id=1902501674]
 target_position = Vector2(8, 0)
@@ -486,44 +477,6 @@ position = Vector2(7.625, -6.875)
 shape = SubResource("RectangleShape2D_g0080")
 disabled = true
 debug_color = Color(0, 0.7061627, 0.66481316, 0.41960785)
-
-[node name="Sounds" type="Node" parent="." unique_id=1902925776]
-
-[node name="KageBunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1586425877]
-stream = ExtResource("3_sglur")
-volume_db = -16.0
-
-[node name="Bunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1150717225]
-stream = ExtResource("4_bls4j")
-volume_db = -32.0
-
-[node name="Damage_01" type="AudioStreamPlayer" parent="Sounds" unique_id=2114748889]
-stream = ExtResource("5_8fjmc")
-volume_db = -24.0
-
-[node name="Damage_02" type="AudioStreamPlayer" parent="Sounds" unique_id=1616430639]
-stream = ExtResource("6_qiwj3")
-volume_db = -24.0
-
-[node name="MoveSounds" type="Node" parent="." unique_id=1827210184]
-
-[node name="Jump" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2070368994]
-stream = ExtResource("7_qiwj3")
-volume_db = -18.0
-
-[node name="FootStep" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2081696798]
-stream = ExtResource("8_26q78")
-volume_db = -18.0
-
-[node name="HurtSounds" type="Node" parent="." unique_id=297794617]
-
-[node name="HurtSound" type="AudioStreamPlayer" parent="HurtSounds" unique_id=226776031]
-stream = ExtResource("9_bectd")
-volume_db = -24.0
-
-[node name="DiedSoud" type="AudioStreamPlayer" parent="HurtSounds" unique_id=780024136]
-stream = ExtResource("10_wvtmh")
-volume_db = -24.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

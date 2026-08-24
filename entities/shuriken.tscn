@@ -1,32 +1,25 @@
 [gd_scene format=3 uid="uid://rprq2p5g3r0w"]
 
-[ext_resource type="Texture2D" uid="uid://cfpi7dxliw37x" path="res://sprites/3 - Skeleton/Spinning_Bone (16 x 16).png" id="1_bkob1"]
-[ext_resource type="Script" uid="uid://j4c7ltlprg4e" path="res://scripts/spinning_bone.gd" id="1_njpw1"]
+[ext_resource type="Script" uid="uid://j4c7ltlprg4e" path="res://scripts/spinning_bone.gd" id="1_v86nk"]
+[ext_resource type="Texture2D" uid="uid://bkviyn3yrevlt" path="res://sprites/2 - Dolabela/Naruto.png" id="2_444df"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mhk8t"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_njpw1"]
-atlas = ExtResource("1_bkob1")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_t80k4"]
-atlas = ExtResource("1_bkob1")
-region = Rect2(16, 0, 16, 16)
+atlas = ExtResource("2_444df")
+region = Rect2(803, 1440, 36, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a64bj"]
-atlas = ExtResource("1_bkob1")
-region = Rect2(32, 0, 16, 16)
+atlas = ExtResource("2_444df")
+region = Rect2(839, 1440, 36, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tjt0v"]
-atlas = ExtResource("1_bkob1")
-region = Rect2(48, 0, 16, 16)
+atlas = ExtResource("2_444df")
+region = Rect2(875, 1440, 36, 72)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mhk8t"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_njpw1")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t80k4")
 }, {
@@ -41,19 +34,22 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="SpinningBone" type="Area2D" unique_id=1109439407 groups=["LethalArea"]]
+[node name="Shuriken" type="Area2D" unique_id=1109439407 groups=["LethalArea"]]
 collision_layer = 16
 collision_mask = 3
-script = ExtResource("1_njpw1")
+script = ExtResource("1_v86nk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1097186687]
 scale = Vector2(0.60000026, 0.5599998)
 shape = SubResource("CircleShape2D_mhk8t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=256667279]
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_mhk8t")
 animation = &"bone"
 autoplay = "bone"
+frame_progress = 0.9186961
+offset = Vector2(0, 1)
 
 [node name="SelfDestructTimer" type="Timer" parent="." unique_id=923676360]
 wait_time = 5.0

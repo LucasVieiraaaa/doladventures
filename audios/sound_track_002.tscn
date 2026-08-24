@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bxv0kp1liea7s"]
+
+[ext_resource type="AudioStream" uid="uid://b0h5xy5heufe6" path="res://audios/疾風伝_spotdown.org.mp3" id="1_0e1o1"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=1670091519]
+stream = ExtResource("1_0e1o1")

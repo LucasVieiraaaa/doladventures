@@ -6,7 +6,7 @@ enum SkeletonState {
 	attack
 }
 
-const SPINNING_BONE = preload("uid://rprq2p5g3r0w")
+const shuriken = preload("uid://rprq2p5g3r0w")
 
 var status : SkeletonState
 
@@ -20,6 +20,7 @@ var can_throw = true
 @onready var wall_detector: RayCast2D = $WallDetector
 @onready var ground_detector: RayCast2D = $GroundDetector
 @onready var player_detector: RayCast2D = $PlayerDetector
+@onready var player_is_protected_detector: RayCast2D = $PlayerIsProtectedDetector
 @onready var bone_start_position: Node2D = $BoneStartPosition
 
 func _physics_process(delta: float) -> void:
@@ -60,7 +61,7 @@ func walk_state(_delta):
 		scale.x *= -1
 		direction *= -1
 		
-	if player_detector.is_colliding():
+	if player_detector.is_colliding() && ! player_is_protected_detector.is_colliding():
 		go_to_attack_state()
 		return
 		
@@ -82,7 +83,7 @@ func attack_state(_delta):
 		can_throw = false;
 
 func throw_bone():
-	var new_bone =  SPINNING_BONE.instantiate()
+	var new_bone =  shuriken.instantiate()
 	add_sibling(new_bone)
 	new_bone.position = bone_start_position.global_position
 	new_bone.set_direction(self.direction)
@@ -91,3 +92,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == "attack":
 		go_to_walk_state()
 		return
+
+func is_dead() -> bool:
+	return status == SkeletonState.dead

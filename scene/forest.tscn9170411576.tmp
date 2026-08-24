@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://c4sbnfemdda6g"]
 
 [ext_resource type="PackedScene" uid="uid://dwb68mxuqia16" path="res://entities/player/player.tscn" id="1_e2knd"]
-[ext_resource type="PackedScene" uid="uid://5q3wq8of7ipl" path="res://scene/pause_menu.tscn" id="1_kmspj"]
 [ext_resource type="TileSet" uid="uid://c47hqqhjal4us" path="res://tiles/terrain.tres" id="2_2xpkg"]
 [ext_resource type="Texture2D" uid="uid://dkxgixqonigec" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/6 - Distant_trees.png" id="3_gbfvw"]
 [ext_resource type="Texture2D" uid="uid://c5gfud2tqru4d" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/5 - Tree_row_BG_2.png" id="4_wqnte"]
@@ -21,8 +20,6 @@ size = Vector2(21, 207)
 size = Vector2(20, 193)
 
 [node name="Forest" type="Node2D" unique_id=264271669]
-
-[node name="PauseMenu" parent="." unique_id=995015526 instance=ExtResource("1_kmspj")]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_e2knd")]
 position = Vector2(13, 177)
@@ -107,7 +104,7 @@ tile_map_data = PackedByteArray("AAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAA
 tile_set = ExtResource("10_64es3")
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("10_jxvlp")]
-position = Vector2(966, 183)
+position = Vector2(942, 183)
 next_level = "tropic"
 
 [node name="CollisionShape2D" parent="LevelEnd" index="0" unique_id=747925018]
