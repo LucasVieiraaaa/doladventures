@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://cwsfwi8ap40lq" path="res://audios/naruto/naruto_damage_02.wav" id="6_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://0282l7sob0hp" path="res://audios/moves/jump.wav" id="7_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://bhse4atmqxkhv" path="res://audios/moves/foot_step.wav" id="8_26q78"]
+[ext_resource type="AudioStream" uid="uid://bqgx4p1ojxk13" path="res://audios/naruto/naruto_hurt.wav" id="9_bectd"]
+[ext_resource type="AudioStream" uid="uid://d0i0nejsknrrc" path="res://audios/naruto/naruto_died.wav" id="10_wvtmh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
 radius = 6.0
@@ -443,8 +445,8 @@ bushin_max_combo = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584861181]
 z_index = 2
-position = Vector2(-1, -5)
-scale = Vector2(1, 1.8000009)
+position = Vector2(-2, -2)
+scale = Vector2(1, 1.6400014)
 shape = SubResource("CapsuleShape2D_fdm2o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
@@ -512,6 +514,16 @@ volume_db = -18.0
 [node name="FootStep" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2081696798]
 stream = ExtResource("8_26q78")
 volume_db = -18.0
+
+[node name="HurtSounds" type="Node" parent="." unique_id=297794617]
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="HurtSounds" unique_id=226776031]
+stream = ExtResource("9_bectd")
+volume_db = -24.0
+
+[node name="DiedSoud" type="AudioStreamPlayer" parent="HurtSounds" unique_id=780024136]
+stream = ExtResource("10_wvtmh")
+volume_db = -24.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -24,6 +24,8 @@ var step_interval := 0.5
 @onready var damage_02: AudioStreamPlayer = $Sounds/Damage_02
 @onready var foot_step: AudioStreamPlayer = $MoveSounds/FootStep
 @onready var jump: AudioStreamPlayer = $MoveSounds/Jump
+@onready var hurt_sound: AudioStreamPlayer = $HurtSounds/HurtSound
+@onready var died_soud: AudioStreamPlayer = $HurtSounds/DiedSoud
 var isAudioPlaying: bool = false;
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -193,6 +195,7 @@ func go_to_dead_state():
 		velocity.x = 0
 		isDead = true
 		killHitBox()
+		died_soud.play()
 		anim.play("dead")
 		reload_timer.start()
 	
@@ -362,7 +365,7 @@ func can_jump() -> bool:
 func set_small_collider():
 	collision_shape.shape.radius = 5
 	collision_shape.shape.height = 5
-	collision_shape.position.y = 8	
+	collision_shape.position.y = 7	
 	
 	hitbox_collision_shape.shape.size.y = 4
 	hitbox_collision_shape.position.y = 5
@@ -370,7 +373,7 @@ func set_small_collider():
 func set_larger_collider():
 	collision_shape.shape.radius = 6
 	collision_shape.shape.height = 16
-	collision_shape.position.y = -5	
+	collision_shape.position.y = -2	
 	
 	hitbox_collision_shape.shape.size.y = 15
 	hitbox_collision_shape.position.y = 0.5
@@ -412,6 +415,7 @@ func apply_gravity(delta):
 		
 func getDamage():
 	if health > 0:
+		hurt_sound.play()
 		anim.play("damage")
 		
 	match self.whatHitYou:
