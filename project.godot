@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="doladventures"
-run/main_scene="uid://khu13pwa7agf"
+run/main_scene="uid://b7q83vvmslvgh"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

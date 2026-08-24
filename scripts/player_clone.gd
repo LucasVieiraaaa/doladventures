@@ -86,9 +86,11 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 # Função auxiliar para aplicar o dano e eliminar o clone
 func _try_damage_entity(node: Node) -> void:
 	if node == null:
-		print("aqui34")
 		isAttacking = false;
 		return
+	
+	if node != null && node.name.length() > 0:
+		beenHit(node.name)
 	
 	if node.has_method("is_dead") and node.is_dead():
 		isAttacking = false;
@@ -138,3 +140,8 @@ func setup_direction(new_direction: int) -> void:
 	wall_detector.target_position.x = abs(wall_detector.target_position.x) * direction
 	
 	anim.flip_h = direction < 0
+	
+func beenHit(hitbox: String):
+	if hitbox == "SpinningBone":
+		destroy_bushin(true)
+	
