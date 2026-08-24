@@ -13,13 +13,18 @@ enum PlayerState {
 	jutsu
 }
 
+#Steps
+var step_timer := 0.0
+var step_interval := 0.5
 
 #Player Sounds
 @onready var kage_bunshin: AudioStreamPlayer = $Sounds/KageBunshin
 @onready var bunshin: AudioStreamPlayer = $Sounds/Bunshin
+@onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
+@onready var damage_02: AudioStreamPlayer = $Sounds/Damage_02
+@onready var foot_step: AudioStreamPlayer = $MoveSounds/FootStep
+@onready var jump: AudioStreamPlayer = $MoveSounds/Jump
 var isAudioPlaying: bool = false;
-
-
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -28,7 +33,9 @@ var isAudioPlaying: bool = false;
 @onready var left_wall_detector: RayCast2D = $LeftWallDetector
 @onready var right_wall_detector: RayCast2D = $RightWallDetector
 @onready var attack_area_shape: CollisionShape2D = $AttackArea/CollisionShape2D
+
 const PLAYER_CLONE = preload("uid://hu2rp4qv7ngl")
+var clone_spawn_direction: int = 0
 
 @export var max_speed = 120.0
 @export var acceleration = 400
@@ -85,6 +92,15 @@ func _physics_process(delta: float) -> void:
 			attack_state(delta)
 		PlayerState.jutsu:
 			jutsu_state(delta)
+		
+	if direction != 0 and is_on_floor():
+		step_timer -= delta
+
+		if step_timer <= 0:
+			foot_step.play()
+			step_timer = step_interval
+	else:
+		step_timer = 0.0	
 			
 	move_and_slide()
 
@@ -116,6 +132,7 @@ func go_to_walking_state():
 func go_to_jump_state():
 	status = PlayerState.jump
 	anim.play("jump")
+	jump.play()
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
 	
@@ -251,6 +268,7 @@ func fall_state(delta):
 		return
 
 	if is_on_floor():
+		foot_step.play()
 		jump_count = 0
 		if velocity.y == 0:
 			go_to_idle_state()
@@ -318,13 +336,14 @@ func attack_state(delta: float) -> void:
 
 func update_direction():
 	direction = Input.get_axis("left", "right")
-	
 	if direction < 0:
+		clone_spawn_direction = -1
 		anim.flip_h = true
 		$AttackArea.scale.x = -1
 	elif direction > 0:
 		anim.flip_h = false
 		$AttackArea.scale.x = 1
+		clone_spawn_direction = 1
 		
 func jutsu_state(delta: float) -> void:
 	apply_gravity(delta)
@@ -373,6 +392,7 @@ func hit_enemy(area: Area2D):
 	if velocity.y > 0:
 		area.get_parent().take_damage()
 		#go_to_jump_state()
+		damage_02.play()
 		anim.play("air_attack")
 		velocity = Vector2.ZERO
 		pass
@@ -406,6 +426,11 @@ func killHitBox():
 	
 func _on_animation_finished() -> void:
 	if status == PlayerState.attack:
+		if combo_step > 0 && combo_step <= 2:
+			damage_01.play()
+		elif combo_step == 3:
+			damage_02.play()
+		
 		if combo_buffered:
 			if combo_step == 1:
 				combo_step = 2
@@ -415,6 +440,9 @@ func _on_animation_finished() -> void:
 				combo_step = 3
 				combo_buffered = false
 				anim.play("attack_3")
+			elif combo_step == 3:
+				damage_02.play()
+				go_to_idle_state()
 			else:
 				go_to_idle_state()
 		else:
@@ -433,11 +461,11 @@ func spawn_clone():
 	if bushin_combo <= bushin_max_combo:
 		var clone = PLAYER_CLONE.instantiate()
 		get_parent().add_child(clone)
+		clone.setup_direction(clone_spawn_direction)
 		var facing_dir = direction
 		if facing_dir == 0:
 			facing_dir = -1 if anim.flip_h else 1
 	
-	# Nasce 25 pixels à frente do player
 		clone.global_position = global_position + Vector2(25 * facing_dir, 0)
 		clone.set_direction(facing_dir)
 

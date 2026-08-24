@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://cgswlclb3lkjn" path="res://scripts/player_clone.gd" id="1_tk6am"]
 [ext_resource type="Texture2D" uid="uid://bkviyn3yrevlt" path="res://sprites/2 - Dolabela/Naruto.png" id="2_igcrf"]
 [ext_resource type="AudioStream" uid="uid://dm48q4vdgi2a2" path="res://audios/jutsu/improved_poof.mp3" id="3_mrmfd"]
+[ext_resource type="AudioStream" uid="uid://bhse4atmqxkhv" path="res://audios/moves/foot_step.wav" id="4_383pu"]
+[ext_resource type="AudioStream" uid="uid://vemq2tfo54h2" path="res://audios/naruto/naruto_damage_01.wav" id="4_kym5a"]
+[ext_resource type="AudioStream" uid="uid://0282l7sob0hp" path="res://audios/moves/jump.wav" id="5_rm0fc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhk8t"]
 height = 27.0
@@ -399,7 +402,7 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_mrmfd")
-animation = &"dead2"
+animation = &"walk"
 autoplay = "walk"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1775493887]
@@ -414,6 +417,24 @@ shape = SubResource("RectangleShape2D_383pu")
 [node name="Poof" type="AudioStreamPlayer" parent="Sounds" unique_id=669771039]
 stream = ExtResource("3_mrmfd")
 volume_db = -24.0
+
+[node name="Damage_01" type="AudioStreamPlayer" parent="Sounds" unique_id=1267622850]
+stream = ExtResource("4_kym5a")
+volume_db = -24.0
+
+[node name="MoveSounds" type="Node" parent="." unique_id=1212403820]
+
+[node name="FootStep" type="AudioStreamPlayer" parent="MoveSounds" unique_id=643713664]
+stream = ExtResource("4_383pu")
+volume_db = -24.0
+
+[node name="Jump" type="AudioStreamPlayer" parent="MoveSounds" unique_id=1190954404]
+stream = ExtResource("5_rm0fc")
+volume_db = -24.0
+
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=1985224193]
+position = Vector2(0, 10)
+target_position = Vector2(17, 0)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -148,7 +148,7 @@ position = Vector2(816.00006, 31)
 
 [node name="Skeleton3" parent="Enemies" unique_id=1478441836 instance=ExtResource("11_t8vtq")]
 z_index = 1
-position = Vector2(418, 142)
+position = Vector2(483.00003, 49)
 
 [node name="Skeleton4" parent="Enemies" unique_id=485366068 instance=ExtResource("11_t8vtq")]
 z_index = 1
