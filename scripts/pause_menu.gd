@@ -7,7 +7,7 @@ func _ready() -> void:
 	get_tree().paused = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		if get_tree().paused:
 			visible = false
