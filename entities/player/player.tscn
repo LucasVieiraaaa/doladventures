@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://0282l7sob0hp" path="res://audios/moves/jump.wav" id="7_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://bhse4atmqxkhv" path="res://audios/moves/foot_step.wav" id="8_26q78"]
 [ext_resource type="AudioStream" uid="uid://bqgx4p1ojxk13" path="res://audios/naruto/naruto_hurt.wav" id="9_bectd"]
+[ext_resource type="AudioStream" uid="uid://bb5llvr5l4y68" path="res://audios/moves/water_step.wav" id="10_a1qjk"]
 [ext_resource type="AudioStream" uid="uid://d0i0nejsknrrc" path="res://audios/naruto/naruto_died.wav" id="10_wvtmh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
@@ -524,6 +525,10 @@ volume_db = -14.0
 [node name="FootStep" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2081696798]
 stream = ExtResource("8_26q78")
 volume_db = -14.0
+
+[node name="WaterStep" type="AudioStreamPlayer" parent="MoveSounds" unique_id=1771131417]
+stream = ExtResource("10_a1qjk")
+volume_db = -13.0
 
 [node name="HurtSounds" type="Node" parent="." unique_id=297794617]
 

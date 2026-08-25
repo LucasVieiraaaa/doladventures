@@ -37,9 +37,14 @@ var step_interval := 0.5
 @onready var kage_bunshin: AudioStreamPlayer = $Sounds/KageBunshin
 @onready var bunshin: AudioStreamPlayer = $Sounds/Bunshin
 @onready var tajuu_kage_bushin: AudioStreamPlayer = $Sounds/TajuuKageBushin
+
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
 @onready var damage_02: AudioStreamPlayer = $Sounds/Damage_02
+
 @onready var foot_step: AudioStreamPlayer = $MoveSounds/FootStep
+@onready var water_step: AudioStreamPlayer = $MoveSounds/WaterStep
+
+
 @onready var jump: AudioStreamPlayer = $MoveSounds/Jump
 @onready var hurt_sound: AudioStreamPlayer = $HurtSounds/HurtSound
 @onready var died_soud: AudioStreamPlayer = $HurtSounds/DiedSoud
@@ -115,7 +120,7 @@ func _physics_process(delta: float) -> void:
 		step_timer -= delta
 
 		if step_timer <= 0:
-			foot_step.play()
+			what_is_character_steping()
 			step_timer = step_interval
 	else:
 		step_timer = 0.0	
@@ -273,7 +278,8 @@ func fall_state(delta):
 		return
 
 	if is_on_floor():
-		foot_step.play()
+		what_is_character_steping()
+
 		jump_count = 0
 		if velocity.y == 0:
 			go_to_idle_state()
@@ -283,6 +289,7 @@ func fall_state(delta):
 	if (left_wall_detector.is_colliding() || right_wall_detector.is_colliding()) && is_on_wall():
 		go_to_wall_state()
 		return
+		
 
 func duck_state(delta):
 	apply_gravity(delta)
@@ -554,3 +561,11 @@ func go_to_jutsu_state(jutsu: String):
 			return
 			
 ### END BUSHIN JUTSU LOGIC ###
+
+
+func what_is_character_steping() -> void:
+		if water_detector.is_colliding():
+			water_step.play()
+		else:
+			foot_step.play()
+	
