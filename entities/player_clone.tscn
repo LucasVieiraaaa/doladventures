@@ -316,6 +316,11 @@ animations = [{
 "name": &"fall",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": 1,
+"name": &"help_rasengan",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_igcrf")
@@ -402,7 +407,7 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_mrmfd")
-animation = &"walk"
+animation = &"help_rasengan"
 autoplay = "walk"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1775493887]

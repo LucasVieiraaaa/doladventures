@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://dwb68mxuqia16"]
 
 [ext_resource type="Script" uid="uid://kg54a8a0jhlb" path="res://scripts/player.gd" id="1_symyc"]
+[ext_resource type="Texture2D" uid="uid://c8ywuhj8bt0wx" path="res://sprites/2 - Dolabela/rasengan-animation.png" id="3_j3ovn"]
 [ext_resource type="AudioStream" uid="uid://cpj5abyimahc" path="res://audios/jutsu/kage-bunshin-no-jutsu.mp3" id="3_sglur"]
+[ext_resource type="Texture2D" uid="uid://bw4l5cidps80g" path="res://sprites/2 - Dolabela/rasengan_formation.png" id="4_afbqv"]
 [ext_resource type="AudioStream" uid="uid://dduhqq6qalq5q" path="res://audios/jutsu/bunshin-sound.mp3" id="4_bls4j"]
 [ext_resource type="Texture2D" uid="uid://bkviyn3yrevlt" path="res://sprites/2 - Dolabela/Naruto.png" id="4_fkugw"]
 [ext_resource type="AudioStream" uid="uid://vemq2tfo54h2" path="res://audios/naruto/naruto_damage_01.wav" id="5_8fjmc"]
+[ext_resource type="AudioStream" uid="uid://bvyaqb2j3bg0w" path="res://audios/jutsu/rasengan-formation.mp3" id="5_gx6sm"]
 [ext_resource type="AudioStream" uid="uid://cwsfwi8ap40lq" path="res://audios/naruto/naruto_damage_02.wav" id="6_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://b3o248pvrvb3i" path="res://audios/jutsu/tajuu-kage-bunshin_5c1Qz6HQ.mp3" id="7_7thud"]
 [ext_resource type="AudioStream" uid="uid://0282l7sob0hp" path="res://audios/moves/jump.wav" id="7_qiwj3"]
@@ -172,6 +175,34 @@ region = Rect2(106, 1248, 53, 89)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpopc"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(53, 1248, 53, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtlkk"]
+atlas = ExtResource("3_j3ovn")
+region = Rect2(0, 13, 51, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2brg"]
+atlas = ExtResource("3_j3ovn")
+region = Rect2(51, 13, 51, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arp52"]
+atlas = ExtResource("3_j3ovn")
+region = Rect2(102, 13, 51, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjk8f"]
+atlas = ExtResource("3_j3ovn")
+region = Rect2(153, 13, 51, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnswy"]
+atlas = ExtResource("3_j3ovn")
+region = Rect2(204, 13, 51, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5bfg"]
+atlas = ExtResource("3_j3ovn")
+region = Rect2(255, 13, 51, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p22ii"]
+atlas = ExtResource("3_j3ovn")
+region = Rect2(306, 13, 51, 73)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wlsy"]
 atlas = ExtResource("4_fkugw")
@@ -389,6 +420,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rtlkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2brg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arp52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjk8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnswy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5bfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p22ii")
+}],
+"loop": 0,
+"name": &"rasengan",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3wlsy")
 }],
 "loop": 1,
@@ -433,6 +490,70 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rgwd"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24so6"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(43, 0, 40, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk710"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(86, 0, 36, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y563"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(184, 0, 22, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgfia"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(206, 0, 22, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv458"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(228, 0, 22, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbbq5"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(119, 0, 22, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akixf"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(141, 0, 22, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhk8t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rgwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24so6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk710")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y563")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgfia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv458")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbbq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akixf")
+}],
+"loop": 0,
+"name": &"rasengan_formation",
+"speed": 8.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhk8t"]
 size = Vector2(15, 16)
 
@@ -457,7 +578,17 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"jutsu"
+animation = &"rasengan"
+frame = 6
+frame_progress = 1.0
+
+[node name="Rasengan2D" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=1088839450]
+position = Vector2(-15, 1.6666664)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_mhk8t")
+animation = &"rasengan_formation"
+frame = 7
+frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]
 position = Vector2(0, -2)
@@ -496,6 +627,10 @@ disabled = true
 debug_color = Color(0, 0.7061627, 0.66481316, 0.41960785)
 
 [node name="Sounds" type="Node" parent="." unique_id=1902925776]
+
+[node name="RasenganFormation" type="AudioStreamPlayer" parent="Sounds" unique_id=1772484539]
+stream = ExtResource("5_gx6sm")
+volume_db = -6.0
 
 [node name="TajuuKageBushin" type="AudioStreamPlayer" parent="Sounds" unique_id=1794444300]
 stream = ExtResource("7_7thud")

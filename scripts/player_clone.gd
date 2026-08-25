@@ -22,18 +22,23 @@ var direction: int = 1
 var isBushinOver: bool = false
 var isAttacking: bool = false
 var isInitializing: bool = true
+var isHelpingRasegan: bool = false
 
-func _ready() -> void:
-	isInitializing = true
-	anim.play("init")
-	velocity = Vector2.ZERO
-	await get_tree().create_timer(0.5).timeout
-	isInitializing = false
-	# Destrói o clone após 2 segundos se ele não atingir nada
-	await get_tree().create_timer(3.0).timeout
-	
-	if isBushinOver == false:
-		destroy_bushin(false)
+func _ready() -> void:		
+	print("here", isHelpingRasegan)
+	if(!isHelpingRasegan):
+		isInitializing = true
+		anim.play("init")
+		velocity = Vector2.ZERO
+		await get_tree().create_timer(0.5).timeout
+		isInitializing = false
+		await get_tree().create_timer(3.0).timeout
+		if isBushinOver == false:
+			destroy_bushin(false)
+	else:
+		anim.play("init")
+		await get_tree().create_timer(0.5).timeout
+		
 
 func _physics_process(delta: float) -> void:
 	if  !isBushinOver && !isAttacking && !isInitializing:
@@ -129,6 +134,7 @@ func make_clone_jump():
 
 func destroy_bushin(didSomething: bool):
 	isBushinOver = true
+	isHelpingRasegan = false
 	poof.play()
 	
 	if(didSomething):
@@ -151,6 +157,10 @@ func setup_direction(new_direction: int) -> void:
 	wall_detector.target_position.x = abs(wall_detector.target_position.x) * direction
 	
 	anim.flip_h = direction < 0
+	
+func isHelpingRasengan(isHelping: bool):
+	isHelpingRasegan = isHelping
+	return
 	
 func beenHit(hitbox: String):
 	match hitbox:

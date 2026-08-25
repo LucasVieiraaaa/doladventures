@@ -37,6 +37,8 @@ var step_interval := 0.5
 @onready var kage_bunshin: AudioStreamPlayer = $Sounds/KageBunshin
 @onready var bunshin: AudioStreamPlayer = $Sounds/Bunshin
 @onready var tajuu_kage_bushin: AudioStreamPlayer = $Sounds/TajuuKageBushin
+@onready var rasengan_formation: AudioStreamPlayer = $Sounds/RasenganFormation
+@onready var rasengan_2d: AnimatedSprite2D = $AnimatedSprite2D/Rasengan2D
 
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
 @onready var damage_02: AudioStreamPlayer = $Sounds/Damage_02
@@ -90,6 +92,7 @@ var bushin_combo: int = 0
 var isMakingClones: bool = false
 
 func _ready() -> void:
+	rasengan_2d.visible = false
 	anim.animation_finished.connect(_on_animation_finished)
 	go_to_idle_state()
 
@@ -128,6 +131,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func go_to_idle_state():
+	rasengan_2d.visible = false
 	if isDead:
 		return
 	status = PlayerState.idle
@@ -489,9 +493,11 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		
 		
 ### START BUSHIN JUTSU LOGIC ###
-func spawn_clone(distance: int):
+func spawn_clone(distance: int, isHelpingRasengan: bool):
 	if bushin_combo <= bushin_max_combo:
 		var clone = PLAYER_CLONE.instantiate()
+		if isHelpingRasengan:
+			clone.isHelpingRasengan(true)
 		get_parent().add_child(clone)
 		clone.setup_direction(clone_spawn_direction)
 		var facing_dir = direction
@@ -516,7 +522,7 @@ func regularBushinJutsu():
 		status = PlayerState.jutsu
 		velocity.x = 0 
 		anim.play("jutsu")
-		spawn_clone(25) 
+		spawn_clone(25, false) 
 	elif bushin_combo == bushin_max_combo:
 		await get_tree().create_timer(2.75).timeout
 		bushin_combo = 0;
@@ -541,7 +547,7 @@ func allBushinJutsu():
 			if i % 2 == 0:
 				offset *= -1
 			if !beenHit:
-				spawn_clone(offset)
+				spawn_clone(offset, false)
 			else:
 				return
 		go_to_idle_state()
@@ -577,4 +583,15 @@ func what_is_character_steping() -> void:
 ### START RASENGAN """
 func regularRasengan():
 	status = PlayerState.jutsu
+	playRasenganStartAnimation()
+	
+func playRasenganStartAnimation():
 	anim.play("rasengan")
+	await get_tree().create_timer(0.5).timeout
+	spawn_clone(-25, true) 
+	anim.pause()
+	rasengan_formation.play()
+	rasengan_2d.play("rasengan_formation")
+	rasengan_2d.visible = true
+	await get_tree().create_timer(4.0).timeout
+	go_to_idle_state()
