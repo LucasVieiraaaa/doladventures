@@ -36,8 +36,9 @@ func _ready() -> void:
 		if isBushinOver == false:
 			destroy_bushin(false)
 	else:
-		anim.play("init")
-		await get_tree().create_timer(0.5).timeout
+		anim.play("help_rasengan")
+		await get_tree().create_timer(2.0).timeout
+		destroy_bushin(true)
 		
 
 func _physics_process(delta: float) -> void:

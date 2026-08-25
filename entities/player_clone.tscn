@@ -130,6 +130,14 @@ region = Rect2(236, 2542, 59, 82)
 atlas = ExtResource("2_igcrf")
 region = Rect2(208, 490, 52, 60)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2p66"]
+atlas = ExtResource("2_igcrf")
+region = Rect2(318, 2536, 53, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksi34"]
+atlas = ExtResource("2_igcrf")
+region = Rect2(371, 2536, 53, 105)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wq0jh"]
 atlas = ExtResource("2_igcrf")
 region = Rect2(106, 1248, 53, 89)
@@ -316,7 +324,13 @@ animations = [{
 "name": &"fall",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2p66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksi34")
+}],
 "loop": 1,
 "name": &"help_rasengan",
 "speed": 5.0

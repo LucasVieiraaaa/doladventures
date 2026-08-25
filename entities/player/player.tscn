@@ -20,6 +20,70 @@
 radius = 6.0
 height = 16.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rgwd"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24so6"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(43, 0, 40, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk710"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(86, 0, 36, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y563"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(184, 0, 22, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgfia"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(206, 0, 22, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv458"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(228, 0, 22, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbbq5"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(119, 0, 22, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akixf"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(141, 0, 22, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhk8t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rgwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24so6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk710")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y563")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgfia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv458")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbbq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akixf")
+}],
+"loop": 0,
+"name": &"rasengan_formation",
+"speed": 8.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_mmk7k"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(544, 2153, 66, 70)
@@ -490,70 +554,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7rgwd"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(0, 0, 42, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_24so6"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(43, 0, 40, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sk710"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(86, 0, 36, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3y563"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(184, 0, 22, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sgfia"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(206, 0, 22, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sv458"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(228, 0, 22, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kbbq5"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(119, 0, 22, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_akixf"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(141, 0, 22, 42)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mhk8t"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7rgwd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_24so6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sk710")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3y563")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sgfia")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sv458")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kbbq5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_akixf")
-}],
-"loop": 0,
-"name": &"rasengan_formation",
-"speed": 8.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhk8t"]
 size = Vector2(15, 16)
 
@@ -573,6 +573,15 @@ position = Vector2(-2, -2)
 scale = Vector2(1, 1.4800011)
 shape = SubResource("CapsuleShape2D_fdm2o")
 
+[node name="Rasengan2D" type="AnimatedSprite2D" parent="." unique_id=1088839450]
+z_index = 2
+position = Vector2(-11, -4)
+scale = Vector2(0.36, 0.36)
+sprite_frames = SubResource("SpriteFrames_mhk8t")
+animation = &"rasengan_formation"
+frame = 7
+frame_progress = 1.0
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
 z_index = 1
 position = Vector2(-2, -5)
@@ -580,14 +589,6 @@ scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
 animation = &"rasengan"
 frame = 6
-frame_progress = 1.0
-
-[node name="Rasengan2D" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=1088839450]
-position = Vector2(-15, 1.6666664)
-scale = Vector2(0.6, 0.6)
-sprite_frames = SubResource("SpriteFrames_mhk8t")
-animation = &"rasengan_formation"
-frame = 7
 frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]

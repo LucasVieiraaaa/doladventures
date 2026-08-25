@@ -38,7 +38,7 @@ var step_interval := 0.5
 @onready var bunshin: AudioStreamPlayer = $Sounds/Bunshin
 @onready var tajuu_kage_bushin: AudioStreamPlayer = $Sounds/TajuuKageBushin
 @onready var rasengan_formation: AudioStreamPlayer = $Sounds/RasenganFormation
-@onready var rasengan_2d: AnimatedSprite2D = $AnimatedSprite2D/Rasengan2D
+@onready var rasengan_2d: AnimatedSprite2D = $Rasengan2D
 
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
 @onready var damage_02: AudioStreamPlayer = $Sounds/Damage_02
@@ -358,10 +358,15 @@ func update_direction():
 		clone_spawn_direction = -1
 		anim.flip_h = true
 		$AttackArea.scale.x = -1
+		rasengan_2d.position.x = 8
+		rasengan_2d.position.y = -4
 	elif direction > 0:
 		anim.flip_h = false
 		$AttackArea.scale.x = 1
 		clone_spawn_direction = 1
+		rasengan_2d.position.x = -12
+		rasengan_2d.position.y = -4
+	
 		
 func jutsu_state(delta: float) -> void:
 	apply_gravity(delta)
@@ -588,7 +593,7 @@ func regularRasengan():
 func playRasenganStartAnimation():
 	anim.play("rasengan")
 	await get_tree().create_timer(0.5).timeout
-	spawn_clone(-25, true) 
+	spawn_clone(-22, true) 
 	anim.pause()
 	rasengan_formation.play()
 	rasengan_2d.play("rasengan_formation")
