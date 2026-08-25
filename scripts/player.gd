@@ -20,6 +20,7 @@ var step_interval := 0.5
 #Player Sounds
 @onready var kage_bunshin: AudioStreamPlayer = $Sounds/KageBunshin
 @onready var bunshin: AudioStreamPlayer = $Sounds/Bunshin
+@onready var tajuu_kage_bushin: AudioStreamPlayer = $Sounds/TajuuKageBushin
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
 @onready var damage_02: AudioStreamPlayer = $Sounds/Damage_02
 @onready var foot_step: AudioStreamPlayer = $MoveSounds/FootStep
@@ -68,7 +69,7 @@ var combo_buffered: bool = false
 
 #Bushin Variables
 var bushin_combo: int = 0
-@export var bushin_max_combo: int = 4
+@export var bushin_max_combo: int = 3
 var isMakingClones: bool = false
 
 func _ready() -> void:
@@ -166,29 +167,6 @@ func go_to_wall_state():
 	velocity = Vector2.ZERO
 	jump_count = 0
 
-func go_to_jutsu_state():
-	bushin_combo += 1;
-	
-	if bushin_combo < bushin_max_combo:
-		if !isAudioPlaying:
-			isAudioPlaying = true;
-			if bushin_combo == 0 || bushin_combo == 1:
-				kage_bunshin.play()
-				bunshin.play()
-				isAudioPlaying = false;
-			else:
-				bunshin.play()
-				isAudioPlaying = false;
-			
-		
-		status = PlayerState.jutsu
-		velocity.x = 0 
-		anim.play("jutsu")
-		spawn_clone() 
-	elif bushin_combo == bushin_max_combo:
-		await get_tree().create_timer(2.0).timeout
-		bushin_combo = 0;
-
 func exit_from_duck_state():
 	set_larger_collider()
 	
@@ -225,11 +203,15 @@ func idle_state(delta):
 	if Input.is_action_pressed("duck"):
 		go_to_duck_state()
 		return
-		
+	
+	if Input.is_action_just_pressed("bushin_attack_all"):
+		go_to_jutsu_state("bushin_attack_all")
+		return	
+	
 	if Input.is_action_just_pressed("bushin_attack"):
-		go_to_jutsu_state()
+		go_to_jutsu_state("bushin_attack")
 		return
-		
+	
 		 
 func walk_state(delta):
 	apply_gravity(delta)
@@ -443,7 +425,9 @@ func getDamage():
 func killHitBox():
 	hitbox_collision_shape.shape.size.y = 0
 	hitbox_collision_shape.position.y = 0
-	
+
+### START SIMPLE COMBO LOGIC ###
+
 func _on_animation_finished() -> void:
 	if status == PlayerState.attack:
 		if combo_step > 0 && combo_step <= 2:
@@ -470,14 +454,16 @@ func _on_animation_finished() -> void:
 			
 	elif status == PlayerState.jutsu:
 		go_to_idle_state() 
-
+###END SIMPLE COMBO LOGIC ###
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
 	var entity = area.get_parent()
 	if entity.has_method("take_damage"):
 		entity.take_damage()
 		
-func spawn_clone():
+		
+### START BUSHIN JUTSU LOGIC ###
+func spawn_clone(distance: int):
 	if bushin_combo <= bushin_max_combo:
 		var clone = PLAYER_CLONE.instantiate()
 		get_parent().add_child(clone)
@@ -486,7 +472,58 @@ func spawn_clone():
 		if facing_dir == 0:
 			facing_dir = -1 if anim.flip_h else 1
 	
-		clone.global_position = global_position + Vector2(25 * facing_dir, 0)
+		clone.global_position = global_position + Vector2(distance * facing_dir, 0)
 		clone.set_direction(facing_dir)
 
+func regularBushinJutsu():
+	if bushin_combo < bushin_max_combo:
+		bushin_combo += 1;
+		if !isAudioPlaying:
+			isAudioPlaying = true;
+			if bushin_combo == 0 || bushin_combo == 1:
+				kage_bunshin.play()
+				bunshin.play()
+				isAudioPlaying = false;
+			else:
+				bunshin.play()
+				isAudioPlaying = false;
+		status = PlayerState.jutsu
+		velocity.x = 0 
+		anim.play("jutsu")
+		spawn_clone(25) 
+	elif bushin_combo == bushin_max_combo:
+		await get_tree().create_timer(2.0).timeout
+		bushin_combo = 0;
 		
+func allBushinJutsu():
+	if bushin_combo == 0:	
+		tajuu_kage_bushin.play()
+		anim.play("jutsu")
+		anim.pause()
+		await get_tree().create_timer(2.5).timeout
+
+		for i in range(bushin_max_combo * 1.75):
+			var offset = (i / 2 + 1) * 20
+			if i % 2 == 0:
+				offset *= -1
+			spawn_clone(offset)
+		go_to_idle_state()
+		bunshin.volume_db = 16.0
+		bunshin.play()
+
+		bunshin.volume_db = -16.0
+		bushin_combo = bushin_max_combo
+		await get_tree().create_timer(4.0).timeout
+		bushin_combo = 0;
+	
+
+func go_to_jutsu_state(jutsu: String):
+	match jutsu:
+		"bushin_attack":
+			regularBushinJutsu()
+			return
+		"bushin_attack_all":
+			allBushinJutsu()
+			return
+			
+### END BUSHIN JUTSU LOGIC ###

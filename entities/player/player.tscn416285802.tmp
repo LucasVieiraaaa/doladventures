@@ -496,34 +496,34 @@ debug_color = Color(0, 0.7061627, 0.66481316, 0.41960785)
 
 [node name="Sounds" type="Node" parent="." unique_id=1902925776]
 
-[node name="TajuuKageBushin" type="AudioStreamPlayer" parent="Sounds" unique_id=1794444300]
-stream = ExtResource("7_7thud")
-
 [node name="KageBunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1586425877]
 stream = ExtResource("3_sglur")
-volume_db = -8.0
+volume_db = -16.0
 
 [node name="Bunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1150717225]
 stream = ExtResource("4_bls4j")
-volume_db = -16.0
+volume_db = -32.0
 
 [node name="Damage_01" type="AudioStreamPlayer" parent="Sounds" unique_id=2114748889]
 stream = ExtResource("5_8fjmc")
-volume_db = -8.0
+volume_db = -24.0
 
 [node name="Damage_02" type="AudioStreamPlayer" parent="Sounds" unique_id=1616430639]
 stream = ExtResource("6_qiwj3")
-volume_db = -8.0
+volume_db = -24.0
+
+[node name="TajuuKageBushin" type="AudioStreamPlayer" parent="Sounds" unique_id=1794444300]
+stream = ExtResource("7_7thud")
 
 [node name="MoveSounds" type="Node" parent="." unique_id=1827210184]
 
 [node name="Jump" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2070368994]
 stream = ExtResource("7_qiwj3")
-volume_db = -14.0
+volume_db = -18.0
 
 [node name="FootStep" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2081696798]
 stream = ExtResource("8_26q78")
-volume_db = -14.0
+volume_db = -18.0
 
 [node name="HurtSounds" type="Node" parent="." unique_id=297794617]
 

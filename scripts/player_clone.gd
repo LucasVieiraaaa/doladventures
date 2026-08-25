@@ -30,7 +30,7 @@ func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
 	isInitializing = false
 	# Destrói o clone após 2 segundos se ele não atingir nada
-	await get_tree().create_timer(2.2).timeout
+	await get_tree().create_timer(3.0).timeout
 	
 	if isBushinOver == false:
 		destroy_bushin(false)

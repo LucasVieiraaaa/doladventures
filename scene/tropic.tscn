@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://khu13pwa7agf"]
 
 [ext_resource type="PackedScene" uid="uid://dwb68mxuqia16" path="res://entities/player/player.tscn" id="1_bmxgx"]
+[ext_resource type="PackedScene" uid="uid://5q3wq8of7ipl" path="res://scene/pause_menu.tscn" id="1_ei81g"]
 [ext_resource type="TileSet" uid="uid://c47hqqhjal4us" path="res://tiles/terrain.tres" id="2_ry6l7"]
 [ext_resource type="TileSet" uid="uid://b2471mry42c1b" path="res://tiles/decoration.tres" id="3_ry6l7"]
 [ext_resource type="Texture2D" uid="uid://nnrjd0fo8xs5" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/5 - Sky_color.png" id="4_4big0"]
@@ -37,9 +38,11 @@ size = Vector2(20, 193)
 [node name="Tropic" type="Node2D" unique_id=1478722785]
 script = SubResource("GDScript_ytc0w")
 
+[node name="PauseMenu" parent="." unique_id=995015526 instance=ExtResource("1_ei81g")]
+
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_bmxgx")]
 position = Vector2(2658, 129)
-bushin_max_combo = 4
+bushin_max_combo = 3
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=149437379]
 

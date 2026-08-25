@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bkviyn3yrevlt" path="res://sprites/2 - Dolabela/Naruto.png" id="4_fkugw"]
 [ext_resource type="AudioStream" uid="uid://vemq2tfo54h2" path="res://audios/naruto/naruto_damage_01.wav" id="5_8fjmc"]
 [ext_resource type="AudioStream" uid="uid://cwsfwi8ap40lq" path="res://audios/naruto/naruto_damage_02.wav" id="6_qiwj3"]
-[ext_resource type="AudioStream" uid="uid://b3o248pvrvb3i" path="res://audios/jutsu/tajuu-kage-bunshin_5c1Qz6HQ.mp3" id="7_7thud"]
 [ext_resource type="AudioStream" uid="uid://0282l7sob0hp" path="res://audios/moves/jump.wav" id="7_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://bhse4atmqxkhv" path="res://audios/moves/foot_step.wav" id="8_26q78"]
 [ext_resource type="AudioStream" uid="uid://bqgx4p1ojxk13" path="res://audios/naruto/naruto_hurt.wav" id="9_bectd"]
@@ -497,33 +496,32 @@ debug_color = Color(0, 0.7061627, 0.66481316, 0.41960785)
 [node name="Sounds" type="Node" parent="." unique_id=1902925776]
 
 [node name="TajuuKageBushin" type="AudioStreamPlayer" parent="Sounds" unique_id=1794444300]
-stream = ExtResource("7_7thud")
 
 [node name="KageBunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1586425877]
 stream = ExtResource("3_sglur")
-volume_db = -8.0
+volume_db = -16.0
 
 [node name="Bunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1150717225]
 stream = ExtResource("4_bls4j")
-volume_db = -16.0
+volume_db = -32.0
 
 [node name="Damage_01" type="AudioStreamPlayer" parent="Sounds" unique_id=2114748889]
 stream = ExtResource("5_8fjmc")
-volume_db = -8.0
+volume_db = -24.0
 
 [node name="Damage_02" type="AudioStreamPlayer" parent="Sounds" unique_id=1616430639]
 stream = ExtResource("6_qiwj3")
-volume_db = -8.0
+volume_db = -24.0
 
 [node name="MoveSounds" type="Node" parent="." unique_id=1827210184]
 
 [node name="Jump" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2070368994]
 stream = ExtResource("7_qiwj3")
-volume_db = -14.0
+volume_db = -18.0
 
 [node name="FootStep" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2081696798]
 stream = ExtResource("8_26q78")
-volume_db = -14.0
+volume_db = -18.0
 
 [node name="HurtSounds" type="Node" parent="." unique_id=297794617]
 
