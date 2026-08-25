@@ -204,6 +204,34 @@ region = Rect2(396, 662, 60, 69)
 atlas = ExtResource("4_fkugw")
 region = Rect2(476, 671, 62, 70)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pth52"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(285, 2133, 57, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iu2e"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(342, 2133, 57, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q7bw"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(392, 2133, 54, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb5t2"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(437, 2133, 54, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsjf6"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(486, 2133, 54, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3n4f"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(260, 488, 52, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmffv"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(312, 488, 52, 91)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bls4j"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(558, 1800, 50, 63)
@@ -432,6 +460,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_pth52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iu2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q7bw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qb5t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsjf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3n4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmffv")
+}],
+"loop": 0,
+"name": &"double_jump",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bls4j")
 }],
 "loop": 1,
@@ -587,7 +641,7 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"rasengan"
+animation = &"double_jump"
 frame = 6
 frame_progress = 1.0
 

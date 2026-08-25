@@ -161,7 +161,10 @@ func go_to_walking_state():
 	
 func go_to_jump_state():
 	status = PlayerState.jump
-	anim.play("jump")
+	if jump_count == 0:
+		anim.play("jump")
+	elif jump_count == 1:
+		anim.play("double_jump")
 	jump.play()
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
