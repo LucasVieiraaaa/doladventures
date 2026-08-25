@@ -230,7 +230,9 @@ func idle_state(delta):
 		go_to_jutsu_state("bushin_attack")
 		return
 	
-		 
+	if Input.is_action_just_pressed("rasengan_normal"):
+		go_to_jutsu_state("rasengan_normal")
+		return 
 func walk_state(delta):
 	apply_gravity(delta)
 	
@@ -559,6 +561,9 @@ func go_to_jutsu_state(jutsu: String):
 		"bushin_attack_all":
 			allBushinJutsu()
 			return
+		"rasengan_normal":
+			regularRasengan()
+			return
 			
 ### END BUSHIN JUTSU LOGIC ###
 
@@ -569,3 +574,7 @@ func what_is_character_steping() -> void:
 		else:
 			foot_step.play()
 	
+### START RASENGAN """
+func regularRasengan():
+	status = PlayerState.jutsu
+	anim.play("rasengan")
