@@ -9,4 +9,3 @@ func _ready() -> void:
 
 func name_update() -> void:
 	text = target.nameDisplay
-	print(text)

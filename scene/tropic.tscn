@@ -44,7 +44,7 @@ script = SubResource("GDScript_ytc0w")
 [node name="PauseMenu" parent="." unique_id=995015526 instance=ExtResource("1_ei81g")]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_bmxgx")]
-position = Vector2(2658, 129)
+position = Vector2(5096, 100)
 bushin_max_combo = 2
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=149437379]

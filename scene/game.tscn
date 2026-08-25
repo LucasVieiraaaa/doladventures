@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dwb68mxuqia16" path="res://entities/player/player.tscn" id="1_5kiuu"]
 [ext_resource type="PackedScene" uid="uid://5q3wq8of7ipl" path="res://scene/pause_menu.tscn" id="1_qpk70"]
 [ext_resource type="PackedScene" uid="uid://dwf8ijq0ui3gx" path="res://entities/camera.tscn" id="1_xlg7c"]
+[ext_resource type="PackedScene" uid="uid://bi7y72mouwr30" path="res://entities/level_end.tscn" id="1_ym5sv"]
 [ext_resource type="TileSet" uid="uid://c47hqqhjal4us" path="res://tiles/terrain.tres" id="2_33cqm"]
 [ext_resource type="TileSet" uid="uid://b2471mry42c1b" path="res://tiles/decoration.tres" id="3_xwcet"]
 [ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/skeleton.tscn" id="4_p1ry8"]
@@ -13,12 +14,16 @@
 
 [node name="Game" type="Node2D" unique_id=1781356822]
 
+[node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("1_ym5sv")]
+position = Vector2(863, 67)
+scale = Vector2(-2.8639379, 8.309639)
+
 [node name="PauseMenu" parent="." unique_id=995015526 instance=ExtResource("1_qpk70")]
 
 [node name="Camera" parent="." unique_id=1411746104 instance=ExtResource("1_xlg7c")]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_5kiuu")]
-position = Vector2(571, 87)
+position = Vector2(752, 84)
 bushin_max_combo = 5
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1750314656]
@@ -32,7 +37,7 @@ tile_map_data = PackedByteArray("AAAGAAgAAAAFAAEAAAANAAMAAAAFAAEAAAAQAAcAAAAOAAU
 tile_set = ExtResource("3_xwcet")
 
 [node name="Skeleton" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
-position = Vector2(632, 80)
+position = Vector2(814, 65)
 
 [node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=1662146049 groups=["LethalArea"]]
 z_index = 2
@@ -50,6 +55,7 @@ offset_top = 19.0
 offset_right = 96.28
 offset_bottom = 24.0
 target = NodePath("../../player")
+metadata/_edit_use_anchors_ = true
 
 [node name="NameDisplay" parent="HUD" unique_id=1968586722 node_paths=PackedStringArray("target") instance=ExtResource("9_yq8tf")]
 offset_left = 45.28
