@@ -7,6 +7,9 @@
 [ext_resource type="TileSet" uid="uid://b2471mry42c1b" path="res://tiles/decoration.tres" id="3_xwcet"]
 [ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/skeleton.tscn" id="4_p1ry8"]
 [ext_resource type="PackedScene" uid="uid://bi7y72mouwr30" path="res://entities/level_end.tscn" id="4_xwcet"]
+[ext_resource type="TileSet" uid="uid://cbywuvqg8pig5" path="res://tiles/lava.tres" id="7_17rxn"]
+[ext_resource type="PackedScene" uid="uid://b3b3tlvyom1q5" path="res://sprites/UI/health_bar.tscn" id="8_ll5lq"]
+[ext_resource type="PackedScene" uid="uid://cauteg7aos8wl" path="res://sprites/UI/name_display.tscn" id="9_yq8tf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1ry8"]
 size = Vector2(20, 145)
@@ -33,11 +36,32 @@ tile_set = ExtResource("3_xwcet")
 [node name="Skeleton" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
 position = Vector2(620, -98)
 
+[node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=1662146049 groups=["LethalArea"]]
+z_index = 2
+tile_map_data = PackedByteArray("AAAYAAYAAAAAAAAAAAAYAAcAAAAAAAEAAAAZAAYAAAAAAAAAAAAZAAcAAAAAAAEAAAAaAAYAAAAAAAAAAAAaAAcAAAAAAAEAAAAbAAYAAAAAAAAAAAAbAAcAAAAAAAEAAAAcAAYAAAAAAAAAAAAcAAcAAAAAAAEAAAAdAAYAAAAAAAAAAAAdAAcAAAAAAAEAAAAeAAYAAAAAAAAAAAAeAAcAAAAAAAEAAAAfAAYAAAAAAAAAAAAfAAcAAAAAAAEAAAAgAAYAAAAAAAAAAAAgAAcAAAAAAAEAAAAYAAgAAAAAAAEAAAAZAAgAAAAAAAEAAAAaAAgAAAAAAAEAAAAbAAgAAAAAAAEAAAAcAAgAAAAAAAEAAAAdAAgAAAAAAAEAAAAeAAgAAAAAAAEAAAAfAAgAAAAAAAEAAAAgAAgAAAAAAAEAAAAYAAwAAAAAAAEAAAAYAA0AAAAAAAEAAAAZAAwAAAAAAAEAAAAZAA0AAAAAAAEAAAAaAAwAAAAAAAEAAAAaAA0AAAAAAAEAAAAbAAwAAAAAAAEAAAAbAA0AAAAAAAEAAAAcAAwAAAAAAAEAAAAcAA0AAAAAAAEAAAAdAAwAAAAAAAEAAAAdAA0AAAAAAAEAAAAeAAwAAAAAAAEAAAAeAA0AAAAAAAEAAAAfAAwAAAAAAAEAAAAfAA0AAAAAAAEAAAAgAAwAAAAAAAEAAAAgAA0AAAAAAAEAAAAYAAoAAAAAAAEAAAAYAAsAAAAAAAEAAAAZAAoAAAAAAAEAAAAZAAsAAAAAAAEAAAAaAAoAAAAAAAEAAAAaAAsAAAAAAAEAAAAbAAoAAAAAAAEAAAAbAAsAAAAAAAEAAAAcAAoAAAAAAAEAAAAcAAsAAAAAAAEAAAAdAAoAAAAAAAEAAAAdAAsAAAAAAAEAAAAeAAoAAAAAAAEAAAAeAAsAAAAAAAEAAAAfAAoAAAAAAAEAAAAfAAsAAAAAAAEAAAAgAAoAAAAAAAEAAAAgAAsAAAAAAAEAAAAYAAkAAAAAAAEAAAAZAAkAAAAAAAEAAAAaAAkAAAAAAAEAAAAbAAkAAAAAAAEAAAAcAAkAAAAAAAEAAAAdAAkAAAAAAAEAAAAeAAkAAAAAAAEAAAAfAAkAAAAAAAEAAAAgAAkAAAAAAAEAAAAYAA4AAAAAAAEAAAAZAA4AAAAAAAEAAAAaAA4AAAAAAAEAAAAbAA4AAAAAAAEAAAAcAA4AAAAAAAEAAAAdAA4AAAAAAAEAAAAeAA4AAAAAAAEAAAAfAA4AAAAAAAEAAAAgAA4AAAAAAAEAAAAgAA8AAAAAAAEAAAAgABAAAAAAAAEAAAAgABEAAAAAAAEAAAAfABEAAAAAAAEAAAAfABAAAAAAAAEAAAAeABAAAAAAAAEAAAAdABAAAAAAAAEAAAAcABAAAAAAAAEAAAAcABEAAAAAAAEAAAAbABEAAAAAAAEAAAAaABEAAAAAAAEAAAAZABEAAAAAAAEAAAAZABAAAAAAAAEAAAAZAA8AAAAAAAEAAAAYAA8AAAAAAAEAAAAYABAAAAAAAAEAAAAYABEAAAAAAAEAAAAaABAAAAAAAAEAAAAbABAAAAAAAAEAAAAdABEAAAAAAAEAAAAeABEAAAAAAAEAAAAaAA8AAAAAAAEAAAAbAA8AAAAAAAEAAAAcAA8AAAAAAAEAAAAdAA8AAAAAAAEAAAAeAA8AAAAAAAEAAAAfAA8AAAAAAAEAAAA=")
+tile_set = ExtResource("7_17rxn")
+
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("4_xwcet")]
 position = Vector2(649, 86)
 
 [node name="CollisionShape2D" parent="LevelEnd" index="0" unique_id=747925018]
 position = Vector2(0, -62.5)
 shape = SubResource("RectangleShape2D_p1ry8")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1857742715]
+
+[node name="NameDisplay" parent="HUD" unique_id=1968586722 node_paths=PackedStringArray("target") instance=ExtResource("9_yq8tf")]
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 57.0
+offset_bottom = 26.0
+target = NodePath("../../player")
+
+[node name="HealthBar" parent="HUD" unique_id=1159617753 node_paths=PackedStringArray("target") instance=ExtResource("8_ll5lq")]
+offset_left = 8.0
+offset_top = 19.0
+offset_right = 108.0
+offset_bottom = 24.0
+target = NodePath("../../player")
 
 [editable path="LevelEnd"]
