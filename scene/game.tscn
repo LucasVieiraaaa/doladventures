@@ -15,7 +15,7 @@
 [node name="Game" type="Node2D" unique_id=1781356822]
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("1_ym5sv")]
-position = Vector2(863, 67)
+position = Vector2(595.99994, -15.999985)
 scale = Vector2(-2.8639379, 8.309639)
 
 [node name="PauseMenu" parent="." unique_id=995015526 instance=ExtResource("1_qpk70")]
@@ -23,7 +23,7 @@ scale = Vector2(-2.8639379, 8.309639)
 [node name="Camera" parent="." unique_id=1411746104 instance=ExtResource("1_xlg7c")]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_5kiuu")]
-position = Vector2(752, 84)
+position = Vector2(805, 36)
 bushin_max_combo = 5
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1750314656]
@@ -37,7 +37,7 @@ tile_map_data = PackedByteArray("AAAGAAgAAAAFAAEAAAANAAMAAAAFAAEAAAAQAAcAAAAOAAU
 tile_set = ExtResource("3_xwcet")
 
 [node name="Skeleton" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
-position = Vector2(814, 65)
+position = Vector2(910, 60)
 
 [node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=1662146049 groups=["LethalArea"]]
 z_index = 2

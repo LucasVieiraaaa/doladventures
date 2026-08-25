@@ -62,9 +62,9 @@ var isAudioPlaying: bool = false;
 @onready var right_wall_detector: RayCast2D = $RightWallDetector
 
 @onready var attack_area_shape: CollisionShape2D = $AttackArea/CollisionShape2D
-
 const PLAYER_CLONE = preload("uid://hu2rp4qv7ngl")
 var clone_spawn_direction: int = 0
+var rasengan_direction: int = 0
 
 @export var max_speed = 100.0
 @export var acceleration = 400
@@ -361,16 +361,14 @@ func update_direction():
 		clone_spawn_direction = -1
 		anim.flip_h = true
 		$AttackArea.scale.x = -1
-		rasengan_2d.position.x = 8
-		rasengan_2d.position.y = -4
+		updateRasenganPosition(-1)
+		rasenganPosition(8,-4)
 	elif direction > 0:
 		anim.flip_h = false
 		$AttackArea.scale.x = 1
 		clone_spawn_direction = 1
-		rasengan_2d.position.x = -12
-		rasengan_2d.position.y = -4
-	
-		
+		updateRasenganPosition(1)
+		rasenganPosition(-12,-4)
 func jutsu_state(delta: float) -> void:
 	apply_gravity(delta)
 	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
@@ -443,6 +441,7 @@ func apply_gravity(delta):
 		
 func getDamage():
 	if health > 0:
+		rasengan_2d.visible = false
 		hurt_sound.play()
 		anim.play("damage")
 		velocity = Vector2.ZERO
@@ -536,7 +535,7 @@ func regularBushinJutsu():
 		bushin_combo = 0;
 		
 func allBushinJutsu():
-	if bushin_combo == 0 && !beenHit && !isDead:	
+	if bushin_combo == 0 && !beenHit && !beenHit:	
 		tajuu_kage_bushin.play()
 		status = PlayerState.jutsu
 		anim.play("jutsu")
@@ -581,7 +580,6 @@ func go_to_jutsu_state(jutsu: String):
 			
 ### END BUSHIN JUTSU LOGIC ###
 
-
 func what_is_character_steping() -> void:
 		if water_detector.is_colliding():
 			water_step.play()
@@ -591,7 +589,13 @@ func what_is_character_steping() -> void:
 ### START RASENGAN """
 func regularRasengan():
 	status = PlayerState.jutsu
-	playRasenganStartAnimation()
+	if !beenHit && !isDead:
+		playRasenganStartAnimation()
+		await get_tree().create_timer(2.0).timeout
+		go_to_idle_state()
+	else:
+		go_to_idle_state()
+		return		
 	
 func playRasenganStartAnimation():
 	anim.play("rasengan")
@@ -601,5 +605,15 @@ func playRasenganStartAnimation():
 	rasengan_formation.play()
 	rasengan_2d.play("rasengan_formation")
 	rasengan_2d.visible = true
-	await get_tree().create_timer(4.0).timeout
-	go_to_idle_state()
+	return
+	#go_to_idle_state()
+	
+	
+func updateRasenganPosition(number: int):
+	rasengan_direction = number
+	return
+	
+func rasenganPosition(x: int ,y: int):
+	rasengan_2d.position.x = x
+	rasengan_2d.position.y = y
+	return
