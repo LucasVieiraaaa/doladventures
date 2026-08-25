@@ -13,6 +13,23 @@ enum PlayerState {
 	jutsu
 }
 
+#Health
+
+signal health_change()
+@export var maxHealth = 3
+@export var health: int = 3 :
+	set(value):
+		health = value
+		
+var whatHitYou: String
+
+#Charcter Information
+signal name_character
+
+@export var nameDisplay: String = "Naruto Uzumaki":
+	set(value):
+		nameDisplay = value
+		name_character.emit()
 #Steps
 var step_timer := 0.0
 var step_interval := 0.5
@@ -56,11 +73,6 @@ var jump_count = 0
 var direction = 0
 var status: PlayerState
 var isDead = false
-
-#Health Variables
-@export var maxHealth = 3
-var health = maxHealth
-var whatHitYou: String
 
 #Combo Variables
 var combo_step: int = 0
@@ -434,8 +446,10 @@ func getDamage():
 	match self.whatHitYou:
 		"Shuriken":
 			health -= 1
+			health_change.emit()
 		"Lava":
-			health = 0
+			health -= health
+			health_change.emit()
 			
 	await get_tree().create_timer(0.5).timeout
 	go_to_idle_state()
