@@ -1,60 +1,81 @@
 [gd_scene format=3 uid="uid://dl83o0dpjrs1r"]
 
 [ext_resource type="Script" uid="uid://bbl8cqgrri81r" path="res://scripts/title_screen.gd" id="1_2fir4"]
-[ext_resource type="Texture2D" uid="uid://ksxoh1friwc2" path="res://sprites/Seasonal Tilesets/1 - Grassland/Background parts/_Complete_static_BG_(288 x 208).png" id="1_pkupl"]
 [ext_resource type="Texture2D" uid="uid://qp0lqs2fjr1j" path="res://sprites/UI/dolabela-adventures.png" id="2_i58fu"]
+[ext_resource type="Texture2D" uid="uid://ceug5ry8buwru" path="res://sprites/Background/akatsuki-title-screen.png" id="2_wxbcn"]
 [ext_resource type="AudioStream" uid="uid://enbyu851fbtd" path="res://audios/misc/bamboo-hit-sound-effect.mp3" id="4_wxbcn"]
 
 [sub_resource type="Theme" id="Theme_i58fu"]
 Button/font_sizes/font_size = 10
 
+[sub_resource type="FontVariation" id="FontVariation_gh7ws"]
+variation_embolden = 1.25
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i58fu"]
-bg_color = Color(0.14509805, 0.3882353, 0.65882355, 1)
+bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
+expand_margin_left = 18.0
+expand_margin_right = 18.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ctqs"]
-bg_color = Color(0.3019608, 0.5764706, 0.8784314, 1)
+bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
+expand_margin_left = 18.0
+expand_margin_right = 18.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6oad"]
-bg_color = Color(0.3019608, 0.5764706, 0.8784314, 1)
+bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
+expand_margin_left = 18.0
+expand_margin_right = 18.0
+
+[sub_resource type="FontVariation" id="FontVariation_ulgj7"]
+variation_embolden = 1.25
 
 [sub_resource type="Theme" id="Theme_2fir4"]
 Button/font_sizes/font_size = 10
 
+[sub_resource type="FontVariation" id="FontVariation_j6oad"]
+variation_embolden = 1.25
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxbcn"]
-bg_color = Color(0.14509805, 0.3882353, 0.65882355, 1)
+bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
 border_width_left = 5
 border_width_right = 5
-border_color = Color(0.14509805, 0.3882353, 0.65882355, 1)
+border_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
+expand_margin_left = 18.0
+expand_margin_right = 18.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbyiy"]
-bg_color = Color(0.3019608, 0.5764706, 0.8784314, 1)
+bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
+expand_margin_left = 18.0
+expand_margin_right = 18.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh7ws"]
-bg_color = Color(0.3019608, 0.5764706, 0.8784314, 1)
+bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
+expand_margin_left = 18.0
+expand_margin_right = 18.0
 
 [node name="TitleScreen" type="Control" unique_id=1096577154]
 layout_mode = 3
@@ -67,38 +88,43 @@ script = ExtResource("1_2fir4")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=609587275]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.5208334
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource("1_pkupl")
-stretch_mode = 1
-metadata/_edit_use_anchors_ = true
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wxbcn")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=201441548]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -36.5
-offset_top = -120.0
-offset_right = 36.5
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -21.0
+offset_right = 88.0
+offset_bottom = 21.0
+grow_vertical = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=445410798]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = 4
 
 [node name="Start" type="Button" parent="MarginContainer/VBoxContainer" unique_id=210594334]
 layout_mode = 2
 theme = SubResource("Theme_i58fu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_fonts/font = SubResource("FontVariation_gh7ws")
 theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_i58fu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0ctqs")
@@ -106,9 +132,25 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_j6oad")
 text = "START
 "
 
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer" unique_id=584248347]
+layout_mode = 2
+theme = SubResource("Theme_i58fu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_fonts/font = SubResource("FontVariation_ulgj7")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_i58fu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ctqs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j6oad")
+text = "OPTIONS
+"
+
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1547001146]
 layout_mode = 2
 theme = SubResource("Theme_2fir4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_fonts/font = SubResource("FontVariation_j6oad")
 theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_wxbcn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rbyiy")
@@ -117,16 +159,13 @@ text = "QUIT GAME"
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1574243971]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -42.511627
-offset_top = -36.0
-offset_right = 42.511627
-offset_bottom = 4.0
-grow_horizontal = 2
+offset_left = 14.0
+offset_top = -55.0
+offset_right = 99.02326
+offset_bottom = -15.0
 grow_vertical = 2
 texture = ExtResource("2_i58fu")
 expand_mode = 3
