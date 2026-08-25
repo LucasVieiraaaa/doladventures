@@ -14,7 +14,6 @@ enum PlayerState {
 }
 
 #Health
-
 signal health_change()
 @export var maxHealth = 3
 @export var health: int = 3 :
@@ -74,6 +73,7 @@ var jump_count = 0
 var direction = 0
 var status: PlayerState
 var isDead = false
+var beenHit = false
 
 #Combo Variables
 var combo_step: int = 0
@@ -128,6 +128,7 @@ func go_to_idle_state():
 	status = PlayerState.idle
 	combo_step = 0
 	combo_buffered = false
+	beenHit = false
 	disable_attack_hitbox()
 	anim.play("idle")
 	
@@ -424,6 +425,7 @@ func getDamage():
 		hurt_sound.play()
 		anim.play("damage")
 		velocity = Vector2.ZERO
+		beenHit = true
 		
 	match self.whatHitYou:
 		"Shuriken":
@@ -433,7 +435,8 @@ func getDamage():
 			health -= health
 			health_change.emit()
 			
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.0).timeout
+	beenHit = true
 	go_to_idle_state()
 			
 func killHitBox():
@@ -506,30 +509,40 @@ func regularBushinJutsu():
 		anim.play("jutsu")
 		spawn_clone(25) 
 	elif bushin_combo == bushin_max_combo:
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(2.75).timeout
 		bushin_combo = 0;
 		
 func allBushinJutsu():
-	if bushin_combo == 0:	
+	if bushin_combo == 0 && !beenHit && !isDead:	
 		tajuu_kage_bushin.play()
+		status = PlayerState.jutsu
 		anim.play("jutsu")
 		anim.pause()
-		await get_tree().create_timer(2.5).timeout
+		var timer = get_tree().create_timer(2.5)
 
+		while timer.time_left > 0:
+			if beenHit:
+				tajuu_kage_bushin.stop()
+				go_to_idle_state()
+				return
+			await get_tree().process_frame
+		
 		for i in range(bushin_max_combo * 1.75):
 			var offset = (i / 2 + 1) * 20
 			if i % 2 == 0:
 				offset *= -1
-			spawn_clone(offset)
+			if !beenHit:
+				spawn_clone(offset)
+			else:
+				return
 		go_to_idle_state()
 		bunshin.volume_db = 16.0
 		bunshin.play()
 
 		bunshin.volume_db = -16.0
 		bushin_combo = bushin_max_combo
-		await get_tree().create_timer(4.0).timeout
+		await get_tree().create_timer(12.0).timeout
 		bushin_combo = 0;
-	
 
 func go_to_jutsu_state(jutsu: String):
 	match jutsu:

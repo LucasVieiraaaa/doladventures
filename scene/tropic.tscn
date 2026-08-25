@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://dwf8ijq0ui3gx" path="res://entities/camera.tscn" id="9_34ia6"]
 [ext_resource type="PackedScene" uid="uid://bi7y72mouwr30" path="res://entities/level_end.tscn" id="10_d18o5"]
 [ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/skeleton.tscn" id="11_t8vtq"]
+[ext_resource type="PackedScene" uid="uid://bqwevku1w7nxc" path="res://sprites/2 - Dolabela/character_face.tscn" id="13_xnncp"]
+[ext_resource type="PackedScene" uid="uid://b3b3tlvyom1q5" path="res://sprites/UI/health_bar.tscn" id="14_mjtd1"]
+[ext_resource type="PackedScene" uid="uid://cauteg7aos8wl" path="res://sprites/UI/name_display.tscn" id="15_kjkl5"]
 
 [sub_resource type="GDScript" id="GDScript_ytc0w"]
 
@@ -42,7 +45,7 @@ script = SubResource("GDScript_ytc0w")
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_bmxgx")]
 position = Vector2(2658, 129)
-bushin_max_combo = 3
+bushin_max_combo = 2
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=149437379]
 
@@ -209,5 +212,26 @@ position = Vector2(4042, 15)
 [node name="Skeleton14" parent="Enemies" unique_id=1414252542 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(4844.0005, 145)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1288992050]
+
+[node name="CharacterFace" parent="HUD" unique_id=1561527091 instance=ExtResource("13_xnncp")]
+position = Vector2(26.28, 17)
+
+[node name="HealthBar" parent="HUD" unique_id=1159617753 node_paths=PackedStringArray("target") instance=ExtResource("14_mjtd1")]
+offset_left = 46.28
+offset_top = 19.0
+offset_right = 96.28
+offset_bottom = 24.0
+target = NodePath("../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="NameDisplay" parent="HUD" unique_id=1968586722 node_paths=PackedStringArray("target") instance=ExtResource("15_kjkl5")]
+offset_left = 45.28
+offset_top = 7.0
+offset_right = 95.28
+offset_bottom = 27.0
+target = NodePath("../../player")
+metadata/_edit_use_anchors_ = true
 
 [editable path="LevelEnd"]

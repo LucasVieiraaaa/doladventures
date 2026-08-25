@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bqwevku1w7nxc"]
+
+[ext_resource type="Texture2D" uid="uid://dwubi8velvlap" path="res://sprites/UI/naruto-face.png" id="1_aq8f4"]
+
+[node name="CharacterFace" type="Sprite2D" unique_id=1561527091]
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("1_aq8f4")

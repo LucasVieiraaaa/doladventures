@@ -18,7 +18,7 @@ expand_margin_bottom = 1.0
 bg_color = Color(0.039215688, 0.73333335, 0.5294118, 1)
 
 [node name="HealthBar" type="ProgressBar" unique_id=1159617753]
-offset_right = 100.0
+offset_right = 50.0
 offset_bottom = 5.0
 theme_override_styles/background = SubResource("StyleBoxFlat_d7tem")
 theme_override_styles/fill = SubResource("StyleBoxFlat_np6gj")

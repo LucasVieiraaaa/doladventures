@@ -4,6 +4,7 @@
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=995015526]
 process_mode = 3
+layer = 5
 script = ExtResource("1_grdc7")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=599817538]
