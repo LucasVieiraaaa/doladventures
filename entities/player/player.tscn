@@ -312,6 +312,14 @@ region = Rect2(255, 13, 51, 73)
 atlas = ExtResource("3_j3ovn")
 region = Rect2(306, 13, 51, 73)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix1gt"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(816, 2439, 51, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sym6v"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(867, 2439, 51, 90)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vqvu"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(539, 2460, 76, 51)
@@ -604,6 +612,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ix1gt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sym6v")
+}],
+"loop": 0,
+"name": &"rasengan_end",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2vqvu")
 }, {
 "duration": 1.0,
@@ -712,14 +731,16 @@ position = Vector2(-11, -4)
 scale = Vector2(0.36, 0.36)
 sprite_frames = SubResource("SpriteFrames_mhk8t")
 animation = &"rasengan_colision"
-frame_progress = 0.045607667
+frame_progress = 0.080476426
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
 z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"rasengan_hit_loop"
+animation = &"rasengan_end"
+frame = 1
+frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]
 position = Vector2(0, -2)

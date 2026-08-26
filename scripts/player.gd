@@ -595,7 +595,7 @@ func what_is_character_steping() -> void:
 		else:
 			foot_step.play()
 	
-### START RASENGAN """
+### START RASENGAN ###
 func regularRasengan():
 	status = PlayerState.jutsu
 	if !beenHit && !isDead:
@@ -702,4 +702,6 @@ func rasenganHitSomething():
 		grow_rasengan()
 		await get_tree().create_timer(1.0).timeout
 		decrease_rasengan()
+		anim.play("rasengan_end")
 		return
+### END RASENGAN ###
