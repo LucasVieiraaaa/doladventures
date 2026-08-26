@@ -40,6 +40,7 @@ var step_interval := 0.5
 @onready var rasengan_formation: AudioStreamPlayer = $Sounds/RasenganFormation
 @onready var rasengan_hit: AudioStreamPlayer = $Sounds/RasenganHit
 @onready var rasengan_2d: AnimatedSprite2D = $Rasengan2D
+var rasengan_on_cooldown: bool = false
 var playerHitSomething: bool = false;
 
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
@@ -596,19 +597,23 @@ func what_is_character_steping() -> void:
 			foot_step.play()
 	
 ### START RASENGAN ###
-func regularRasengan():
+func regularRasengan():	
+	if rasengan_on_cooldown:
+		return
+	rasengan_on_cooldown = true
 	status = PlayerState.jutsu
 	if !beenHit && !isDead:
 		bunshin.play()
-		
 		playRasenganStartAnimation()
 		await get_tree().create_timer(2.5).timeout
 		moveWithRasengan()
 		await get_tree().create_timer(2.0).timeout
-		go_to_idle_state()
 	else:
 		go_to_idle_state()
-		return		
+
+	go_to_idle_state()
+	await get_tree().create_timer(5.0).timeout
+	rasengan_on_cooldown = false
 	
 func playRasenganStartAnimation():
 	anim.play("rasengan")
@@ -697,6 +702,7 @@ func rasenganHitSomething():
 	if playerHitSomething:
 		rasengan_hit.play()
 		rasenganPosition(19 * rasengan_direction, -6)
+		shakeCamera()
 		anim.play("rasengan_hit")
 		anim.play("rasengan_hit_loop")
 		grow_rasengan()
@@ -705,3 +711,7 @@ func rasenganHitSomething():
 		anim.play("rasengan_end")
 		return
 ### END RASENGAN ###
+	
+func shakeCamera():
+	var camera = get_viewport().get_camera_2d()
+	camera.camera_shake(18, 0.4)

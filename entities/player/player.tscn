@@ -731,7 +731,7 @@ position = Vector2(-11, -4)
 scale = Vector2(0.36, 0.36)
 sprite_frames = SubResource("SpriteFrames_mhk8t")
 animation = &"rasengan_colision"
-frame_progress = 0.080476426
+frame_progress = 0.32114276
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
 z_index = 1

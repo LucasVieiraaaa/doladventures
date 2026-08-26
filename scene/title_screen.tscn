@@ -13,12 +13,10 @@ variation_embolden = 1.25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i58fu"]
 bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
+border_width_bottom = 2
+border_color = Color(0.7411765, 0.4627451, 0.2901961, 1)
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
-expand_margin_left = 18.0
-expand_margin_right = 18.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ctqs"]
 bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
@@ -26,8 +24,6 @@ corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
-expand_margin_left = 18.0
-expand_margin_right = 18.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6oad"]
 bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
@@ -35,8 +31,6 @@ corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
-expand_margin_left = 18.0
-expand_margin_right = 18.0
 
 [sub_resource type="FontVariation" id="FontVariation_ulgj7"]
 variation_embolden = 1.25
@@ -49,15 +43,10 @@ variation_embolden = 1.25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxbcn"]
 bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
-border_width_left = 5
-border_width_right = 5
-border_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
+border_width_bottom = 2
+border_color = Color(0.7411765, 0.4627451, 0.2901961, 1)
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
-expand_margin_left = 18.0
-expand_margin_right = 18.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbyiy"]
 bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
@@ -65,8 +54,6 @@ corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
-expand_margin_left = 18.0
-expand_margin_right = 18.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh7ws"]
 bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
@@ -74,8 +61,6 @@ corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
-expand_margin_left = 18.0
-expand_margin_right = 18.0
 
 [node name="TitleScreen" type="Control" unique_id=1096577154]
 layout_mode = 3
@@ -91,8 +76,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_wxbcn")
@@ -129,7 +112,7 @@ theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_i58fu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0ctqs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j6oad")
-text = "START
+text = "PLAY GAME
 "
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer" unique_id=584248347]
@@ -155,7 +138,8 @@ theme_override_font_sizes/font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_wxbcn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rbyiy")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gh7ws")
-text = "QUIT GAME"
+text = "EXIT
+"
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1574243971]
 layout_mode = 1

@@ -5,7 +5,7 @@ var sfx_player: AudioStreamPlayer
 
 func _ready() -> void:
 	music_player = AudioStreamPlayer.new()
-	music_player.volume_db = -10
+	music_player.volume_db = 0
 	add_child(music_player)
 
 	sfx_player = AudioStreamPlayer.new()
