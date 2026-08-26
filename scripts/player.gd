@@ -591,8 +591,9 @@ func regularRasengan():
 	status = PlayerState.jutsu
 	if !beenHit && !isDead:
 		playRasenganStartAnimation()
-		await get_tree().create_timer(2.0).timeout
-		go_to_idle_state()
+		await get_tree().create_timer(2.5).timeout
+		moveWithRasengan()
+		#go_to_idle_state()
 	else:
 		go_to_idle_state()
 		return		
@@ -608,6 +609,22 @@ func playRasenganStartAnimation():
 	return
 	#go_to_idle_state()
 	
+func moveWithRasengan():
+	anim.play("rasengan_moving")
+	if rasengan_direction == 1:
+		rasenganPosition(-12,-7)
+	elif rasengan_direction == -1:
+		rasenganPosition(8,-7)
+		
+	var timer = get_tree().create_timer(1.2)
+
+	while timer.time_left > 0:
+		velocity.x += 10
+		if beenHit:
+			go_to_idle_state()
+			return
+		await get_tree().process_frame
+	velocity = Vector2.ZERO
 	
 func updateRasenganPosition(number: int):
 	rasengan_direction = number
