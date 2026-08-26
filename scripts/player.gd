@@ -38,10 +38,13 @@ var step_interval := 0.5
 @onready var bunshin: AudioStreamPlayer = $Sounds/Bunshin
 @onready var tajuu_kage_bushin: AudioStreamPlayer = $Sounds/TajuuKageBushin
 @onready var rasengan_formation: AudioStreamPlayer = $Sounds/RasenganFormation
+@onready var rasengan_hit: AudioStreamPlayer = $Sounds/RasenganHit
 @onready var rasengan_2d: AnimatedSprite2D = $Rasengan2D
+var playerHitSomething: bool = false;
 
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
 @onready var damage_02: AudioStreamPlayer = $Sounds/Damage_02
+@onready var scream_sound: AudioStreamPlayer = $MoveSounds/ScreamSound
 
 @onready var foot_step: AudioStreamPlayer = $MoveSounds/FootStep
 @onready var water_step: AudioStreamPlayer = $MoveSounds/WaterStep
@@ -64,7 +67,7 @@ var isAudioPlaying: bool = false;
 @onready var attack_area_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 const PLAYER_CLONE = preload("uid://hu2rp4qv7ngl")
 var clone_spawn_direction: int = 0
-var rasengan_direction: int = 0
+var rasengan_direction: int = 1
 
 @export var max_speed = 100.0
 @export var acceleration = 400
@@ -210,6 +213,7 @@ func go_to_dead_state():
 	
 func idle_state(delta):
 	apply_gravity(delta)
+	playerHitSomething = false
 	
 	move(delta)
 
@@ -494,6 +498,11 @@ func _on_animation_finished() -> void:
 ###END SIMPLE COMBO LOGIC ###
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
+	print("caiu aqui")
+	if area != null:
+		playerHitSomething = true;
+	else:
+		playerHitSomething = false;
 	var entity = area.get_parent()
 	if entity.has_method("take_damage"):
 		entity.take_damage()
@@ -590,10 +599,13 @@ func what_is_character_steping() -> void:
 func regularRasengan():
 	status = PlayerState.jutsu
 	if !beenHit && !isDead:
+		bunshin.play()
+		
 		playRasenganStartAnimation()
 		await get_tree().create_timer(2.5).timeout
 		moveWithRasengan()
-		#go_to_idle_state()
+		await get_tree().create_timer(2.0).timeout
+		go_to_idle_state()
 	else:
 		go_to_idle_state()
 		return		
@@ -601,8 +613,10 @@ func regularRasengan():
 func playRasenganStartAnimation():
 	anim.play("rasengan")
 	await get_tree().create_timer(0.5).timeout
+	
 	spawn_clone(-22, true) 
 	anim.pause()
+	scream_sound.play()
 	rasengan_formation.play()
 	rasengan_2d.play("rasengan_formation")
 	rasengan_2d.visible = true
@@ -611,20 +625,37 @@ func playRasenganStartAnimation():
 	
 func moveWithRasengan():
 	anim.play("rasengan_moving")
+	
 	if rasengan_direction == 1:
 		rasenganPosition(-12,-7)
 	elif rasengan_direction == -1:
 		rasenganPosition(8,-7)
 		
-	var timer = get_tree().create_timer(1.2)
+	var timer = get_tree().create_timer(0.7)
 
 	while timer.time_left > 0:
-		velocity.x += 10
+		acceleration = -100
+		deceleration = 2000
+			
+		velocity.x = 250 * rasengan_direction
+		enable_attack_hitbox()
+		if playerHitSomething:
+			break
 		if beenHit:
 			go_to_idle_state()
 			return
 		await get_tree().process_frame
+	
+	if timer.time_left == 0 && !playerHitSomething:
+		go_to_idle_state()
+	
+	rasenganHitSomething()
+	
+	acceleration = 400
+	deceleration = 500
+		
 	velocity = Vector2.ZERO
+	disable_attack_hitbox()
 	
 func updateRasenganPosition(number: int):
 	rasengan_direction = number
@@ -634,3 +665,41 @@ func rasenganPosition(x: int ,y: int):
 	rasengan_2d.position.x = x
 	rasengan_2d.position.y = y
 	return
+	
+func grow_rasengan():
+	rasengan_2d.scale = Vector2(1, 1)
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	rasengan_2d.play("rasengan_colision")
+
+	tween.tween_property(rasengan_2d,"scale",Vector2(1.1, 1.1),1.0)
+	await tween.finished
+	
+func decrease_rasengan():
+	rasengan_2d.scale = Vector2(1.1, 1.1)
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		rasengan_2d,
+		"scale",
+		Vector2(0, 0),
+		0.5
+	)
+
+	await tween.finished
+
+	rasengan_2d.visible = false
+	rasengan_2d.scale = Vector2(0.4, 0.4)
+	
+func rasenganHitSomething():
+	if playerHitSomething:
+		rasengan_hit.play()
+		rasenganPosition(19 * rasengan_direction, -6)
+		anim.play("rasengan_hit")
+		anim.play("rasengan_hit_loop")
+		grow_rasengan()
+		await get_tree().create_timer(1.0).timeout
+		decrease_rasengan()
+		return

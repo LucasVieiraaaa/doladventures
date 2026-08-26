@@ -15,22 +15,12 @@
 [ext_resource type="AudioStream" uid="uid://bqgx4p1ojxk13" path="res://audios/naruto/naruto_hurt.wav" id="9_bectd"]
 [ext_resource type="AudioStream" uid="uid://bb5llvr5l4y68" path="res://audios/moves/water_step.wav" id="10_a1qjk"]
 [ext_resource type="AudioStream" uid="uid://d0i0nejsknrrc" path="res://audios/naruto/naruto_died.wav" id="10_wvtmh"]
+[ext_resource type="AudioStream" uid="uid://b68eyhwk7x6oy" path="res://audios/jutsu/naruto-rasengan-001.wav" id="11_yqrof"]
+[ext_resource type="AudioStream" uid="uid://yug46a1h4o8h" path="res://audios/jutsu/naruto-rah.wav" id="15_3wlsy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
 radius = 6.0
 height = 16.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7rgwd"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(0, 0, 42, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_24so6"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(43, 0, 40, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sk710"]
-atlas = ExtResource("4_afbqv")
-region = Rect2(86, 0, 36, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3y563"]
 atlas = ExtResource("4_afbqv")
@@ -44,6 +34,18 @@ region = Rect2(206, 0, 22, 42)
 atlas = ExtResource("4_afbqv")
 region = Rect2(228, 0, 22, 42)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rgwd"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24so6"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(43, 0, 40, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk710"]
+atlas = ExtResource("4_afbqv")
+region = Rect2(86, 0, 36, 42)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbbq5"]
 atlas = ExtResource("4_afbqv")
 region = Rect2(119, 0, 22, 42)
@@ -54,6 +56,20 @@ region = Rect2(141, 0, 22, 42)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mhk8t"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y563")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgfia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv458")
+}],
+"loop": 1,
+"name": &"rasengan_colision",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7rgwd")
@@ -695,9 +711,8 @@ z_index = 2
 position = Vector2(-11, -4)
 scale = Vector2(0.36, 0.36)
 sprite_frames = SubResource("SpriteFrames_mhk8t")
-animation = &"rasengan_formation"
-frame = 7
-frame_progress = 1.0
+animation = &"rasengan_colision"
+frame_progress = 0.045607667
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
 z_index = 1
@@ -757,7 +772,7 @@ volume_db = -8.0
 
 [node name="Bunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1150717225]
 stream = ExtResource("4_bls4j")
-volume_db = -16.0
+volume_db = -8.0
 
 [node name="Damage_01" type="AudioStreamPlayer" parent="Sounds" unique_id=2114748889]
 stream = ExtResource("5_8fjmc")
@@ -766,6 +781,10 @@ volume_db = -8.0
 [node name="Damage_02" type="AudioStreamPlayer" parent="Sounds" unique_id=1616430639]
 stream = ExtResource("6_qiwj3")
 volume_db = -8.0
+
+[node name="RasenganHit" type="AudioStreamPlayer" parent="Sounds" unique_id=713922951]
+stream = ExtResource("11_yqrof")
+volume_db = -1.0
 
 [node name="MoveSounds" type="Node" parent="." unique_id=1827210184]
 
@@ -781,6 +800,10 @@ volume_db = -14.0
 stream = ExtResource("10_a1qjk")
 volume_db = -13.0
 
+[node name="ScreamSound" type="AudioStreamPlayer" parent="MoveSounds" unique_id=453117537]
+stream = ExtResource("15_3wlsy")
+volume_db = -2.0
+
 [node name="HurtSounds" type="Node" parent="." unique_id=297794617]
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="HurtSounds" unique_id=226776031]
@@ -792,6 +815,7 @@ stream = ExtResource("10_wvtmh")
 volume_db = -24.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

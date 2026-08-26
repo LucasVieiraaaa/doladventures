@@ -37,7 +37,7 @@ tile_map_data = PackedByteArray("AAAGAAgAAAAFAAEAAAANAAMAAAAFAAEAAAAQAAcAAAAOAAU
 tile_set = ExtResource("3_xwcet")
 
 [node name="Skeleton" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
-position = Vector2(910, 60)
+position = Vector2(947.00006, 63)
 
 [node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=1662146049 groups=["LethalArea"]]
 z_index = 2
