@@ -25,7 +25,6 @@ var isInitializing: bool = true
 var isHelpingRasegan: bool = false
 
 func _ready() -> void:		
-	print("here", isHelpingRasegan)
 	if(!isHelpingRasegan):
 		isInitializing = true
 		anim.play("init")
@@ -36,6 +35,9 @@ func _ready() -> void:
 		if isBushinOver == false:
 			destroy_bushin(false)
 	else:
+		anim.play("init")
+		velocity = Vector2.ZERO
+		await get_tree().create_timer(0.5).timeout
 		anim.play("help_rasengan")
 		await get_tree().create_timer(2.0).timeout
 		destroy_bushin(true)
@@ -85,13 +87,11 @@ func set_direction(dir: int) -> void:
 
 # Quando a Hitbox do Clone entra na Hitbox/Area2D do Esqueleto
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	print("aqui2", area)
 	_try_damage_entity(area)
 	_try_damage_entity(area.get_parent())
 
 # Quando o Clone colide com o corpo físico (CharacterBody2D) do Esqueleto"volume_db"
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	print("aqui123", body)
 	make_clone_jump()
 	_try_damage_entity(body)
 

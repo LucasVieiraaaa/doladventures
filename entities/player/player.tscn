@@ -731,7 +731,7 @@ position = Vector2(-11, -4)
 scale = Vector2(0.36, 0.36)
 sprite_frames = SubResource("SpriteFrames_mhk8t")
 animation = &"rasengan_colision"
-frame_progress = 0.32114276
+frame_progress = 0.41730505
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
 z_index = 1
@@ -786,40 +786,41 @@ volume_db = -6.0
 
 [node name="TajuuKageBushin" type="AudioStreamPlayer" parent="Sounds" unique_id=1794444300]
 stream = ExtResource("7_7thud")
+volume_db = 1.0
 
 [node name="KageBunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1586425877]
 stream = ExtResource("3_sglur")
-volume_db = -8.0
+volume_db = -4.0
 
 [node name="Bunshin" type="AudioStreamPlayer" parent="Sounds" unique_id=1150717225]
 stream = ExtResource("4_bls4j")
-volume_db = -8.0
+volume_db = -4.0
 
 [node name="Damage_01" type="AudioStreamPlayer" parent="Sounds" unique_id=2114748889]
 stream = ExtResource("5_8fjmc")
-volume_db = -8.0
+volume_db = -5.0
 
 [node name="Damage_02" type="AudioStreamPlayer" parent="Sounds" unique_id=1616430639]
 stream = ExtResource("6_qiwj3")
-volume_db = -8.0
+volume_db = -4.0
 
 [node name="RasenganHit" type="AudioStreamPlayer" parent="Sounds" unique_id=713922951]
 stream = ExtResource("11_yqrof")
-volume_db = -1.0
+volume_db = 2.0
 
 [node name="MoveSounds" type="Node" parent="." unique_id=1827210184]
 
 [node name="Jump" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2070368994]
 stream = ExtResource("7_qiwj3")
-volume_db = -14.0
+volume_db = -10.0
 
 [node name="FootStep" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2081696798]
 stream = ExtResource("8_26q78")
-volume_db = -14.0
+volume_db = -4.0
 
 [node name="WaterStep" type="AudioStreamPlayer" parent="MoveSounds" unique_id=1771131417]
 stream = ExtResource("10_a1qjk")
-volume_db = -13.0
+volume_db = -2.0
 
 [node name="ScreamSound" type="AudioStreamPlayer" parent="MoveSounds" unique_id=453117537]
 stream = ExtResource("15_3wlsy")
@@ -829,11 +830,11 @@ volume_db = -2.0
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="HurtSounds" unique_id=226776031]
 stream = ExtResource("9_bectd")
-volume_db = -24.0
+volume_db = -12.0
 
 [node name="DiedSoud" type="AudioStreamPlayer" parent="HurtSounds" unique_id=780024136]
 stream = ExtResource("10_wvtmh")
-volume_db = -24.0
+volume_db = -10.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

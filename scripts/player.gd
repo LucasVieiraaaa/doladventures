@@ -94,6 +94,7 @@ var combo_buffered: bool = false
 var bushin_combo: int = 0
 @export var bushin_max_combo: int = 3
 var isMakingClones: bool = false
+var isBushinCooldown: bool = false
 
 func _ready() -> void:
 	rasengan_2d.visible = false
@@ -511,6 +512,7 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		
 ### START BUSHIN JUTSU LOGIC ###
 func spawn_clone(distance: int, isHelpingRasengan: bool):
+	print("aqui bushin", bushin_combo)
 	if bushin_combo <= bushin_max_combo:
 		var clone = PLAYER_CLONE.instantiate()
 		if isHelpingRasengan:
@@ -525,7 +527,7 @@ func spawn_clone(distance: int, isHelpingRasengan: bool):
 		clone.set_direction(facing_dir)
 
 func regularBushinJutsu():
-	if bushin_combo < bushin_max_combo:
+	if bushin_combo < bushin_max_combo && !isBushinCooldown:
 		bushin_combo += 1;
 		if !isAudioPlaying:
 			isAudioPlaying = true;
@@ -540,16 +542,21 @@ func regularBushinJutsu():
 		velocity.x = 0 
 		anim.play("jutsu")
 		spawn_clone(25, false) 
-	elif bushin_combo == bushin_max_combo:
+	
+	if (bushin_combo == bushin_max_combo) && !isBushinCooldown:
+		isBushinCooldown = true
 		await get_tree().create_timer(2.75).timeout
+		isBushinCooldown = false
 		bushin_combo = 0;
 		
 func allBushinJutsu():
-	if bushin_combo == 0 && !beenHit && !beenHit:	
+	if bushin_combo == 0 && !beenHit && !isDead:	
+		bushin_combo = bushin_max_combo
 		tajuu_kage_bushin.play()
 		status = PlayerState.jutsu
 		anim.play("jutsu")
 		anim.pause()
+		
 		var timer = get_tree().create_timer(2.5)
 
 		while timer.time_left > 0:
@@ -563,7 +570,7 @@ func allBushinJutsu():
 			var offset = (i / 2 + 1) * 20
 			if i % 2 == 0:
 				offset *= -1
-			if !beenHit:
+			if !beenHit && !isDead:
 				spawn_clone(offset, false)
 			else:
 				return
@@ -572,7 +579,6 @@ func allBushinJutsu():
 		bunshin.play()
 
 		bunshin.volume_db = -16.0
-		bushin_combo = bushin_max_combo
 		await get_tree().create_timer(12.0).timeout
 		bushin_combo = 0;
 
@@ -603,9 +609,8 @@ func regularRasengan():
 	rasengan_on_cooldown = true
 	status = PlayerState.jutsu
 	if !beenHit && !isDead:
-		bunshin.play()
 		playRasenganStartAnimation()
-		await get_tree().create_timer(2.5).timeout
+		await get_tree().create_timer(2.0).timeout
 		moveWithRasengan()
 		await get_tree().create_timer(2.0).timeout
 	else:
@@ -615,10 +620,13 @@ func regularRasengan():
 	await get_tree().create_timer(5.0).timeout
 	rasengan_on_cooldown = false
 	
+func odamaRasengan():
+	pass
+	
 func playRasenganStartAnimation():
 	anim.play("rasengan")
 	await get_tree().create_timer(0.5).timeout
-	
+	bunshin.play()
 	spawn_clone(-22, true) 
 	anim.pause()
 	scream_sound.play()
@@ -650,15 +658,14 @@ func moveWithRasengan():
 			go_to_idle_state()
 			return
 		await get_tree().process_frame
+	acceleration = 400
+	deceleration = 500
 	
 	if timer.time_left == 0 && !playerHitSomething:
 		go_to_idle_state()
-	
-	rasenganHitSomething()
-	
-	acceleration = 400
-	deceleration = 500
+		return
 		
+	rasenganHitSomething()
 	velocity = Vector2.ZERO
 	disable_attack_hitbox()
 	
