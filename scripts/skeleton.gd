@@ -23,6 +23,8 @@ var can_throw = true
 @onready var player_is_protected_detector: RayCast2D = $PlayerIsProtectedDetector
 @onready var bone_start_position: Node2D = $BoneStartPosition
 
+@export var stats: Stats
+
 func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
@@ -68,8 +70,18 @@ func walk_state(_delta):
 func dead_state(_delta):
 	pass
 	
-func take_damage():
-	go_to_dead_state();
+func take_damage(damage: int):
+	print("recebeu o dano", damage)
+	if damage > 0:
+		go_to_dead_state();
+		
+func xpGiveAway() -> int:
+	if(status == SkeletonState.dead):
+		var x: int  = randi_range(5, 8)
+		print("aqui xp", x)
+		return x
+	else:
+		return 0;
 	
 func go_to_attack_state():
 	status = SkeletonState.attack

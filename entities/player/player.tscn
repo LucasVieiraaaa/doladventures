@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwb68mxuqia16"]
 
 [ext_resource type="Script" uid="uid://kg54a8a0jhlb" path="res://scripts/player.gd" id="1_symyc"]
+[ext_resource type="Resource" uid="uid://dtppnhduscb7n" path="res://resources/player_stats.tres" id="2_b2kln"]
 [ext_resource type="Texture2D" uid="uid://c8ywuhj8bt0wx" path="res://sprites/2 - Dolabela/rasengan-animation.png" id="3_j3ovn"]
 [ext_resource type="AudioStream" uid="uid://cpj5abyimahc" path="res://audios/jutsu/kage-bunshin-no-jutsu.mp3" id="3_sglur"]
 [ext_resource type="Texture2D" uid="uid://bw4l5cidps80g" path="res://sprites/2 - Dolabela/rasengan_formation.png" id="4_afbqv"]
@@ -717,6 +718,7 @@ z_index = 2
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_symyc")
+stats = ExtResource("2_b2kln")
 bushin_max_combo = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584861181]

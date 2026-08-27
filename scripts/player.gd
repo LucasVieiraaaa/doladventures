@@ -13,6 +13,9 @@ enum PlayerState {
 	jutsu
 }
 
+#Stats
+@export var stats: Stats
+
 #Health
 signal health_change()
 @export var maxHealth = 3
@@ -505,8 +508,13 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		playerHitSomething = false;
 	var entity = area.get_parent()
 	if entity.has_method("take_damage"):
-		entity.take_damage()
-		
+		entity.take_damage(stats.base_attack)
+		if entity.has_method("xpGiveAway"):
+			var xpGained: int = entity.xpGiveAway()
+			if xpGained != 0:
+				print("level", stats.level)
+				stats.experience += xpGained
+				pass
 		
 ### START BUSHIN JUTSU LOGIC ###
 func spawn_clone(distance: int, isHelpingRasengan: bool):

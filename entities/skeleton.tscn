@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdcsh5csaceyt" path="res://scripts/skeleton.gd" id="1_yag7t"]
 [ext_resource type="Texture2D" uid="uid://bnkx1cixw1x2a" path="res://sprites/3 - Skeleton/Bone_Toss (32 x 32).png" id="2_4oc3b"]
+[ext_resource type="Resource" uid="uid://dsx16sywvy6ti" path="res://resources/enemy_stats.tres" id="2_6hr2a"]
 [ext_resource type="Texture2D" uid="uid://bxp57mfgmbwqn" path="res://sprites/3 - Skeleton/Crumbling_Into_Bone_Pile (32 x 32).png" id="2_fpmxe"]
 [ext_resource type="Texture2D" uid="uid://q33hmy8ux644" path="res://sprites/3 - Skeleton/Limping_Movement (32 x 32).png" id="2_yag7t"]
 
@@ -160,6 +161,7 @@ size = Vector2(22.916658, 24)
 scale = Vector2(0.9600004, 1)
 collision_layer = 4
 script = ExtResource("1_yag7t")
+stats = ExtResource("2_6hr2a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1169315581]
 sprite_frames = SubResource("SpriteFrames_mhk8t")
