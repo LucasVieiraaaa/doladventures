@@ -40,7 +40,7 @@ collision_mask = 3
 script = ExtResource("1_v86nk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1097186687]
-scale = Vector2(0.60000026, 0.5599998)
+scale = Vector2(0.7714293, 0.72000015)
 shape = SubResource("CircleShape2D_mhk8t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=256667279]
@@ -48,7 +48,7 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_mhk8t")
 animation = &"bone"
 autoplay = "bone"
-frame_progress = 0.9186961
+frame_progress = 0.36591774
 offset = Vector2(0, 1)
 
 [node name="SelfDestructTimer" type="Timer" parent="." unique_id=923676360]

@@ -161,6 +161,14 @@ debug_color = Color(0.9351401, 1.8674731e-05, 0.639722, 0.41960785)
 z_index = 1
 position = Vector2(552.00006, 143)
 
+[node name="Skeleton15" parent="Enemies" unique_id=1985910366 instance=ExtResource("11_t8vtq")]
+z_index = 1
+position = Vector2(419, 144)
+
+[node name="Skeleton16" parent="Enemies" unique_id=400779060 instance=ExtResource("11_t8vtq")]
+z_index = 1
+position = Vector2(1151, 141)
+
 [node name="Skeleton2" parent="Enemies" unique_id=299806680 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(816.00006, 31)
@@ -171,11 +179,15 @@ position = Vector2(483.00003, 49)
 
 [node name="Skeleton4" parent="Enemies" unique_id=485366068 instance=ExtResource("11_t8vtq")]
 z_index = 1
-position = Vector2(1345, 127)
+position = Vector2(1202, 128)
 
 [node name="Skeleton5" parent="Enemies" unique_id=909659425 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(1616, 112)
+
+[node name="Skeleton17" parent="Enemies" unique_id=378849983 instance=ExtResource("11_t8vtq")]
+z_index = 1
+position = Vector2(1657, 111)
 
 [node name="Skeleton6" parent="Enemies" unique_id=2130190229 instance=ExtResource("11_t8vtq")]
 z_index = 1
@@ -200,6 +212,10 @@ position = Vector2(3533.0002, 145)
 [node name="Skeleton11" parent="Enemies" unique_id=1811438589 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(3880, 144)
+
+[node name="Skeleton18" parent="Enemies" unique_id=405170719 instance=ExtResource("11_t8vtq")]
+z_index = 1
+position = Vector2(2871, 128)
 
 [node name="Skeleton12" parent="Enemies" unique_id=1830619810 instance=ExtResource("11_t8vtq")]
 z_index = 1

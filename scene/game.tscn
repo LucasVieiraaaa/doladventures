@@ -15,7 +15,7 @@
 [node name="Game" type="Node2D" unique_id=1781356822]
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("1_ym5sv")]
-position = Vector2(595.99994, -15.999985)
+position = Vector2(243, -258.99997)
 scale = Vector2(-2.8639379, 8.309639)
 
 [node name="PauseMenu" parent="." unique_id=995015526 instance=ExtResource("1_qpk70")]

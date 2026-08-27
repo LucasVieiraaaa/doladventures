@@ -446,24 +446,26 @@ func apply_gravity(delta):
 		pass
 		
 func getDamage():
-	if health > 0:
-		rasengan_2d.visible = false
-		hurt_sound.play()
-		anim.play("damage")
-		velocity = Vector2.ZERO
-		beenHit = true
-		
+	print("health", health)
 	match self.whatHitYou:
 		"Shuriken":
 			health -= 1
 			health_change.emit()
+			playHurt()
 		"Lava":
 			health -= health
 			health_change.emit()
-			
-	await get_tree().create_timer(1.0).timeout
-	beenHit = true
-	go_to_idle_state()
+			playHurt()
+	
+func playHurt():
+	anim.play("damage")
+	if health > 0:
+		beenHit = true
+		rasengan_2d.visible = false
+		hurt_sound.play()
+		velocity = Vector2.ZERO
+		await get_tree().create_timer(1.0).timeout
+		go_to_idle_state()
 			
 func killHitBox():
 	hitbox_collision_shape.shape.size.y = 0
@@ -500,7 +502,6 @@ func _on_animation_finished() -> void:
 ###END SIMPLE COMBO LOGIC ###
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
-	print("caiu aqui")
 	if area != null:
 		playerHitSomething = true;
 	else:
@@ -512,7 +513,6 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		
 ### START BUSHIN JUTSU LOGIC ###
 func spawn_clone(distance: int, isHelpingRasengan: bool):
-	print("aqui bushin", bushin_combo)
 	if bushin_combo <= bushin_max_combo:
 		var clone = PLAYER_CLONE.instantiate()
 		if isHelpingRasengan:
