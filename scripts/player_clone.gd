@@ -23,6 +23,7 @@ var isBushinOver: bool = false
 var isAttacking: bool = false
 var isInitializing: bool = true
 var isHelpingRasegan: bool = false
+var buhsinTimeOut: float = randf_range(1.5, 4.5)
 
 func _ready() -> void:		
 	if(!isHelpingRasegan):
@@ -31,7 +32,7 @@ func _ready() -> void:
 		velocity = Vector2.ZERO
 		await get_tree().create_timer(0.5).timeout
 		isInitializing = false
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(buhsinTimeOut).timeout
 		if isBushinOver == false:
 			destroy_bushin(false)
 	else:

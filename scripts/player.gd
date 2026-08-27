@@ -24,11 +24,11 @@ var whatHitYou: String
 
 #Charcter Information
 signal name_character
-
 @export var nameDisplay: String = "Naruto Uzumaki":
 	set(value):
 		nameDisplay = value
 		name_character.emit()
+
 #Steps
 var step_timer := 0.0
 var step_interval := 0.5
@@ -38,22 +38,19 @@ var step_interval := 0.5
 @onready var bunshin: AudioStreamPlayer = $Sounds/Bunshin
 @onready var tajuu_kage_bushin: AudioStreamPlayer = $Sounds/TajuuKageBushin
 @onready var rasengan_formation: AudioStreamPlayer = $Sounds/RasenganFormation
-@onready var rasengan_hit: AudioStreamPlayer = $Sounds/RasenganHit
-@onready var rasengan_2d: AnimatedSprite2D = $Rasengan2D
-var rasengan_on_cooldown: bool = false
-var playerHitSomething: bool = false;
-
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
 @onready var damage_02: AudioStreamPlayer = $Sounds/Damage_02
 @onready var scream_sound: AudioStreamPlayer = $MoveSounds/ScreamSound
-
 @onready var foot_step: AudioStreamPlayer = $MoveSounds/FootStep
 @onready var water_step: AudioStreamPlayer = $MoveSounds/WaterStep
-
-
 @onready var jump: AudioStreamPlayer = $MoveSounds/Jump
 @onready var hurt_sound: AudioStreamPlayer = $HurtSounds/HurtSound
 @onready var died_soud: AudioStreamPlayer = $HurtSounds/DiedSoud
+@onready var rasengan_hit: AudioStreamPlayer = $Sounds/RasenganHit
+@onready var rasengan_2d: AnimatedSprite2D = $Rasengan2D
+
+var rasengan_on_cooldown: bool = false
+var playerHitSomething: bool = false;
 var isAudioPlaying: bool = false;
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -61,6 +58,7 @@ var isAudioPlaying: bool = false;
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var hitbox_collision_shape: CollisionShape2D = $Hitbox/CollisionShape2D
 
+#Ray Casts
 @onready var water_detector: RayCast2D = $WaterDetector
 @onready var left_wall_detector: RayCast2D = $LeftWallDetector
 @onready var right_wall_detector: RayCast2D = $RightWallDetector
@@ -216,7 +214,6 @@ func go_to_dead_state():
 func idle_state(delta):
 	apply_gravity(delta)
 	playerHitSomething = false
-	
 	move(delta)
 
 	if velocity.x != 0:
@@ -656,12 +653,14 @@ func moveWithRasengan():
 			break
 		if beenHit:
 			go_to_idle_state()
+			audio_fade_out(rasengan_formation)
 			return
 		await get_tree().process_frame
 	acceleration = 400
 	deceleration = 500
 	
 	if timer.time_left == 0 && !playerHitSomething:
+		audio_fade_out(rasengan_formation)
 		go_to_idle_state()
 		return
 		
@@ -715,10 +714,25 @@ func rasenganHitSomething():
 		grow_rasengan()
 		await get_tree().create_timer(1.0).timeout
 		decrease_rasengan()
+		audio_fade_out(rasengan_formation)
 		anim.play("rasengan_end")
 		return
 ### END RASENGAN ###
 	
+### CAMERA ###
 func shakeCamera():
 	var camera = get_viewport().get_camera_2d()
 	camera.camera_shake(18, 0.4)
+	
+### AUDIOS ###
+func audio_fade_out(player: AudioStreamPlayer, duracao: float = 3.0) -> void:
+	if not player or not player.playing:
+		return
+		
+	var tween = create_tween()
+	tween.tween_property(player, "volume_db", -80.0, duracao)
+	tween.finished.connect(func():
+		player.stop()
+		player.volume_db = 0.0 
+	)
+	

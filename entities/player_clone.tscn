@@ -436,7 +436,7 @@ shape = SubResource("RectangleShape2D_383pu")
 
 [node name="Poof" type="AudioStreamPlayer" parent="Sounds" unique_id=669771039]
 stream = ExtResource("3_mrmfd")
-volume_db = -24.0
+volume_db = -4.0
 
 [node name="Damage_01" type="AudioStreamPlayer" parent="Sounds" unique_id=1267622850]
 stream = ExtResource("4_kym5a")
