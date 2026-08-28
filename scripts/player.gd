@@ -657,10 +657,12 @@ func moveWithRasengan():
 	elif rasengan_direction == -1:
 		rasenganPosition(8,-7)
 	
-	
+		
 	var timer = get_tree().create_timer(0.7)
 	stats._damage_while_doing_jutsu("rasengan")
 	while timer.time_left > 0:
+		if not is_inside_tree():
+			return
 		acceleration = -100
 		deceleration = 2000
 			
