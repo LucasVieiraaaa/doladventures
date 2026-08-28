@@ -157,7 +157,7 @@ height = 28.169033
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhk8t"]
 size = Vector2(22.916658, 24)
 
-[node name="Skeleton" type="CharacterBody2D" unique_id=614385962]
+[node name="Skeleton" type="CharacterBody2D" unique_id=614385962 groups=["Enemies"]]
 scale = Vector2(0.9600004, 1)
 collision_layer = 4
 script = ExtResource("1_yag7t")

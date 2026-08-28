@@ -7,5 +7,4 @@ func _ready() -> void:
 	health_update()
 
 func health_update():
-	value = target.health * 33.3
-	print(value)
+	value = target.stats.health

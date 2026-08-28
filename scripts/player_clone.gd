@@ -24,6 +24,9 @@ var isAttacking: bool = false
 var isInitializing: bool = true
 var isHelpingRasegan: bool = false
 var buhsinTimeOut: float = randf_range(1.5, 4.5)
+var xpCloneGained: int = 0
+		
+signal bushin_destroyed(xp: int)
 
 func _ready() -> void:		
 	if(!isHelpingRasegan):
@@ -92,9 +95,9 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	_try_damage_entity(area.get_parent())
 
 # Quando o Clone colide com o corpo físico (CharacterBody2D) do Esqueleto"volume_db"
-func _on_hitbox_body_entered(body: Node2D) -> void:
+func _on_hitbox_body_entered(_body: Node2D) -> void:
 	make_clone_jump()
-	_try_damage_entity(body)
+	return
 
 # Função auxiliar para aplicar o dano e eliminar o clone
 func _try_damage_entity(node: Node) -> void:
@@ -120,9 +123,10 @@ func _try_damage_entity(node: Node) -> void:
 				anim.play("air_attack")
 			else:
 				anim.play("air_attack")
-			
-		node.take_damage()
+		
+		node.take_damage(5)
 		isAttacking = true;
+		whatKindOfNodeCloneHit(node)		
 		await get_tree().create_timer(0.7).timeout
 		isAttacking = false;
 		isBushinOver = true;
@@ -137,15 +141,19 @@ func make_clone_jump():
 func destroy_bushin(didSomething: bool):
 	isBushinOver = true
 	isHelpingRasegan = false
+
 	poof.play()
-	
-	if(didSomething):
+	if didSomething:
 		anim.play("dead2")
 	else:
 		anim.play("dead")
-		
 	velocity = Vector2.ZERO
+
+	if xpCloneGained > 0:
+		bushin_destroyed.emit(xpCloneGained)
+
 	await get_tree().create_timer(0.7).timeout
+	xpCloneGained = 0
 	queue_free()
 	
 func wallInteraction() -> void:
@@ -170,3 +178,14 @@ func beenHit(hitbox: String):
 			destroy_bushin(true)
 		"Lava":
 			destroy_bushin(true)
+			
+func whatKindOfNodeCloneHit(node: Node) -> void:
+	if not node.is_in_group("Enemies"):
+		return
+
+	if not node.has_method("xpGiveAway"):
+		return
+
+	var xp: int = node.xpGiveAway()
+	xpCloneGained = xp
+	print("XP acumulado pelo Bushin: ", xpCloneGained)

@@ -18,11 +18,6 @@ enum PlayerState {
 
 #Health
 signal health_change()
-@export var maxHealth = 3
-@export var health: int = 3 :
-	set(value):
-		health = value
-		
 var whatHitYou: String
 
 #Charcter Information
@@ -96,11 +91,13 @@ var bushin_combo: int = 0
 @export var bushin_max_combo: int = 3
 var isMakingClones: bool = false
 var isBushinCooldown: bool = false
+var clone = PLAYER_CLONE.instantiate()
 
 func _ready() -> void:
 	rasengan_2d.visible = false
 	anim.animation_finished.connect(_on_animation_finished)
 	go_to_idle_state()
+	health_change.emit.call_deferred()
 
 func _physics_process(delta: float) -> void:
 	match status:
@@ -204,7 +201,7 @@ func exit_from_duck_state():
 func go_to_dead_state():
 	getDamage()
 
-	if not isDead && health == 0:
+	if not isDead && stats.health == 0:
 		status = PlayerState.dead
 		velocity.x = 0
 		isDead = true
@@ -422,9 +419,11 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	
 func hit_enemy(area: Area2D):
 	if velocity.y > 0:
-		area.get_parent().take_damage()
+		var entity = area.get_parent()
+		area.get_parent().take_damage(10)
 		#go_to_jump_state()
 		damage_02.play()
+		xpGiveAway(entity)
 		anim.play("air_attack")
 		velocity = Vector2.ZERO
 		pass
@@ -446,20 +445,19 @@ func apply_gravity(delta):
 		pass
 		
 func getDamage():
-	print("health", health)
 	match self.whatHitYou:
 		"Shuriken":
-			health -= 1
+			stats.health -= 10
 			health_change.emit()
 			playHurt()
 		"Lava":
-			health -= health
+			stats.health -= stats.health
 			health_change.emit()
 			playHurt()
 	
 func playHurt():
 	anim.play("damage")
-	if health > 0:
+	if stats.health > 0:
 		beenHit = true
 		rasengan_2d.visible = false
 		hurt_sound.play()
@@ -509,12 +507,7 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 	var entity = area.get_parent()
 	if entity.has_method("take_damage"):
 		entity.take_damage(stats.base_attack)
-		if entity.has_method("xpGiveAway"):
-			var xpGained: int = entity.xpGiveAway()
-			if xpGained != 0:
-				print("level", stats.level)
-				stats.experience += xpGained
-				pass
+		xpGiveAway(entity)
 		
 ### START BUSHIN JUTSU LOGIC ###
 func spawn_clone(distance: int, isHelpingRasengan: bool):
@@ -522,15 +515,30 @@ func spawn_clone(distance: int, isHelpingRasengan: bool):
 		var clone = PLAYER_CLONE.instantiate()
 		if isHelpingRasengan:
 			clone.isHelpingRasengan(true)
+
+		clone.bushin_destroyed.connect(_on_bushin_destroyed)
 		get_parent().add_child(clone)
 		clone.setup_direction(clone_spawn_direction)
 		var facing_dir = direction
 		if facing_dir == 0:
 			facing_dir = -1 if anim.flip_h else 1
-	
+
 		clone.global_position = global_position + Vector2(distance * facing_dir, 0)
 		clone.set_direction(facing_dir)
 
+func _on_bushin_destroyed(xp: int) -> void:
+	print("entrou no metodo")
+	if xp <= 0:
+		return
+
+	stats.experience += xp
+
+	print("=============================")
+	print("Bushin forneceu ", xp, " XP")
+	print("XP total: ", stats.experience)
+	print("=============================")
+	
+	
 func regularBushinJutsu():
 	if bushin_combo < bushin_max_combo && !isBushinCooldown:
 		bushin_combo += 1;
@@ -648,9 +656,10 @@ func moveWithRasengan():
 		rasenganPosition(-12,-7)
 	elif rasengan_direction == -1:
 		rasenganPosition(8,-7)
-		
+	
+	
 	var timer = get_tree().create_timer(0.7)
-
+	stats._damage_while_doing_jutsu("rasengan")
 	while timer.time_left > 0:
 		acceleration = -100
 		deceleration = 2000
@@ -662,16 +671,18 @@ func moveWithRasengan():
 		if beenHit:
 			go_to_idle_state()
 			audio_fade_out(rasengan_formation)
+			stats._get_attack_normal_when_done_jutsu("rasengan")
 			return
 		await get_tree().process_frame
 	acceleration = 400
 	deceleration = 500
 	
 	if timer.time_left == 0 && !playerHitSomething:
+		stats._get_attack_normal_when_done_jutsu("rasengan")
 		audio_fade_out(rasengan_formation)
 		go_to_idle_state()
 		return
-		
+	
 	rasenganHitSomething()
 	velocity = Vector2.ZERO
 	disable_attack_hitbox()
@@ -723,6 +734,7 @@ func rasenganHitSomething():
 		await get_tree().create_timer(1.0).timeout
 		decrease_rasengan()
 		audio_fade_out(rasengan_formation)
+		stats._get_attack_normal_when_done_jutsu("rasengan")
 		anim.play("rasengan_end")
 		return
 ### END RASENGAN ###
@@ -744,3 +756,12 @@ func audio_fade_out(player: AudioStreamPlayer, duracao: float = 3.0) -> void:
 		player.volume_db = 0.0 
 	)
 	
+### XP GIVE AWAY ###
+
+func xpGiveAway(entity):
+	if entity.has_method("xpGiveAway"):
+		var xpGained: int = entity.xpGiveAway()
+		if xpGained != 0:
+			print("level", stats.level)
+			stats.experience += xpGained
+			pass

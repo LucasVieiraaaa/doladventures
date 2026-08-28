@@ -13,6 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://bqwevku1w7nxc" path="res://sprites/2 - Dolabela/character_face.tscn" id="8_yq8tf"]
 [ext_resource type="PackedScene" uid="uid://cauteg7aos8wl" path="res://sprites/UI/name_display.tscn" id="9_yq8tf"]
 
+[sub_resource type="Resource" id="Resource_sng2h"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
 [sub_resource type="Resource" id="Resource_5g16k"]
 resource_local_to_scene = true
 script = ExtResource("8_sng2h")
@@ -44,11 +49,6 @@ script = ExtResource("8_sng2h")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
 
 [sub_resource type="Resource" id="Resource_jrd6n"]
-resource_local_to_scene = true
-script = ExtResource("8_sng2h")
-metadata/_custom_type_script = "uid://cc0enrh2rod4m"
-
-[sub_resource type="Resource" id="Resource_sng2h"]
 resource_local_to_scene = true
 script = ExtResource("8_sng2h")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
@@ -124,35 +124,35 @@ tile_set = ExtResource("3_xwcet")
 
 [node name="Skeleton" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
-stats = SubResource("Resource_5g16k")
+stats = SubResource("Resource_sng2h")
 
 [node name="Skeleton2" parent="Tiles" unique_id=313518536 instance=ExtResource("4_p1ry8")]
 position = Vector2(884, 65)
-stats = SubResource("Resource_81276")
+stats = SubResource("Resource_5g16k")
 
 [node name="Skeleton3" parent="Tiles" unique_id=931855781 instance=ExtResource("4_p1ry8")]
 position = Vector2(917.00006, 64)
-stats = SubResource("Resource_ve786")
+stats = SubResource("Resource_81276")
 
 [node name="Skeleton4" parent="Tiles" unique_id=1079411284 instance=ExtResource("4_p1ry8")]
 position = Vector2(949, 63)
-stats = SubResource("Resource_0lu6w")
+stats = SubResource("Resource_ve786")
 
 [node name="Skeleton5" parent="Tiles" unique_id=63186370 instance=ExtResource("4_p1ry8")]
 position = Vector2(981, 64)
-stats = SubResource("Resource_i6gbm")
+stats = SubResource("Resource_0lu6w")
 
 [node name="Skeleton6" parent="Tiles" unique_id=2030065828 instance=ExtResource("4_p1ry8")]
 position = Vector2(1012.00006, 62)
-stats = SubResource("Resource_ux4dc")
+stats = SubResource("Resource_i6gbm")
 
 [node name="Skeleton7" parent="Tiles" unique_id=1395745069 instance=ExtResource("4_p1ry8")]
 position = Vector2(1048, 63)
-stats = SubResource("Resource_jrd6n")
+stats = SubResource("Resource_ux4dc")
 
 [node name="Skeleton8" parent="Tiles" unique_id=2129432759 instance=ExtResource("4_p1ry8")]
 position = Vector2(1076, 63)
-stats = SubResource("Resource_sng2h")
+stats = SubResource("Resource_jrd6n")
 
 [node name="Skeleton9" parent="Tiles" unique_id=1161369764 instance=ExtResource("4_p1ry8")]
 position = Vector2(1096, 61)

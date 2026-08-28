@@ -95,6 +95,13 @@ func _on_experience_set(new_value: int)-> void:
 	
 	if not old_level == level:
 		recalculate_stats()
-	print("xp", experience)
 	
+func _damage_while_doing_jutsu(jutsu_name: String):
+	match jutsu_name:
+		"rasengan":
+			base_attack = (base_attack * 2)
 	
+func _get_attack_normal_when_done_jutsu(jutsu_name: String):
+	match jutsu_name:
+		"rasengan":
+			base_attack = (base_attack / 2) 

@@ -71,14 +71,13 @@ func dead_state(_delta):
 	pass
 	
 func take_damage(damage: int):
-	print("recebeu o dano", damage)
-	if damage > 0:
+	if damage > 0 && ! is_dead():
 		go_to_dead_state();
 		
 func xpGiveAway() -> int:
+	print("essa merda aqui", status == SkeletonState.dead)
 	if(status == SkeletonState.dead):
 		var x: int  = randi_range(5, 8)
-		print("aqui xp", x)
 		return x
 	else:
 		return 0;
