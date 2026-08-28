@@ -78,6 +78,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 texture = ExtResource("2_wxbcn")
 expand_mode = 1
 stretch_mode = 6
@@ -151,11 +152,13 @@ offset_top = -55.0
 offset_right = 99.02326
 offset_bottom = -15.0
 grow_vertical = 2
+mouse_filter = 0
 texture = ExtResource("2_i58fu")
 expand_mode = 3
 
 [node name="BambooSound" type="AudioStreamPlayer" parent="." unique_id=1771195212]
 stream = ExtResource("4_wxbcn")
+volume_db = -4.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
