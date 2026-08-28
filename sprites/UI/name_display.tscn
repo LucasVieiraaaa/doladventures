@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cauteg7aos8wl"]
 
+[ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="1_7sqeu"]
 [ext_resource type="Script" uid="uid://dwaxjc7uoqfpq" path="res://scripts/name_display.gd" id="1_r4pdl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_818uc"]
@@ -8,6 +9,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="NameDisplay" type="TextEdit" unique_id=1968586722]
 offset_right = 50.0
 offset_bottom = 20.0
-theme_override_font_sizes/font_size = 5
+theme_override_fonts/font = ExtResource("1_7sqeu")
+theme_override_font_sizes/font_size = 9
 theme_override_styles/normal = SubResource("StyleBoxFlat_818uc")
 script = ExtResource("1_r4pdl")

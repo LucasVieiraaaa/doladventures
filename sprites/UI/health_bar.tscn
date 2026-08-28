@@ -1,27 +1,13 @@
 [gd_scene format=3 uid="uid://b3b3tlvyom1q5"]
 
+[ext_resource type="Texture2D" uid="uid://c64hhfux2kglt" path="res://sprites/UI/Bars/empty-health-bar.png" id="1_k68an"]
 [ext_resource type="Script" uid="uid://ctx1u5tvrfa65" path="res://scripts/health_bar.gd" id="1_mqbri"]
+[ext_resource type="Texture2D" uid="uid://bkck4xoiokqa4" path="res://sprites/UI/Bars/full-health-bar.png" id="2_k8i1a"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7tem"]
-bg_color = Color(0.8784314, 0, 0.3019608, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_np6gj"]
-bg_color = Color(0.039215688, 0.73333335, 0.5294118, 1)
-
-[node name="HealthBar" type="ProgressBar" unique_id=1159617753]
+[node name="HealthBar" type="TextureProgressBar" unique_id=1908431738]
 offset_right = 50.0
 offset_bottom = 5.0
-theme_override_styles/background = SubResource("StyleBoxFlat_d7tem")
-theme_override_styles/fill = SubResource("StyleBoxFlat_np6gj")
 value = 100.0
-show_percentage = false
+texture_under = ExtResource("1_k68an")
+texture_progress = ExtResource("2_k8i1a")
 script = ExtResource("1_mqbri")
