@@ -20,6 +20,9 @@ enum PlayerState {
 signal health_change()
 var whatHitYou: String
 
+#Experience
+signal experience_changed
+
 #Charcter Information
 signal name_character
 @export var nameDisplay: String = "Naruto Uzumaki":
@@ -94,10 +97,12 @@ var isBushinCooldown: bool = false
 var clone = PLAYER_CLONE.instantiate()
 
 func _ready() -> void:
+	stats.health = stats.base_max_health
 	rasengan_2d.visible = false
 	anim.animation_finished.connect(_on_animation_finished)
 	go_to_idle_state()
 	health_change.emit.call_deferred()
+	experience_changed.emit.call_deferred()
 
 func _physics_process(delta: float) -> void:
 	match status:
@@ -408,7 +413,8 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemies"):
 		hit_enemy(area)
 	elif area.is_in_group("LethalArea"):
-		whatHitYou = area.name
+		print("area que te atingiu", area.objectName)
+		whatHitYou = area.objectName
 		hit_lethal_area()
 		
 func _on_hitbox_body_entered(body: Node2D) -> void:
@@ -445,6 +451,7 @@ func apply_gravity(delta):
 		pass
 		
 func getDamage():
+	print("bateu ", whatHitYou)
 	match self.whatHitYou:
 		"Shuriken":
 			stats.health -= 10
@@ -527,17 +534,9 @@ func spawn_clone(distance: int, isHelpingRasengan: bool):
 		clone.set_direction(facing_dir)
 
 func _on_bushin_destroyed(xp: int) -> void:
-	print("entrou no metodo")
 	if xp <= 0:
 		return
-
 	stats.experience += xp
-
-	print("=============================")
-	print("Bushin forneceu ", xp, " XP")
-	print("XP total: ", stats.experience)
-	print("=============================")
-	
 	
 func regularBushinJutsu():
 	if bushin_combo < bushin_max_combo && !isBushinCooldown:
@@ -575,6 +574,7 @@ func allBushinJutsu():
 		while timer.time_left > 0:
 			if beenHit:
 				tajuu_kage_bushin.stop()
+				bushin_combo = 0
 				go_to_idle_state()
 				return
 			await get_tree().process_frame
@@ -764,6 +764,5 @@ func xpGiveAway(entity):
 	if entity.has_method("xpGiveAway"):
 		var xpGained: int = entity.xpGiveAway()
 		if xpGained != 0:
-			print("level", stats.level)
 			stats.experience += xpGained
 			pass

@@ -10,10 +10,13 @@ const shuriken = preload("uid://rprq2p5g3r0w")
 
 var status : SkeletonState
 
+var entitieName = "Skeleton"
+
 const SPEED = 10.0
 const JUMP_VELOCITY = -400.0
 var direction = 1
 var can_throw = true
+
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $Hitbox
@@ -95,6 +98,7 @@ func attack_state(_delta):
 
 func throw_bone():
 	var new_bone =  shuriken.instantiate()
+	new_bone.set_shuriken_name("Shuriken")
 	add_sibling(new_bone)
 	new_bone.position = bone_start_position.global_position
 	new_bone.set_direction(self.direction)

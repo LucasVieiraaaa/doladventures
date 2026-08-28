@@ -17,10 +17,12 @@ const BASE_LEVEL_XP: float = 100.0
 
 signal health_depleated
 signal health_changed(cur_health: int, max_health: int)
+signal experience_changed
 
 @export var base_max_health: int = 100
 @export var base_defense: int = 10
 @export var base_attack: int = 10
+
 @export var experience: int = 0: set = _on_experience_set
 
 var level: int:
@@ -35,7 +37,7 @@ var stat_buffs: Array[StatBuff]
 
 func _init () -> void:
 	setup_stats.call_deferred()
-	
+
 func setup_stats() -> void:
 	recalculate_stats()
 	health = current_max_health
@@ -43,7 +45,7 @@ func setup_stats() -> void:
 func add_buff(buff: StatBuff) -> void:
 	stat_buffs.append(buff)
 	recalculate_stats.call_deferred()
-	
+
 func remove_buff(buff: StatBuff)-> void:
 	stat_buffs.append(buff)
 	recalculate_stats.call_deferred()
@@ -89,13 +91,51 @@ func _on_health_set(new_value: int) -> void:
 	if health <= 0:
 		health_depleated.emit()
 
-func _on_experience_set(new_value: int)-> void:
+func _on_experience_set(new_value: int) -> void:
 	var old_level: int = level
-	experience = new_value
-	
-	if not old_level == level:
+
+	experience = maxi(0, new_value)
+
+	if old_level != level:
 		recalculate_stats()
-	
+
+	experience_changed.emit()
+
+
+# =========================================================
+# XP / LEVEL
+# =========================================================
+
+func get_xp_for_level(target_level: int) -> int:
+	target_level = maxi(target_level, 1)
+
+	if target_level == 1:
+		return 0
+
+	return ceili(
+		25.0 * pow(target_level - 0.5, 2.0)
+	)
+
+
+func get_xp_in_current_level() -> int:
+	return experience - get_xp_for_level(level)
+
+
+func get_xp_needed_for_current_level() -> int:
+	return (
+		get_xp_for_level(level + 1)
+		- get_xp_for_level(level)
+	)
+
+
+func get_xp_for_next_level() -> int:
+	return get_xp_for_level(level + 1)
+
+
+# =========================================================
+# JUTSUS
+# =========================================================
+
 func _damage_while_doing_jutsu(jutsu_name: String):
 	match jutsu_name:
 		"rasengan":
