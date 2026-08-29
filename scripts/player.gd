@@ -92,7 +92,7 @@ var combo_step: int = 0
 var combo_buffered: bool = false 
 
 #Bushin Variables
-var bushin_combo: int = 0
+var bushin_combo: float = 0
 @export var bushin_max_combo: float = 2.0
 var isMakingClones: bool = false
 var isBushinCooldown: bool = false
@@ -596,7 +596,7 @@ func allBushinJutsu():
 			await get_tree().process_frame
 		
 		for i in range(bushin_max_combo * 1.75):
-			var offset: float = (i / 2 + 1) * 20
+			var offset: float = floor((i / 2.0 + 1) * 20)
 			if i % 2 == 0:
 				offset *= -1
 			if !beenHit && !isDead:
