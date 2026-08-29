@@ -793,18 +793,21 @@ func rasenganPosition(x: int ,y: int):
 	rasengan_2d.position.y = y
 	return
 	
-func grow_rasengan(x: float, y: float, time: float):
+func grow_rasengan(x: float, y: float, time: float, rasengan: String):
 	rasengan_2d.scale = Vector2(1, 1)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
-	rasengan_2d.play("rasengan_colision")
-
+	match rasengan:
+		"odama_rasengan":
+			rasengan_2d.play("odama_colision")
+		"regular_rasengan":
+			rasengan_2d.play("rasengan_colision")
+			
 	tween.tween_property(rasengan_2d,"scale",Vector2(x, y),time)
 	await tween.finished
 	
 func decrease_rasengan():
-	print("deu decrease")
 	rasengan_2d.scale = Vector2(1.1, 1.1)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
@@ -830,14 +833,14 @@ func rasenganHitSomething(rasengan: String):
 			rasenganPosition(19 * rasengan_direction, -6)
 			anim.play("rasengan_hit")
 			anim.play("rasengan_hit_loop")
-			grow_rasengan(1.1,1.1,1.0)
+			grow_rasengan(1.1,1.1,1.0, rasengan)
 		elif rasengan == "odama_rasengan":
 			odama_hit.play()
 			shakeCamera(35, 2)
 			rasenganPosition(32 * rasengan_direction, -6)
 			anim.play("rasengan_hit")
 			anim.play("rasengan_hit_loop")
-			grow_rasengan(5.0,5.0,2.0)
+			grow_rasengan(1.6,1.6,1.5, rasengan)
 		
 		await get_tree().create_timer(1.0).timeout
 		decrease_rasengan()

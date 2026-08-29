@@ -516,7 +516,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_383pu"]
 size = Vector2(30, 29)
 
-[node name="PlayerClone" type="CharacterBody2D" unique_id=20930227]
+[node name="PlayerClone" type="CharacterBody2D" unique_id=20930227 groups=["PlayerMisc"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_tk6am")

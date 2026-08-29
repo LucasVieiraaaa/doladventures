@@ -22,12 +22,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxvlp"]
 size = Vector2(21, 207)
 
-[sub_resource type="Resource" id="Resource_dki5c"]
+[sub_resource type="Resource" id="Resource_cwbpd"]
 resource_local_to_scene = true
 script = ExtResource("14_cwbpd")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
 
-[sub_resource type="Resource" id="Resource_cvgm6"]
+[sub_resource type="Resource" id="Resource_ysu3w"]
 resource_local_to_scene = true
 script = ExtResource("14_cwbpd")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
@@ -40,8 +40,7 @@ size = Vector2(20, 193)
 [node name="PauseMenu" parent="." unique_id=995015526 instance=ExtResource("1_kmspj")]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_e2knd")]
-position = Vector2(13, 177)
-bushin_max_combo = 2
+position = Vector2(915, 181)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=861958128]
 
@@ -132,11 +131,11 @@ shape = SubResource("RectangleShape2D_jxvlp")
 
 [node name="Skeleton2" parent="." unique_id=783631818 instance=ExtResource("7_gwku7")]
 position = Vector2(392, 128)
-stats = SubResource("Resource_dki5c")
+stats = SubResource("Resource_cwbpd")
 
 [node name="Skeleton" parent="." unique_id=614385962 instance=ExtResource("7_gwku7")]
 position = Vector2(174, 144)
-stats = SubResource("Resource_cvgm6")
+stats = SubResource("Resource_ysu3w")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=906576783]
 position = Vector2(-16, 80)
