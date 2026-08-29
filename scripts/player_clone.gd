@@ -10,6 +10,8 @@ const JUMP_VELOCITY = -320.0
 @onready var jump: AudioStreamPlayer = $MoveSounds/Jump
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
 @onready var ground_detector: RayCast2D = $GroundDetector
+@onready var odama_rasengan_helper: RayCast2D = $OdamaRasenganHelper
+@onready var ray_cast_length: float = abs(odama_rasengan_helper.target_position.x)
 
 #Steps
 var step_timer := 0.0
@@ -26,6 +28,7 @@ var isInitializing: bool = true
 var isHelpingRasegan: String = ""
 var buhsinTimeOut: float = randf_range(1.5, 4.5)
 var xpCloneGained: int = 0
+var isDoingOdamaRasengan: bool = false
 		
 signal bushin_destroyed(xp: int)
 
@@ -59,11 +62,17 @@ func helpingOdamaRasengan():
 	velocity = Vector2.ZERO
 	await get_tree().create_timer(0.4).timeout
 	anim.play("help_odama_rasengan")
-	await get_tree().create_timer(2.0).timeout
-	destroy_bushin(true)
+	await get_tree().create_timer(2.6).timeout
+	isDoingOdamaRasengan = true;
+
+func goMoveOdamaWithPlayer(delta: float):
+	velocity.x = (speed + 150) * direction
+	anim.play("doing_odama_rasengan")
+	cloneInitializeMoves()
+	move_and_slide()
 
 func _physics_process(delta: float) -> void:
-	if  !isBushinOver && !isAttacking && !isInitializing:
+	if  (!isBushinOver && !isAttacking && !isInitializing):
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 
@@ -71,6 +80,7 @@ func _physics_process(delta: float) -> void:
 		cloneInitializeMoves()
 			
 		if direction != 0 and is_on_floor():
+			odama_rasengan_helper.target_position.x = direction
 			step_timer -= delta
 
 			if step_timer <= 0:
@@ -85,6 +95,19 @@ func _physics_process(delta: float) -> void:
 				destroy_bushin(true)
 		
 		move_and_slide()
+	
+	if isDoingOdamaRasengan:
+		odama_rasengan_helper.target_position.x = ray_cast_length * direction
+		goMoveOdamaWithPlayer(delta)
+		if odama_rasengan_helper.is_colliding():
+			if isDoingOdamaRasengan:
+				speed = -150
+				velocity.x = speed
+				anim.play("hit_odama_rasengan")
+				await get_tree().create_timer(1.0).timeout
+				anim.play("rasengan_end")
+				await get_tree().create_timer(0.5).timeout
+				destroy_bushin(true)
 		
 func cloneInitializeMoves():
 	if velocity.y > 0.1:
@@ -95,13 +118,14 @@ func cloneInitializeMoves():
 		else:
 			anim.play("fall")
 	else:
-		anim.play("walk")
-		if wall_detector.is_colliding():
-			if not touching_wall:
-				touching_wall = true
-				wallInteraction()
-		else:
-			touching_wall = false;
+		if !isDoingOdamaRasengan:
+			anim.play("walk")
+			if wall_detector.is_colliding():
+				if not touching_wall:
+					touching_wall = true
+					wallInteraction()
+			else:
+				touching_wall = false;
 
 func set_direction(dir: int) -> void:
 	direction = dir
@@ -118,10 +142,8 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 # Quando o Clone colide com o corpo físico (CharacterBody2D) do Esqueleto"volume_db"
 func _on_hitbox_body_entered(_body: Node2D) -> void:
-	make_clone_jump()
 	return
-
-# Função auxiliar para aplicar o dano e eliminar o clone
+	
 func _try_damage_entity(node: Node) -> void:
 	if node == null:
 		isAttacking = false;
@@ -155,10 +177,9 @@ func _try_damage_entity(node: Node) -> void:
 		destroy_bushin(true)
 		
 func make_clone_jump():
-	if (velocity.y == 0):
-		anim.play("jump")
-		jump.play()
-		velocity.y = JUMP_VELOCITY
+	anim.play("jump")
+	jump.play()
+	velocity.y = JUMP_VELOCITY
 
 func destroy_bushin(didSomething: bool):
 	isBushinOver = true

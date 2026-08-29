@@ -126,30 +126,6 @@ region = Rect2(177, 2542, 59, 82)
 atlas = ExtResource("2_igcrf")
 region = Rect2(236, 2542, 59, 82)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1mt2o"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(170, 3770, 60, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lx2g3"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(230, 3770, 60, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kexg4"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(307, 3770, 76, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2yvt6"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(377, 3770, 76, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vk3v5"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(447, 3770, 77, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ctmvl"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(513, 3770, 75, 80)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fjmc"]
 atlas = ExtResource("2_igcrf")
 region = Rect2(208, 490, 52, 60)
@@ -185,14 +161,6 @@ region = Rect2(53, 1248, 53, 89)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7thud"]
 atlas = ExtResource("2_igcrf")
 region = Rect2(100, 490, 50, 60)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ix1gt"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(816, 2439, 51, 90)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sym6v"]
-atlas = ExtResource("2_igcrf")
-region = Rect2(867, 2439, 51, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a1qjk"]
 atlas = ExtResource("2_igcrf")
@@ -362,29 +330,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1mt2o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lx2g3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kexg4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2yvt6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vk3v5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ctmvl")
-}],
-"loop": 0,
-"name": &"doing_odama_rasengan",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_8fjmc")
 }],
 "loop": 1,
@@ -420,17 +365,6 @@ animations = [{
 }],
 "loop": 1,
 "name": &"help_rasengan",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vk3v5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ctmvl")
-}],
-"loop": 0,
-"name": &"hit_odama_rasengan",
 "speed": 5.0
 }, {
 "frames": [{
@@ -471,17 +405,6 @@ animations = [{
 "loop": 0,
 "name": &"jutsu",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ix1gt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sym6v")
-}],
-"loop": 0,
-"name": &"rasengan_end",
-"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -530,8 +453,10 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_mrmfd")
-animation = &"rasengan_end"
+animation = &"help_odama_rasengan"
 autoplay = "walk"
+frame = 4
+frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1775493887]
 scale = Vector2(1.0560014, 0.87999994)
@@ -570,11 +495,6 @@ position = Vector2(0, 5)
 target_position = Vector2(0, 7)
 collision_mask = 16
 
-[node name="OdamaRasenganHelper" type="RayCast2D" parent="." unique_id=1217859333]
-target_position = Vector2(33, 0)
-collision_mask = 4
-
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="tree_entered" from="GroundDetector" to="." method="_on_ground_detector_tree_entered"]
-[connection signal="item_rect_changed" from="OdamaRasenganHelper" to="." method="_on_odama_rasengan_helper_item_rect_changed"]

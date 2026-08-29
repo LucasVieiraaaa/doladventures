@@ -745,7 +745,6 @@ func moveWithRasengan(rasengan: String):
 	stats._damage_while_doing_jutsu(rasengan)
 
 	while timer.time_left > 0:
-		print("bateu", playerHitSomething)
 		if not is_inside_tree():
 			return
 
@@ -755,7 +754,6 @@ func moveWithRasengan(rasengan: String):
 		enable_attack_hitbox()
 
 		if playerHitSomething:
-			print("aqio")
 			break
 		if beenHit:
 			go_to_idle_state()
