@@ -49,6 +49,7 @@ var step_interval := 0.5
 @onready var died_soud: AudioStreamPlayer = $HurtSounds/DiedSoud
 @onready var rasengan_hit: AudioStreamPlayer = $Sounds/RasenganHit
 @onready var rasengan_2d: AnimatedSprite2D = $Rasengan2D
+@onready var no_chakra: AudioStreamPlayer = $MoveSounds/NoChakra
 
 var rasengan_on_cooldown: bool = false
 var playerHitSomething: bool = false;
@@ -560,8 +561,15 @@ func regularBushinJutsu():
 		await get_tree().create_timer(2.75).timeout
 		isBushinCooldown = false
 		bushin_combo = 0;
+	
+	if isBushinCooldown:
+		no_chakra.play()
+		return
 		
 func allBushinJutsu():
+	if bushin_combo == bushin_max_combo:
+		no_chakra.play()
+	
 	if bushin_combo == 0 && !beenHit && !isDead:	
 		bushin_combo = bushin_max_combo
 		tajuu_kage_bushin.play()
@@ -618,6 +626,7 @@ func what_is_character_steping() -> void:
 ### START RASENGAN ###
 func regularRasengan():	
 	if rasengan_on_cooldown:
+		no_chakra.play()
 		return
 	rasengan_on_cooldown = true
 	status = PlayerState.jutsu
@@ -626,6 +635,10 @@ func regularRasengan():
 		await get_tree().create_timer(2.0).timeout
 		moveWithRasengan()
 		await get_tree().create_timer(2.0).timeout
+		if rasengan_direction == 1.0:
+			rasenganPosition(-12,-7)
+		elif rasengan_direction == -1.0:
+			rasenganPosition(8,-7)
 	else:
 		go_to_idle_state()
 
@@ -652,9 +665,9 @@ func playRasenganStartAnimation():
 func moveWithRasengan():
 	anim.play("rasengan_moving")
 	
-	if rasengan_direction == 1:
+	if rasengan_direction == 1.0:
 		rasenganPosition(-12,-7)
-	elif rasengan_direction == -1:
+	elif rasengan_direction == -1.0:
 		rasenganPosition(8,-7)
 	
 		

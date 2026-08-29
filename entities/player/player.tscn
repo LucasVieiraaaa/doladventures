@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://d0i0nejsknrrc" path="res://audios/naruto/naruto_died.wav" id="10_wvtmh"]
 [ext_resource type="AudioStream" uid="uid://b68eyhwk7x6oy" path="res://audios/jutsu/naruto-rasengan-001.wav" id="11_yqrof"]
 [ext_resource type="AudioStream" uid="uid://yug46a1h4o8h" path="res://audios/jutsu/naruto-rah.wav" id="15_3wlsy"]
+[ext_resource type="AudioStream" uid="uid://dwmwf0eunmamu" path="res://audios/jutsu/not-enough-chakra.wav" id="17_we0b7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
 radius = 6.0
@@ -827,6 +828,10 @@ volume_db = -2.0
 [node name="ScreamSound" type="AudioStreamPlayer" parent="MoveSounds" unique_id=453117537]
 stream = ExtResource("15_3wlsy")
 volume_db = -2.0
+
+[node name="NoChakra" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2035155811]
+stream = ExtResource("17_we0b7")
+volume_db = -4.0
 
 [node name="HurtSounds" type="Node" parent="." unique_id=297794617]
 
