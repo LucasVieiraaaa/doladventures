@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://dsx16sywvy6ti" path="res://resources/enemy_stats.tres" id="2_6hr2a"]
 [ext_resource type="Texture2D" uid="uid://bxp57mfgmbwqn" path="res://sprites/3 - Skeleton/Crumbling_Into_Bone_Pile (32 x 32).png" id="2_fpmxe"]
 [ext_resource type="Texture2D" uid="uid://q33hmy8ux644" path="res://sprites/3 - Skeleton/Limping_Movement (32 x 32).png" id="2_yag7t"]
+[ext_resource type="AudioStream" uid="uid://ct3e6md2bi2q7" path="res://audios/attacks/shuriken-throw.wav" id="6_j31jw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dp68x"]
 atlas = ExtResource("2_4oc3b")
@@ -204,5 +205,11 @@ target_position = Vector2(118.749954, 0)
 
 [node name="BoneStartPosition" type="Node2D" parent="." unique_id=1523132738]
 position = Vector2(16.666658, 0)
+
+[node name="Audios" type="Node" parent="." unique_id=1553875469]
+
+[node name="ShurikenThrowSound" type="AudioStreamPlayer" parent="Audios" unique_id=1059137472]
+stream = ExtResource("6_j31jw")
+volume_db = -4.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

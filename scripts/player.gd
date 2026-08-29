@@ -50,6 +50,7 @@ var step_interval := 0.5
 @onready var rasengan_hit: AudioStreamPlayer = $Sounds/RasenganHit
 @onready var rasengan_2d: AnimatedSprite2D = $Rasengan2D
 @onready var no_chakra: AudioStreamPlayer = $MoveSounds/NoChakra
+@onready var shuriken_hit_sound: AudioStreamPlayer = $HurtSounds/ShurikenHitSound
 
 var rasengan_on_cooldown: bool = false
 var playerHitSomething: bool = false;
@@ -73,7 +74,7 @@ var rasengan_direction: int = 1
 @export var max_speed = 100.0
 @export var acceleration = 400
 @export var deceleration = 500
-@export var slide_deceleration = 100
+@export var slide_deceleration = 50
 @export var wall_acceleration = 40
 @export var wall_jump_vellocity = 240
 
@@ -328,8 +329,11 @@ func slide_state(delta):
 		return
 		
 	if velocity.x == 0:
-		exit_from_slide_state()
-		go_to_walking_state()
+		if Input.is_action_just_released("duck"):
+			exit_from_slide_state()
+			go_to_walking_state()
+		if Input.is_action_pressed("duck"):
+			go_to_duck_state()
 		return
 
 func wall_state(delta):
@@ -452,10 +456,10 @@ func apply_gravity(delta):
 		pass
 		
 func getDamage():
-	print("bateu ", whatHitYou)
 	match self.whatHitYou:
 		"Shuriken":
 			stats.health -= 10
+			shuriken_hit_sound.play()
 			health_change.emit()
 			playHurt()
 		"Lava":
@@ -618,6 +622,7 @@ func go_to_jutsu_state(jutsu: String):
 ### END BUSHIN JUTSU LOGIC ###
 
 func what_is_character_steping() -> void:
+	if status != PlayerState.slide:
 		if water_detector.is_colliding():
 			water_step.play()
 		else:

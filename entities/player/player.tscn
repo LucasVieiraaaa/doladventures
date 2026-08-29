@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://b68eyhwk7x6oy" path="res://audios/jutsu/naruto-rasengan-001.wav" id="11_yqrof"]
 [ext_resource type="AudioStream" uid="uid://yug46a1h4o8h" path="res://audios/jutsu/naruto-rah.wav" id="15_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://dwmwf0eunmamu" path="res://audios/jutsu/not-enough-chakra.wav" id="17_we0b7"]
+[ext_resource type="AudioStream" uid="uid://dfpl4ass036fs" path="res://audios/attacks/shuriken-hit.wav" id="20_mtric"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
 radius = 6.0
@@ -842,6 +843,10 @@ volume_db = -12.0
 [node name="DiedSoud" type="AudioStreamPlayer" parent="HurtSounds" unique_id=780024136]
 stream = ExtResource("10_wvtmh")
 volume_db = -10.0
+
+[node name="ShurikenHitSound" type="AudioStreamPlayer" parent="HurtSounds" unique_id=213277535]
+stream = ExtResource("20_mtric")
+volume_db = -4.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

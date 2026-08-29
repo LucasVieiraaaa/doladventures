@@ -25,6 +25,7 @@ var can_throw = true
 @onready var player_detector: RayCast2D = $PlayerDetector
 @onready var player_is_protected_detector: RayCast2D = $PlayerIsProtectedDetector
 @onready var bone_start_position: Node2D = $BoneStartPosition
+@onready var shuriken_throw_sound: AudioStreamPlayer = $Audios/ShurikenThrowSound
 
 @export var stats: Stats
 
@@ -99,6 +100,7 @@ func attack_state(_delta):
 func throw_bone():
 	var new_bone =  shuriken.instantiate()
 	new_bone.set_shuriken_name("Shuriken")
+	shuriken_throw_sound.play()
 	add_sibling(new_bone)
 	new_bone.position = bone_start_position.global_position
 	new_bone.set_direction(self.direction)
