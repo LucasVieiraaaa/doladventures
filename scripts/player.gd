@@ -466,14 +466,12 @@ func getDamage():
 	match self.whatHitYou:
 		"Shuriken":
 			if status == PlayerState.rasengan:
-				stats.health -= 5
-				health_change.emit()
 				shuriken_blocked_sound.play()
-			else:
-				stats.health -= 10
-				shuriken_hit_sound.play()
-				health_change.emit()
-				playHurt()
+				return
+			stats.health -= 10
+			shuriken_hit_sound.play()
+			health_change.emit()
+			playHurt()
 		"Lava":
 			stats.health -= stats.health
 			health_change.emit()
