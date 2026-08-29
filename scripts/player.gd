@@ -836,7 +836,7 @@ func rasenganHitSomething(rasengan: String):
 			grow_rasengan(1.1,1.1,1.0, rasengan)
 		elif rasengan == "odama_rasengan":
 			odama_hit.play()
-			shakeCamera(35, 2)
+			shakeCamera(27, 1.2)
 			rasenganPosition(32 * rasengan_direction, -6)
 			anim.play("rasengan_hit")
 			anim.play("rasengan_hit_loop")
@@ -853,7 +853,7 @@ func rasenganHitSomething(rasengan: String):
 ### CAMERA ###
 func shakeCamera(intensity: float, duration: float):
 	var camera = get_viewport().get_camera_2d()
-	camera.camera_shake(18, 0.4)
+	camera.camera_shake(intensity, duration)
 	
 ### AUDIOS ###
 func audio_fade_out(player: AudioStreamPlayer, duracao: float = 3.0) -> void:
