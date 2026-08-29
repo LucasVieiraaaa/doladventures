@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioManager="*uid://dj0uekomod1kj"
-MusicManager="*uid://w6ucgi1chtm2"
 
 [display]
 
