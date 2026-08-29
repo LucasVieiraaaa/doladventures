@@ -386,7 +386,7 @@ func update_direction():
 func jutsu_state(delta: float) -> void:
 	apply_gravity(delta)
 	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
-	bushin_max_combo = ((stats.level * 1.1) + 1)
+	bushin_max_combo = (stats.level + 1)
 	
 	if bushin_max_combo  >= 9.0:
 		bushin_max_combo = 9.0
@@ -595,7 +595,7 @@ func allBushinJutsu():
 				return
 			await get_tree().process_frame
 		
-		for i in range(bushin_max_combo * 1.75):
+		for i in range(bushin_max_combo * 1.5):
 			var offset: float = floor((i / 2.0 + 1) * 20)
 			if i % 2 == 0:
 				offset *= -1
