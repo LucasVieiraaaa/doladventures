@@ -541,7 +541,7 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 ### START BUSHIN JUTSU LOGIC ###
 func spawn_clone(distance: float, isHelpingRasengan: String):
 	if bushin_combo <= bushin_max_combo:
-		var clone = PLAYER_CLONE.instantiate()
+		clone = PLAYER_CLONE.instantiate()
 		if isHelpingRasengan == "regular_rasengan":
 			clone.isHelpingRasengan(isHelpingRasengan)
 		elif isHelpingRasengan == "odama_rasengan":
@@ -698,6 +698,10 @@ func odamaRasengan():
 	rasengan_on_cooldown = true
 		
 	anim.play("odama_rasengan_init")
+	
+	# RESET DO TAMANHO
+	rasengan_2d.scale = Vector2(0.7, 0.7)
+	
 	rasengan_2d.visible = true
 	rasengan_2d.play("rasengan_formation")
 	spawn_clone(-24, "odama_rasengan")
@@ -721,6 +725,8 @@ func odamaRasengan():
 		
 	
 func playRasenganStartAnimation():
+	rasengan_2d.scale = Vector2(0.3, 0.3)
+	
 	anim.play("rasengan")
 	await get_tree().create_timer(0.5).timeout
 	bunshin.play()
@@ -767,6 +773,7 @@ func moveWithRasengan(rasengan: String):
 	deceleration = 500
 
 	if timer.time_left == 0 && !playerHitSomething:
+		clone.isCloneActionOver(rasengan)
 		stats._get_attack_normal_when_done_jutsu(rasengan)
 		audio_fade_out(rasengan_formation)
 		go_to_idle_state()
@@ -796,6 +803,7 @@ func grow_rasengan(x: float, y: float, time: float):
 	await tween.finished
 	
 func decrease_rasengan():
+	print("deu decrease")
 	rasengan_2d.scale = Vector2(1.1, 1.1)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)

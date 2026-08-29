@@ -96,7 +96,7 @@ func _physics_process(delta: float) -> void:
 		
 		move_and_slide()
 	
-	if isDoingOdamaRasengan:
+	if isDoingOdamaRasengan && !isBushinOver:
 		odama_rasengan_helper.target_position.x = ray_cast_length * direction
 		goMoveOdamaWithPlayer(delta)
 		if odama_rasengan_helper.is_colliding():
@@ -184,7 +184,6 @@ func make_clone_jump():
 func destroy_bushin(didSomething: bool):
 	isBushinOver = true
 	isHelpingRasegan = ""
-
 	poof.play()
 	if didSomething:
 		anim.play("dead2")
@@ -229,3 +228,14 @@ func whatKindOfNodeCloneHit(node: Node) -> void:
 
 	var xp: int = node.xpGiveAway()
 	xpCloneGained = xp
+
+func isCloneActionOver(action: String):
+	match action:
+		"odama_rasengan":
+			isBushinOver = true
+			anim.stop()
+			speed = -150
+			velocity.x = speed
+			anim.play("dead")
+			await get_tree().create_timer(0.5).timeout
+			destroy_bushin(true)
