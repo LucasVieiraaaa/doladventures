@@ -622,7 +622,7 @@ func go_to_jutsu_state(jutsu: String):
 ### END BUSHIN JUTSU LOGIC ###
 
 func what_is_character_steping() -> void:
-	if status != PlayerState.slide:
+	if status != PlayerState.slide && status != PlayerState.duck:
 		if water_detector.is_colliding():
 			water_step.play()
 		else:
