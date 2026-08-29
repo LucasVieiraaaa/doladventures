@@ -12,11 +12,9 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		if get_tree().paused:
-			print("aqui")
 			visible = false
 			get_tree().paused = false
 		else:
-			print("aqui2")
 			visible = true
 			get_tree().paused = true
 			

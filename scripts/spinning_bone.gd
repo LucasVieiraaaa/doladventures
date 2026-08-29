@@ -22,6 +22,6 @@ func _on_area_entered(_area: Area2D) -> void:
 func _on_body_entered(_body: Node2D) -> void:
 	queue_free()
 
-func set_shuriken_name(name: String):
-	objectName = name
+func set_shuriken_name(_name: String):
+	objectName = _name
 	return

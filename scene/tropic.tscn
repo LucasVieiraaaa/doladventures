@@ -40,6 +40,11 @@ size = Vector2(20, 169)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8vtq"]
 size = Vector2(20, 193)
 
+[sub_resource type="Resource" id="Resource_kjkl5"]
+resource_local_to_scene = true
+script = ExtResource("13_mjtd1")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
 [sub_resource type="Resource" id="Resource_3eg8f"]
 resource_local_to_scene = true
 script = ExtResource("13_mjtd1")
@@ -125,19 +130,13 @@ resource_local_to_scene = true
 script = ExtResource("13_mjtd1")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
 
-[sub_resource type="Resource" id="Resource_lmgyq"]
-resource_local_to_scene = true
-script = ExtResource("13_mjtd1")
-metadata/_custom_type_script = "uid://cc0enrh2rod4m"
-
 [node name="Tropic" type="Node2D" unique_id=1478722785]
 script = SubResource("GDScript_ytc0w")
 
 [node name="PauseMenu" parent="." unique_id=995015526 instance=ExtResource("1_ei81g")]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_bmxgx")]
-position = Vector2(13, 148)
-bushin_max_combo = 2
+position = Vector2(13, 149)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=149437379]
 
@@ -252,92 +251,92 @@ debug_color = Color(0.9351401, 1.8674731e-05, 0.639722, 0.41960785)
 [node name="Skeleton" parent="Enemies" unique_id=614385962 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(552.00006, 143)
-stats = SubResource("Resource_3eg8f")
+stats = SubResource("Resource_kjkl5")
 
 [node name="Skeleton15" parent="Enemies" unique_id=1985910366 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(419, 144)
-stats = SubResource("Resource_cjwtm")
+stats = SubResource("Resource_3eg8f")
 
 [node name="Skeleton16" parent="Enemies" unique_id=400779060 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(1151, 141)
-stats = SubResource("Resource_b78wb")
+stats = SubResource("Resource_cjwtm")
 
 [node name="Skeleton2" parent="Enemies" unique_id=299806680 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(816.00006, 31)
-stats = SubResource("Resource_kajwn")
+stats = SubResource("Resource_b78wb")
 
 [node name="Skeleton3" parent="Enemies" unique_id=1478441836 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(483.00003, 49)
-stats = SubResource("Resource_uehjn")
+stats = SubResource("Resource_kajwn")
 
 [node name="Skeleton4" parent="Enemies" unique_id=485366068 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(1202, 128)
-stats = SubResource("Resource_hohr6")
+stats = SubResource("Resource_uehjn")
 
 [node name="Skeleton5" parent="Enemies" unique_id=909659425 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(1616, 112)
-stats = SubResource("Resource_7jepg")
+stats = SubResource("Resource_hohr6")
 
 [node name="Skeleton17" parent="Enemies" unique_id=378849983 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(1657, 111)
-stats = SubResource("Resource_kwwm6")
+stats = SubResource("Resource_7jepg")
 
 [node name="Skeleton6" parent="Enemies" unique_id=2130190229 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(1564.0001, 111)
-stats = SubResource("Resource_ovcmj")
+stats = SubResource("Resource_kwwm6")
 
 [node name="Skeleton7" parent="Enemies" unique_id=1894042865 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(1983.0001, 113)
-stats = SubResource("Resource_l33ao")
+stats = SubResource("Resource_ovcmj")
 
 [node name="Skeleton8" parent="Enemies" unique_id=459690934 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(2507, 112)
-stats = SubResource("Resource_4h4s8")
+stats = SubResource("Resource_l33ao")
 
 [node name="Skeleton9" parent="Enemies" unique_id=485248734 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(2766, 126)
-stats = SubResource("Resource_u8qwh")
+stats = SubResource("Resource_4h4s8")
 
 [node name="Skeleton10" parent="Enemies" unique_id=1362686072 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(3533.0002, 145)
-stats = SubResource("Resource_ljjne")
+stats = SubResource("Resource_u8qwh")
 
 [node name="Skeleton11" parent="Enemies" unique_id=1811438589 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(3880, 144)
-stats = SubResource("Resource_yqbi3")
+stats = SubResource("Resource_ljjne")
 
 [node name="Skeleton18" parent="Enemies" unique_id=405170719 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(2871, 128)
-stats = SubResource("Resource_e0g71")
+stats = SubResource("Resource_yqbi3")
 
 [node name="Skeleton12" parent="Enemies" unique_id=1830619810 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(4404.0005, 144)
-stats = SubResource("Resource_h1j04")
+stats = SubResource("Resource_e0g71")
 
 [node name="Skeleton13" parent="Enemies" unique_id=262810131 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(4042, 15)
-stats = SubResource("Resource_0xwgg")
+stats = SubResource("Resource_h1j04")
 
 [node name="Skeleton14" parent="Enemies" unique_id=1414252542 instance=ExtResource("11_t8vtq")]
 z_index = 1
 position = Vector2(4844.0005, 145)
-stats = SubResource("Resource_lmgyq")
+stats = SubResource("Resource_0xwgg")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1915228535]
 

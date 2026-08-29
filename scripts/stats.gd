@@ -20,18 +20,18 @@ signal health_changed(cur_health: int, max_health: int)
 signal experience_changed
 
 @export var base_max_health: int = 100
-@export var base_defense: int = 10
-@export var base_attack: int = 10
+@export var base_defense: float = 10.0
+@export var base_attack: float = 10.0
 
 @export var experience: int = 0: set = _on_experience_set
 
 var level: int:
 	get(): return floor(max(1.0, sqrt(experience/25.0) + 0.5))
-var current_max_health: int = 100
-var current_defense: int = 10
-var current_attack: int = 10
+var current_max_health: float = 100.0
+var current_defense: float = 10.0
+var current_attack: float = 10.0
 
-var health: int = 0: set = _on_health_set
+var health: float = 0.0: set = _on_health_set
 
 var stat_buffs: Array[StatBuff]
 
@@ -82,10 +82,10 @@ func recalculate_stats()-> void:
 		var cur_property_name: String = ("current_"+ stat_name)
 		set(cur_property_name, get(cur_property_name) + stat_multipliers[stat_name])
 
-func _on_health_set(new_value: int) -> void:
-	health = clampi(new_value, 0, current_max_health)
+func _on_health_set(new_value: float) -> void:
+	health = clampf(new_value, 0.0, current_max_health)
 	health_changed.emit(health, current_max_health)
-	if health <= 0:
+	if health <= 0.0:
 		health_depleated.emit()
 
 func _on_experience_set(new_value: int) -> void:

@@ -382,6 +382,7 @@ func update_direction():
 		clone_spawn_direction = 1
 		updateRasenganPosition(1)
 		rasenganPosition(-12,-4)
+	
 func jutsu_state(delta: float) -> void:
 	apply_gravity(delta)
 	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
@@ -422,7 +423,6 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemies"):
 		hit_enemy(area)
 	elif area.is_in_group("LethalArea"):
-		print("area que te atingiu", area.objectName)
 		whatHitYou = area.objectName
 		hit_lethal_area()
 		
@@ -526,7 +526,7 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		xpGiveAway(entity)
 		
 ### START BUSHIN JUTSU LOGIC ###
-func spawn_clone(distance: int, isHelpingRasengan: bool):
+func spawn_clone(distance: float, isHelpingRasengan: bool):
 	if bushin_combo <= bushin_max_combo:
 		var clone = PLAYER_CLONE.instantiate()
 		if isHelpingRasengan:
@@ -596,7 +596,7 @@ func allBushinJutsu():
 			await get_tree().process_frame
 		
 		for i in range(bushin_max_combo * 1.75):
-			var offset = (i / 2 + 1) * 20
+			var offset: float = (i / 2 + 1) * 20
 			if i % 2 == 0:
 				offset *= -1
 			if !beenHit && !isDead:
@@ -641,6 +641,8 @@ func regularRasengan():
 	status = PlayerState.jutsu
 	if !beenHit && !isDead:
 		playRasenganStartAnimation()
+		if beenHit || isDead:
+			finishRasengan()
 		await get_tree().create_timer(2.0).timeout
 		moveWithRasengan()
 		await get_tree().create_timer(2.0).timeout
@@ -651,6 +653,9 @@ func regularRasengan():
 	else:
 		go_to_idle_state()
 
+	finishRasengan()
+	
+func finishRasengan():
 	go_to_idle_state()
 	await get_tree().create_timer(5.0).timeout
 	rasengan_on_cooldown = false
@@ -669,7 +674,6 @@ func playRasenganStartAnimation():
 	rasengan_2d.play("rasengan_formation")
 	rasengan_2d.visible = true
 	return
-	#go_to_idle_state()
 	
 func moveWithRasengan():
 	anim.play("rasengan_moving")

@@ -43,8 +43,8 @@ func update_camera_shake(delta: float):
 		shake_timer -= delta
 
 		shake_offset = Vector2(
-			randi_range(-shake_intensity, shake_intensity),
-			randi_range(-shake_intensity, shake_intensity)
+			randf_range(-shake_intensity, shake_intensity),
+			randf_range(-shake_intensity, shake_intensity)
 		)
 	else:
 		shake_offset = Vector2.ZERO
