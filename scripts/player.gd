@@ -774,7 +774,6 @@ func moveWithRasengan(rasengan: String):
 		go_to_idle_state()
 		return
 
-	print("rasengan aqiu,.", rasengan)
 	rasenganHitSomething(rasengan)
 	velocity = Vector2.ZERO
 	disable_attack_hitbox()
@@ -820,14 +819,18 @@ func rasenganHitSomething(rasengan: String):
 		if rasengan == "regular_rasengan":
 			rasengan_hit.play()
 			shakeCamera(18, 0.4)
+			rasenganPosition(19 * rasengan_direction, -6)
+			anim.play("rasengan_hit")
+			anim.play("rasengan_hit_loop")
+			grow_rasengan(1.1,1.1,1.0)
 		elif rasengan == "odama_rasengan":
 			odama_hit.play()
-			shakeCamera(28, 2)
+			shakeCamera(35, 2)
+			rasenganPosition(32 * rasengan_direction, -6)
+			anim.play("rasengan_hit")
+			anim.play("rasengan_hit_loop")
+			grow_rasengan(5.0,5.0,2.0)
 		
-		rasenganPosition(19 * rasengan_direction, -6)
-		anim.play("rasengan_hit")
-		anim.play("rasengan_hit_loop")
-		grow_rasengan(1.1,1.1,1.0)
 		await get_tree().create_timer(1.0).timeout
 		decrease_rasengan()
 		audio_fade_out(rasengan_formation)
