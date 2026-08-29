@@ -3,60 +3,49 @@
 [ext_resource type="Script" uid="uid://bbl8cqgrri81r" path="res://scripts/title_screen.gd" id="1_2fir4"]
 [ext_resource type="Texture2D" uid="uid://qp0lqs2fjr1j" path="res://sprites/UI/dolabela-adventures.png" id="2_i58fu"]
 [ext_resource type="Texture2D" uid="uid://ceug5ry8buwru" path="res://sprites/Background/akatsuki-title-screen.png" id="2_wxbcn"]
+[ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="3_ulgj7"]
 [ext_resource type="AudioStream" uid="uid://enbyu851fbtd" path="res://audios/misc/bamboo-hit-sound-effect.mp3" id="4_wxbcn"]
 
 [sub_resource type="Theme" id="Theme_i58fu"]
 Button/font_sizes/font_size = 10
 
 [sub_resource type="FontVariation" id="FontVariation_gh7ws"]
-variation_embolden = 1.25
+base_font = ExtResource("3_ulgj7")
+variation_embolden = 0.4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i58fu"]
-bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
 border_width_bottom = 2
-border_color = Color(0.7411765, 0.4627451, 0.2901961, 1)
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
+border_color = Color(0.78431374, 0.40392157, 0.050980393, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ctqs"]
-bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6oad"]
-bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_ulgj7"]
-variation_embolden = 1.25
+base_font = ExtResource("3_ulgj7")
+variation_embolden = 0.4
 
 [sub_resource type="Theme" id="Theme_2fir4"]
 Button/font_sizes/font_size = 10
 
-[sub_resource type="FontVariation" id="FontVariation_j6oad"]
-variation_embolden = 1.25
+[sub_resource type="FontVariation" id="FontVariation_t18hh"]
+base_font = ExtResource("3_ulgj7")
+variation_embolden = 0.4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxbcn"]
-bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
 border_width_bottom = 2
-border_color = Color(0.7411765, 0.4627451, 0.2901961, 1)
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
+border_color = Color(0.78235406, 0.40573537, 0.050904542, 1)
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbyiy"]
-bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh7ws"]
-bg_color = Color(0.8862745, 0.54901963, 0.38039216, 1)
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -109,7 +98,7 @@ theme = SubResource("Theme_i58fu")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 theme_override_fonts/font = SubResource("FontVariation_gh7ws")
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_i58fu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0ctqs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j6oad")
@@ -122,20 +111,19 @@ theme = SubResource("Theme_i58fu")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 theme_override_fonts/font = SubResource("FontVariation_ulgj7")
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_i58fu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0ctqs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j6oad")
-text = "OPTIONS
-"
+text = "TUTORIAL"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1547001146]
 layout_mode = 2
 theme = SubResource("Theme_2fir4")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
-theme_override_fonts/font = SubResource("FontVariation_j6oad")
-theme_override_font_sizes/font_size = 6
+theme_override_fonts/font = SubResource("FontVariation_t18hh")
+theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_wxbcn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rbyiy")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gh7ws")
