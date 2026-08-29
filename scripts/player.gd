@@ -53,6 +53,7 @@ var step_interval := 0.5
 @onready var no_chakra: AudioStreamPlayer = $MoveSounds/NoChakra
 @onready var shuriken_hit_sound: AudioStreamPlayer = $HurtSounds/ShurikenHitSound
 @onready var shuriken_blocked_sound: AudioStreamPlayer = $MoveSounds/ShurikenBlockedSound
+@onready var effect_phrase_sound: AudioStreamPlayer = $MoveSounds/EffectPhraseSound
 
 var rasengan_on_cooldown: bool = false
 var playerHitSomething: bool = false;
@@ -251,9 +252,14 @@ func idle_state(delta):
 		go_to_jutsu_state("bushin_attack")
 		return
 	
+	if Input.is_action_just_pressed("odama_rasengan"):
+		go_to_jutsu_state("odama_rasengan")
+		return
+	
 	if Input.is_action_just_pressed("rasengan_normal"):
 		go_to_jutsu_state("rasengan_normal")
 		return 
+		
 func walk_state(delta):
 	apply_gravity(delta)
 	
@@ -625,6 +631,9 @@ func go_to_jutsu_state(jutsu: String):
 		"bushin_attack_all":
 			allBushinJutsu()
 			return
+		"odama_rasengan":
+			odamaRasengan()
+			return
 		"rasengan_normal":
 			regularRasengan()
 			return
@@ -658,9 +667,9 @@ func regularRasengan():
 	if !beenHit && !isDead:
 		playRasenganStartAnimation()
 		if beenHit || isDead:
-			finishRasengan()
+			finishRasengan(5.0)
 		await get_tree().create_timer(2.0).timeout
-		moveWithRasengan()
+		moveWithRasengan("regular_rasengan")
 		await get_tree().create_timer(2.0).timeout
 		if rasengan_direction == 1.0:
 			rasenganPosition(-12,-7)
@@ -669,15 +678,44 @@ func regularRasengan():
 	else:
 		go_to_idle_state()
 
-	finishRasengan()
+	finishRasengan(5.0)
 	
-func finishRasengan():
+func finishRasengan(timer: float):
 	go_to_idle_state()
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(timer).timeout
 	rasengan_on_cooldown = false
 	
 func odamaRasengan():
-	pass
+	if rasengan_on_cooldown:
+		no_chakra.play()
+		return
+	else:
+		effect_phrase_sound.play()
+		go_to_rasengan_state()
+	rasengan_on_cooldown = true
+		
+	anim.play("odama_rasengan_init")
+	rasengan_2d.visible = true
+	rasengan_2d.play("rasengan_formation")
+	spawn_clone(-27, true)
+	
+	if rasengan_direction == 1.0:
+		rasenganPosition(-15,-6)
+	elif rasengan_direction == -1.0:
+		rasenganPosition(9,-6)
+	
+	rasengan_formation.play()
+	await get_tree().create_timer(3.0).timeout
+		
+	if !beenHit && !isDead:
+		if beenHit || isDead:
+			finishRasengan(9.0)
+		moveWithRasengan("odama_rasengan")
+		await get_tree().create_timer(2.0).timeout
+	else:
+		go_to_idle_state()
+	finishRasengan(9.0)
+		
 	
 func playRasenganStartAnimation():
 	anim.play("rasengan")
@@ -691,45 +729,50 @@ func playRasenganStartAnimation():
 	rasengan_2d.visible = true
 	return
 	
-func moveWithRasengan():
+func moveWithRasengan(rasengan: String):
 	anim.play("rasengan_moving")
-	
-	if rasengan_direction == 1.0:
-		rasenganPosition(-12,-7)
-	elif rasengan_direction == -1.0:
-		rasenganPosition(8,-7)
-	
-		
+
+	if rasengan == "regular_rasengan":
+		if rasengan_direction == 1.0:
+			rasenganPosition(-12, -7)
+		elif rasengan_direction == -1.0:
+			rasenganPosition(8, -7)
+
 	var timer = get_tree().create_timer(0.7)
-	stats._damage_while_doing_jutsu("rasengan")
+	stats._damage_while_doing_jutsu(rasengan)
+
 	while timer.time_left > 0:
 		if not is_inside_tree():
 			return
+
 		acceleration = -100
 		deceleration = 2000
-			
 		velocity.x = 250 * rasengan_direction
 		enable_attack_hitbox()
+
 		if playerHitSomething:
 			break
 		if beenHit:
 			go_to_idle_state()
 			audio_fade_out(rasengan_formation)
-			stats._get_attack_normal_when_done_jutsu("rasengan")
+			stats._get_attack_normal_when_done_jutsu(rasengan)
 			return
+
 		await get_tree().process_frame
+
 	acceleration = 400
 	deceleration = 500
-	
+
 	if timer.time_left == 0 && !playerHitSomething:
-		stats._get_attack_normal_when_done_jutsu("rasengan")
+		stats._get_attack_normal_when_done_jutsu(rasengan)
 		audio_fade_out(rasengan_formation)
 		go_to_idle_state()
 		return
-	
-	rasenganHitSomething()
-	velocity = Vector2.ZERO
-	disable_attack_hitbox()
+
+	if rasengan == "regular_rasengan":
+		rasenganHitSomething()
+		velocity = Vector2.ZERO
+		disable_attack_hitbox()
 	
 func updateRasenganPosition(number: int):
 	rasengan_direction = number
@@ -740,14 +783,14 @@ func rasenganPosition(x: int ,y: int):
 	rasengan_2d.position.y = y
 	return
 	
-func grow_rasengan():
+func grow_rasengan(x: float, y: float, time: float):
 	rasengan_2d.scale = Vector2(1, 1)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
 	rasengan_2d.play("rasengan_colision")
 
-	tween.tween_property(rasengan_2d,"scale",Vector2(1.1, 1.1),1.0)
+	tween.tween_property(rasengan_2d,"scale",Vector2(x, y),time)
 	await tween.finished
 	
 func decrease_rasengan():
@@ -774,7 +817,7 @@ func rasenganHitSomething():
 		shakeCamera()
 		anim.play("rasengan_hit")
 		anim.play("rasengan_hit_loop")
-		grow_rasengan()
+		grow_rasengan(1.1,1.1,1.0)
 		await get_tree().create_timer(1.0).timeout
 		decrease_rasengan()
 		audio_fade_out(rasengan_formation)

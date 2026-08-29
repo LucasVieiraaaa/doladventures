@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://yug46a1h4o8h" path="res://audios/jutsu/naruto-rah.wav" id="15_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://dwmwf0eunmamu" path="res://audios/jutsu/not-enough-chakra.wav" id="17_we0b7"]
 [ext_resource type="AudioStream" uid="uid://b8li3r8n7eiqd" path="res://audios/attacks/shuriken-blocked.wav" id="18_eyb6c"]
+[ext_resource type="AudioStream" uid="uid://behmmd1ddxbi4" path="res://audios/naruto/naruto-ykaze.wav" id="19_221hk"]
 [ext_resource type="AudioStream" uid="uid://dfpl4ass036fs" path="res://audios/attacks/shuriken-hit.wav" id="20_mtric"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
@@ -287,6 +288,34 @@ region = Rect2(106, 1248, 53, 89)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpopc"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(53, 1248, 53, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qydng"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(0, 3566, 51, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bn7s"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(51, 3566, 51, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aerxn"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(102, 3566, 51, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd1uy"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(153, 3566, 51, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs2ga"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(204, 3566, 51, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvro1"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(255, 3566, 51, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnghg"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(306, 3566, 51, 108)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtlkk"]
 atlas = ExtResource("3_j3ovn")
@@ -590,6 +619,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qydng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bn7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aerxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd1uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs2ga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvro1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnghg")
+}],
+"loop": 0,
+"name": &"odama_rasengan_init",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rtlkk")
 }, {
 "duration": 1.0,
@@ -735,16 +790,13 @@ position = Vector2(-11, -4)
 scale = Vector2(0.36, 0.36)
 sprite_frames = SubResource("SpriteFrames_mhk8t")
 animation = &"rasengan_colision"
-frame_progress = 0.41730505
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=732886684]
 z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"rasengan_end"
-frame = 1
-frame_progress = 1.0
+animation = &"odama_rasengan_init"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=530428646]
 position = Vector2(0, -2)
@@ -837,6 +889,10 @@ volume_db = -4.0
 [node name="ShurikenBlockedSound" type="AudioStreamPlayer" parent="MoveSounds" unique_id=1697260041]
 stream = ExtResource("18_eyb6c")
 volume_db = -4.0
+
+[node name="EffectPhraseSound" type="AudioStreamPlayer" parent="MoveSounds" unique_id=846582597]
+stream = ExtResource("19_221hk")
+volume_db = -2.0
 
 [node name="HurtSounds" type="Node" parent="." unique_id=297794617]
 
