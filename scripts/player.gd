@@ -10,7 +10,8 @@ enum PlayerState {
 	dead,
 	wall,
 	attack,
-	jutsu
+	jutsu,
+	rasengan
 }
 
 #Stats
@@ -51,6 +52,7 @@ var step_interval := 0.5
 @onready var rasengan_2d: AnimatedSprite2D = $Rasengan2D
 @onready var no_chakra: AudioStreamPlayer = $MoveSounds/NoChakra
 @onready var shuriken_hit_sound: AudioStreamPlayer = $HurtSounds/ShurikenHitSound
+@onready var shuriken_blocked_sound: AudioStreamPlayer = $MoveSounds/ShurikenBlockedSound
 
 var rasengan_on_cooldown: bool = false
 var playerHitSomething: bool = false;
@@ -128,6 +130,8 @@ func _physics_process(delta: float) -> void:
 			attack_state(delta)
 		PlayerState.jutsu:
 			jutsu_state(delta)
+		PlayerState.attack:
+			rasengan_state(delta)
 		
 	if direction != 0 and is_on_floor():
 		step_timer -= delta
@@ -436,7 +440,6 @@ func hit_enemy(area: Area2D):
 	if velocity.y > 0:
 		var entity = area.get_parent()
 		area.get_parent().take_damage(10)
-		#go_to_jump_state()
 		damage_02.play()
 		xpGiveAway(entity)
 		anim.play("air_attack")
@@ -462,10 +465,15 @@ func apply_gravity(delta):
 func getDamage():
 	match self.whatHitYou:
 		"Shuriken":
-			stats.health -= 10
-			shuriken_hit_sound.play()
-			health_change.emit()
-			playHurt()
+			if status == PlayerState.rasengan:
+				stats.health -= 5
+				health_change.emit()
+				shuriken_blocked_sound.play()
+			else:
+				stats.health -= 10
+				shuriken_hit_sound.play()
+				health_change.emit()
+				playHurt()
 		"Lava":
 			stats.health -= stats.health
 			health_change.emit()
@@ -633,12 +641,22 @@ func what_is_character_steping() -> void:
 			foot_step.play()
 	
 ### START RASENGAN ###
+
+func rasengan_state(delta):
+	apply_gravity(delta)
+
+func go_to_rasengan_state():
+	status = PlayerState.rasengan
+
 func regularRasengan():	
+	
 	if rasengan_on_cooldown:
 		no_chakra.play()
 		return
+	else:
+		go_to_rasengan_state()
+		
 	rasengan_on_cooldown = true
-	status = PlayerState.jutsu
 	if !beenHit && !isDead:
 		playRasenganStartAnimation()
 		if beenHit || isDead:

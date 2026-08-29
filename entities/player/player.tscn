@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://b68eyhwk7x6oy" path="res://audios/jutsu/naruto-rasengan-001.wav" id="11_yqrof"]
 [ext_resource type="AudioStream" uid="uid://yug46a1h4o8h" path="res://audios/jutsu/naruto-rah.wav" id="15_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://dwmwf0eunmamu" path="res://audios/jutsu/not-enough-chakra.wav" id="17_we0b7"]
+[ext_resource type="AudioStream" uid="uid://b8li3r8n7eiqd" path="res://audios/attacks/shuriken-blocked.wav" id="18_eyb6c"]
 [ext_resource type="AudioStream" uid="uid://dfpl4ass036fs" path="res://audios/attacks/shuriken-hit.wav" id="20_mtric"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
@@ -831,6 +832,10 @@ volume_db = -2.0
 
 [node name="NoChakra" type="AudioStreamPlayer" parent="MoveSounds" unique_id=2035155811]
 stream = ExtResource("17_we0b7")
+volume_db = -4.0
+
+[node name="ShurikenBlockedSound" type="AudioStreamPlayer" parent="MoveSounds" unique_id=1697260041]
+stream = ExtResource("18_eyb6c")
 volume_db = -4.0
 
 [node name="HurtSounds" type="Node" parent="." unique_id=297794617]
