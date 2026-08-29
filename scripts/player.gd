@@ -54,6 +54,7 @@ var step_interval := 0.5
 @onready var shuriken_hit_sound: AudioStreamPlayer = $HurtSounds/ShurikenHitSound
 @onready var shuriken_blocked_sound: AudioStreamPlayer = $MoveSounds/ShurikenBlockedSound
 @onready var effect_phrase_sound: AudioStreamPlayer = $MoveSounds/EffectPhraseSound
+@onready var odama_hit: AudioStreamPlayer = $Sounds/OdamaHit
 
 var rasengan_on_cooldown: bool = false
 var playerHitSomething: bool = false;
@@ -538,11 +539,13 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		xpGiveAway(entity)
 		
 ### START BUSHIN JUTSU LOGIC ###
-func spawn_clone(distance: float, isHelpingRasengan: bool):
+func spawn_clone(distance: float, isHelpingRasengan: String):
 	if bushin_combo <= bushin_max_combo:
 		var clone = PLAYER_CLONE.instantiate()
-		if isHelpingRasengan:
-			clone.isHelpingRasengan(true)
+		if isHelpingRasengan == "regular_rasengan":
+			clone.isHelpingRasengan(isHelpingRasengan)
+		elif isHelpingRasengan == "odama_rasengan":
+			clone.isHelpingRasengan(isHelpingRasengan)
 
 		clone.bushin_destroyed.connect(_on_bushin_destroyed)
 		get_parent().add_child(clone)
@@ -574,7 +577,7 @@ func regularBushinJutsu():
 		status = PlayerState.jutsu
 		velocity.x = 0 
 		anim.play("jutsu")
-		spawn_clone(25, false) 
+		spawn_clone(25, "") 
 	
 	if (bushin_combo == bushin_max_combo) && !isBushinCooldown:
 		isBushinCooldown = true
@@ -612,7 +615,7 @@ func allBushinJutsu():
 			if i % 2 == 0:
 				offset *= -1
 			if !beenHit && !isDead:
-				spawn_clone(offset, false)
+				spawn_clone(offset, "")
 			else:
 				return
 		go_to_idle_state()
@@ -697,7 +700,7 @@ func odamaRasengan():
 	anim.play("odama_rasengan_init")
 	rasengan_2d.visible = true
 	rasengan_2d.play("rasengan_formation")
-	spawn_clone(-27, true)
+	spawn_clone(-24, "odama_rasengan")
 	
 	if rasengan_direction == 1.0:
 		rasenganPosition(-15,-6)
@@ -721,7 +724,7 @@ func playRasenganStartAnimation():
 	anim.play("rasengan")
 	await get_tree().create_timer(0.5).timeout
 	bunshin.play()
-	spawn_clone(-22, true) 
+	spawn_clone(-22, "regular_rasengan") 
 	anim.pause()
 	scream_sound.play()
 	rasengan_formation.play()
@@ -742,6 +745,7 @@ func moveWithRasengan(rasengan: String):
 	stats._damage_while_doing_jutsu(rasengan)
 
 	while timer.time_left > 0:
+		print("bateu", playerHitSomething)
 		if not is_inside_tree():
 			return
 
@@ -751,6 +755,7 @@ func moveWithRasengan(rasengan: String):
 		enable_attack_hitbox()
 
 		if playerHitSomething:
+			print("aqio")
 			break
 		if beenHit:
 			go_to_idle_state()
@@ -769,10 +774,10 @@ func moveWithRasengan(rasengan: String):
 		go_to_idle_state()
 		return
 
-	if rasengan == "regular_rasengan":
-		rasenganHitSomething()
-		velocity = Vector2.ZERO
-		disable_attack_hitbox()
+	print("rasengan aqiu,.", rasengan)
+	rasenganHitSomething(rasengan)
+	velocity = Vector2.ZERO
+	disable_attack_hitbox()
 	
 func updateRasenganPosition(number: int):
 	rasengan_direction = number
@@ -810,11 +815,16 @@ func decrease_rasengan():
 	rasengan_2d.visible = false
 	rasengan_2d.scale = Vector2(0.4, 0.4)
 	
-func rasenganHitSomething():
+func rasenganHitSomething(rasengan: String):
 	if playerHitSomething:
-		rasengan_hit.play()
+		if rasengan == "regular_rasengan":
+			rasengan_hit.play()
+			shakeCamera(18, 0.4)
+		elif rasengan == "odama_rasengan":
+			odama_hit.play()
+			shakeCamera(28, 2)
+		
 		rasenganPosition(19 * rasengan_direction, -6)
-		shakeCamera()
 		anim.play("rasengan_hit")
 		anim.play("rasengan_hit_loop")
 		grow_rasengan(1.1,1.1,1.0)
@@ -827,7 +837,7 @@ func rasenganHitSomething():
 ### END RASENGAN ###
 	
 ### CAMERA ###
-func shakeCamera():
+func shakeCamera(intensity: float, duration: float):
 	var camera = get_viewport().get_camera_2d()
 	camera.camera_shake(18, 0.4)
 	

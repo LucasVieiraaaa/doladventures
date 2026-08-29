@@ -23,14 +23,14 @@ var direction: int = 1
 var isBushinOver: bool = false
 var isAttacking: bool = false
 var isInitializing: bool = true
-var isHelpingRasegan: bool = false
+var isHelpingRasegan: String = ""
 var buhsinTimeOut: float = randf_range(1.5, 4.5)
 var xpCloneGained: int = 0
 		
 signal bushin_destroyed(xp: int)
 
 func _ready() -> void:		
-	if(!isHelpingRasegan):
+	if(isHelpingRasegan == ""):
 		isInitializing = true
 		anim.play("init")
 		velocity = Vector2.ZERO
@@ -39,14 +39,28 @@ func _ready() -> void:
 		await get_tree().create_timer(buhsinTimeOut).timeout
 		if isBushinOver == false:
 			destroy_bushin(false)
-	else:
-		anim.play("init")
-		velocity = Vector2.ZERO
-		await get_tree().create_timer(0.5).timeout
-		anim.play("help_rasengan")
-		await get_tree().create_timer(2.0).timeout
-		destroy_bushin(true)
+	elif isHelpingRasegan == "regular_rasengan":
+		helpingRegularRasengan()
+		return
+	elif  isHelpingRasegan == "odama_rasengan":
+		helpingOdamaRasengan()
+		return
 		
+func helpingRegularRasengan():
+	anim.play("init")
+	velocity = Vector2.ZERO
+	await get_tree().create_timer(0.5).timeout
+	anim.play("help_rasengan")
+	await get_tree().create_timer(2.0).timeout
+	destroy_bushin(true)
+	
+func helpingOdamaRasengan():
+	anim.play("init")
+	velocity = Vector2.ZERO
+	await get_tree().create_timer(0.4).timeout
+	anim.play("help_odama_rasengan")
+	await get_tree().create_timer(2.0).timeout
+	destroy_bushin(true)
 
 func _physics_process(delta: float) -> void:
 	if  !isBushinOver && !isAttacking && !isInitializing:
@@ -148,7 +162,7 @@ func make_clone_jump():
 
 func destroy_bushin(didSomething: bool):
 	isBushinOver = true
-	isHelpingRasegan = false
+	isHelpingRasegan = ""
 
 	poof.play()
 	if didSomething:
@@ -176,7 +190,7 @@ func setup_direction(new_direction: int) -> void:
 	
 	anim.flip_h = direction < 0
 	
-func isHelpingRasengan(isHelping: bool):
+func isHelpingRasengan(isHelping: String):
 	isHelpingRasegan = isHelping
 	return
 	
