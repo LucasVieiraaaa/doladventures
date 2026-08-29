@@ -12,9 +12,11 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		if get_tree().paused:
+			print("aqui")
 			visible = false
 			get_tree().paused = false
 		else:
+			print("aqui2")
 			visible = true
 			get_tree().paused = true
 			
@@ -26,12 +28,14 @@ func _on_button_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	bamboo_sound.play()
-
 	var tween := create_tween()
 	tween.tween_property(fade_out, "modulate:a", 1.0, 0.5)
 
 	await tween.finished
 
 	await get_tree().create_timer(0.7).timeout
+	visible = false
+	get_tree().paused = false
 
 	get_tree().change_scene_to_file("res://scene/title_screen.tscn")
+	queue_free()
