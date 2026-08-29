@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="doladventures"
-run/main_scene="uid://dbvyubvtohns"
+run/main_scene="uid://b7q83vvmslvgh"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,7 +23,7 @@ AudioManager="*uid://dj0uekomod1kj"
 
 window/size/viewport_width=288
 window/size/viewport_height=208
-window/size/mode=3
+window/size/mode=1
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

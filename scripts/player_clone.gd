@@ -29,6 +29,7 @@ var isHelpingRasegan: String = ""
 var buhsinTimeOut: float = randf_range(1.5, 4.5)
 var xpCloneGained: int = 0
 var isDoingOdamaRasengan: bool = false
+@export var isPlayerMoving: bool = true
 		
 signal bushin_destroyed(xp: int)
 
@@ -65,7 +66,7 @@ func helpingOdamaRasengan():
 	await get_tree().create_timer(2.6).timeout
 	isDoingOdamaRasengan = true;
 
-func goMoveOdamaWithPlayer(delta: float):
+func goMoveOdamaWithPlayer(_delta: float):
 	velocity.x = (speed + 150) * direction
 	anim.play("doing_odama_rasengan")
 	cloneInitializeMoves()
@@ -99,7 +100,7 @@ func _physics_process(delta: float) -> void:
 	if isDoingOdamaRasengan && !isBushinOver:
 		odama_rasengan_helper.target_position.x = ray_cast_length * direction
 		goMoveOdamaWithPlayer(delta)
-		if odama_rasengan_helper.is_colliding():
+		if odama_rasengan_helper.is_colliding() && !isPlayerMoving:
 			if isDoingOdamaRasengan:
 				speed = -150
 				velocity.x = speed
@@ -136,7 +137,6 @@ func set_direction(dir: int) -> void:
 
 # Quando a Hitbox do Clone entra na Hitbox/Area2D do Esqueleto
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	print(area)
 	_try_damage_entity(area)
 	_try_damage_entity(area.get_parent())
 
