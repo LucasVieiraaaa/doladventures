@@ -773,7 +773,8 @@ func moveWithRasengan(rasengan: String):
 	deceleration = 500
 
 	if timer.time_left == 0 && !playerHitSomething:
-		clone.isCloneActionOver(rasengan)
+		if clone != null:
+			clone.isCloneActionOver(rasengan)
 		stats._get_attack_normal_when_done_jutsu(rasengan)
 		audio_fade_out(rasengan_formation)
 		go_to_idle_state()
