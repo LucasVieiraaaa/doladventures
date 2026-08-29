@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://qp0lqs2fjr1j" path="res://sprites/UI/dolabela-adventures.png" id="2_i58fu"]
 [ext_resource type="Texture2D" uid="uid://ceug5ry8buwru" path="res://sprites/Background/akatsuki-title-screen.png" id="2_wxbcn"]
 [ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="3_ulgj7"]
-[ext_resource type="AudioStream" uid="uid://enbyu851fbtd" path="res://audios/misc/bamboo-hit-sound-effect.mp3" id="4_wxbcn"]
+[ext_resource type="AudioStream" uid="uid://hdoefi3rjx8i" path="res://audios/title_screen/menu-click.wav" id="5_j6oad"]
+[ext_resource type="AudioStream" uid="uid://bivoh6m6wpjd2" path="res://audios/title_screen/on-hover.wav" id="6_ulgj7"]
 
-[sub_resource type="Theme" id="Theme_i58fu"]
+[sub_resource type="Theme" id="Theme_ulgj7"]
 Button/font_sizes/font_size = 10
 
 [sub_resource type="FontVariation" id="FontVariation_gh7ws"]
@@ -23,6 +24,9 @@ bg_color = Color(1, 0.5254902, 0.078431375, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6oad"]
 bg_color = Color(1, 0.5254902, 0.078431375, 1)
+
+[sub_resource type="Theme" id="Theme_i58fu"]
+Button/font_sizes/font_size = 10
 
 [sub_resource type="FontVariation" id="FontVariation_ulgj7"]
 base_font = ExtResource("3_ulgj7")
@@ -94,9 +98,9 @@ theme_override_constants/separation = 4
 
 [node name="Start" type="Button" parent="MarginContainer/VBoxContainer" unique_id=210594334]
 layout_mode = 2
-theme = SubResource("Theme_i58fu")
+theme = SubResource("Theme_ulgj7")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("FontVariation_gh7ws")
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_i58fu")
@@ -109,7 +113,7 @@ text = "PLAY GAME
 layout_mode = 2
 theme = SubResource("Theme_i58fu")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("FontVariation_ulgj7")
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_i58fu")
@@ -121,7 +125,7 @@ text = "TUTORIAL"
 layout_mode = 2
 theme = SubResource("Theme_2fir4")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("FontVariation_t18hh")
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_wxbcn")
@@ -144,9 +148,18 @@ mouse_filter = 0
 texture = ExtResource("2_i58fu")
 expand_mode = 3
 
-[node name="BambooSound" type="AudioStreamPlayer" parent="." unique_id=1771195212]
-stream = ExtResource("4_wxbcn")
+[node name="Audios" type="Node" parent="." unique_id=1843483970]
+
+[node name="MenuClickSound" type="AudioStreamPlayer" parent="Audios" unique_id=192795365]
+stream = ExtResource("5_j6oad")
 volume_db = -4.0
 
+[node name="OnHoverSound" type="AudioStreamPlayer" parent="Audios" unique_id=472201027]
+stream = ExtResource("6_ulgj7")
+volume_db = -4.0
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

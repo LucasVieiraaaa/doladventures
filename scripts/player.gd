@@ -99,6 +99,8 @@ var isBushinCooldown: bool = false
 var clone = PLAYER_CLONE.instantiate()
 
 func _ready() -> void:
+	print("lvl", stats.level)
+	
 	stats.health = stats.base_max_health
 	rasengan_2d.visible = false
 	anim.animation_finished.connect(_on_animation_finished)

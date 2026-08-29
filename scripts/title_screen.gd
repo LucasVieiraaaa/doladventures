@@ -1,14 +1,24 @@
 extends Control
-@onready var bamboo_sound: AudioStreamPlayer = $BambooSound
 
-func _ready() -> void:
-	pass
+@onready var menu_click_sound: AudioStreamPlayer = $Audios/MenuClickSound
+@onready var on_hover_sound: AudioStreamPlayer = $Audios/OnHoverSound
 
 func _on_start_pressed() -> void:
-	print("apertou")
-	bamboo_sound.play()
+	menu_click_sound.play()
 	await get_tree().create_timer(0.09).timeout
 	get_tree().change_scene_to_file("res://scene/tropic.tscn")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _on_start_mouse_entered() -> void:
+	on_hover_sound.play()
+	return
+
+func _on_options_mouse_entered() -> void:
+	on_hover_sound.play()
+	return
+
+func _on_quit_mouse_entered() -> void:
+	on_hover_sound.play()
+	return

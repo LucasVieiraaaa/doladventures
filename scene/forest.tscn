@@ -14,11 +14,23 @@
 [ext_resource type="TileSet" uid="uid://cbywuvqg8pig5" path="res://tiles/lava.tres" id="10_64es3"]
 [ext_resource type="PackedScene" uid="uid://bi7y72mouwr30" path="res://entities/level_end.tscn" id="10_jxvlp"]
 [ext_resource type="PackedScene" uid="uid://bqwevku1w7nxc" path="res://sprites/2 - Dolabela/character_face.tscn" id="14_0xhum"]
+[ext_resource type="Script" uid="uid://cc0enrh2rod4m" path="res://scripts/stats.gd" id="14_cwbpd"]
 [ext_resource type="PackedScene" uid="uid://b3b3tlvyom1q5" path="res://sprites/UI/health_bar.tscn" id="15_p7yhu"]
+[ext_resource type="PackedScene" uid="uid://bobo2rkwkxr1v" path="res://sprites/UI/experience_bar.tscn" id="15_ysu3w"]
 [ext_resource type="PackedScene" uid="uid://cauteg7aos8wl" path="res://sprites/UI/name_display.tscn" id="16_cwbpd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxvlp"]
 size = Vector2(21, 207)
+
+[sub_resource type="Resource" id="Resource_dki5c"]
+resource_local_to_scene = true
+script = ExtResource("14_cwbpd")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_cvgm6"]
+resource_local_to_scene = true
+script = ExtResource("14_cwbpd")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhk8t"]
 size = Vector2(20, 193)
@@ -120,9 +132,11 @@ shape = SubResource("RectangleShape2D_jxvlp")
 
 [node name="Skeleton2" parent="." unique_id=783631818 instance=ExtResource("7_gwku7")]
 position = Vector2(392, 128)
+stats = SubResource("Resource_dki5c")
 
 [node name="Skeleton" parent="." unique_id=614385962 instance=ExtResource("7_gwku7")]
 position = Vector2(174, 144)
+stats = SubResource("Resource_cvgm6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=906576783]
 position = Vector2(-16, 80)
@@ -132,24 +146,32 @@ collision_mask = 6
 position = Vector2(8, 16.5)
 shape = SubResource("RectangleShape2D_mhk8t")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1964713256]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=431022641]
+
+[node name="ExperienceBar" parent="HUD" unique_id=1756704642 node_paths=PackedStringArray("target") instance=ExtResource("15_ysu3w")]
+offset_left = 49.0
+offset_top = 12.0
+offset_right = 134.0
+offset_bottom = 24.0
+target = NodePath("../../player")
 
 [node name="CharacterFace" parent="HUD" unique_id=1561527091 instance=ExtResource("14_0xhum")]
-position = Vector2(26.28, 17)
+position = Vector2(28, 15)
+scale = Vector2(0.41000062, 0.41000062)
 
-[node name="HealthBar" parent="HUD" unique_id=1159617753 node_paths=PackedStringArray("target") instance=ExtResource("15_p7yhu")]
-offset_left = 46.28
-offset_top = 19.0
-offset_right = 96.28
-offset_bottom = 24.0
+[node name="HealthBar" parent="HUD" unique_id=1908431738 node_paths=PackedStringArray("target") instance=ExtResource("15_p7yhu")]
+offset_left = 9.0
+offset_top = 25.0
+offset_right = 94.0
+offset_bottom = 37.0
 target = NodePath("../../player")
 metadata/_edit_use_anchors_ = true
 
 [node name="NameDisplay" parent="HUD" unique_id=1968586722 node_paths=PackedStringArray("target") instance=ExtResource("16_cwbpd")]
-offset_left = 45.28
-offset_top = 7.0
-offset_right = 95.28
-offset_bottom = 27.0
+offset_left = 53.0
+offset_top = 4.0
+offset_right = 103.0
+offset_bottom = 24.0
 target = NodePath("../../player")
 metadata/_edit_use_anchors_ = true
 

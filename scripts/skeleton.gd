@@ -79,7 +79,6 @@ func take_damage(damage: int):
 		go_to_dead_state();
 		
 func xpGiveAway() -> int:
-	print("essa merda aqui", status == SkeletonState.dead)
 	if(status == SkeletonState.dead):
 		var x: int  = randi_range(5, 8)
 		return x

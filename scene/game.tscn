@@ -24,6 +24,156 @@ resource_local_to_scene = true
 script = ExtResource("8_sng2h")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
 
+[sub_resource type="Resource" id="Resource_ve786"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_0lu6w"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_i6gbm"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_ux4dc"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_jrd6n"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_jhlss"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_ww6yf"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_1it6f"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_pp3pk"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_b8t8i"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_355h4"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_ca6q5"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_yerfe"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_abp7u"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_he4o3"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_yk3to"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_0halo"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_8p2gu"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_kv4hp"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_0jy4g"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_mm2a7"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_d218c"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_54mdx"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_0pyxt"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_o16ra"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_imfdu"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_400sm"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_lip20"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_efr1a"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_x3x2e"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
 [node name="Game" type="Node2D" unique_id=1781356822]
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("1_ym5sv")]
@@ -52,9 +202,129 @@ tile_set = ExtResource("3_xwcet")
 position = Vector2(852, 61)
 stats = SubResource("Resource_5g16k")
 
-[node name="Skeleton2" parent="Tiles" unique_id=313518536 instance=ExtResource("4_p1ry8")]
-position = Vector2(884, 65)
+[node name="Skeleton2" parent="Tiles" unique_id=1879817825 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
 stats = SubResource("Resource_81276")
+
+[node name="Skeleton3" parent="Tiles" unique_id=1663893399 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_ve786")
+
+[node name="Skeleton4" parent="Tiles" unique_id=219395263 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_0lu6w")
+
+[node name="Skeleton5" parent="Tiles" unique_id=2021459519 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_i6gbm")
+
+[node name="Skeleton6" parent="Tiles" unique_id=1884892192 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_ux4dc")
+
+[node name="Skeleton7" parent="Tiles" unique_id=283699322 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_jrd6n")
+
+[node name="Skeleton8" parent="Tiles" unique_id=1484066787 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_jhlss")
+
+[node name="Skeleton9" parent="Tiles" unique_id=1648582920 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_ww6yf")
+
+[node name="Skeleton10" parent="Tiles" unique_id=663022501 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_1it6f")
+
+[node name="Skeleton11" parent="Tiles" unique_id=40197323 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_pp3pk")
+
+[node name="Skeleton12" parent="Tiles" unique_id=540689794 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_b8t8i")
+
+[node name="Skeleton13" parent="Tiles" unique_id=807406541 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_355h4")
+
+[node name="Skeleton14" parent="Tiles" unique_id=1505862374 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_ca6q5")
+
+[node name="Skeleton15" parent="Tiles" unique_id=1726235149 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_yerfe")
+
+[node name="Skeleton16" parent="Tiles" unique_id=1294793070 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_abp7u")
+
+[node name="Skeleton17" parent="Tiles" unique_id=1580677827 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_he4o3")
+
+[node name="Skeleton18" parent="Tiles" unique_id=1200130961 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_yk3to")
+
+[node name="Skeleton19" parent="Tiles" unique_id=505621474 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_0halo")
+
+[node name="Skeleton20" parent="Tiles" unique_id=5021465 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_8p2gu")
+
+[node name="Skeleton21" parent="Tiles" unique_id=1806353637 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_kv4hp")
+
+[node name="Skeleton22" parent="Tiles" unique_id=534089718 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_0jy4g")
+
+[node name="Skeleton23" parent="Tiles" unique_id=821014773 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_mm2a7")
+
+[node name="Skeleton24" parent="Tiles" unique_id=1322927354 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_d218c")
+
+[node name="Skeleton25" parent="Tiles" unique_id=591124530 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_54mdx")
+
+[node name="Skeleton26" parent="Tiles" unique_id=1087371306 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_0pyxt")
+
+[node name="Skeleton27" parent="Tiles" unique_id=9289196 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_o16ra")
+
+[node name="Skeleton28" parent="Tiles" unique_id=1462432251 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_imfdu")
+
+[node name="Skeleton29" parent="Tiles" unique_id=307832515 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_400sm")
+
+[node name="Skeleton30" parent="Tiles" unique_id=547004052 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_lip20")
+
+[node name="Skeleton31" parent="Tiles" unique_id=1854051333 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_efr1a")
+
+[node name="Skeleton32" parent="Tiles" unique_id=1227862569 instance=ExtResource("4_p1ry8")]
+position = Vector2(852, 61)
+stats = SubResource("Resource_x3x2e")
 
 [node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=1662146049 groups=["LethalArea"]]
 z_index = 4

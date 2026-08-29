@@ -82,9 +82,6 @@ func recalculate_stats()-> void:
 		var cur_property_name: String = ("current_"+ stat_name)
 		set(cur_property_name, get(cur_property_name) + stat_multipliers[stat_name])
 
-
-
-
 func _on_health_set(new_value: int) -> void:
 	health = clampi(new_value, 0, current_max_health)
 	health_changed.emit(health, current_max_health)
