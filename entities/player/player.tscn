@@ -721,7 +721,6 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_symyc")
 stats = ExtResource("2_b2kln")
-bushin_max_combo = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584861181]
 z_index = 2

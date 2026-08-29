@@ -9,6 +9,7 @@ const JUMP_VELOCITY = -320.0
 @onready var foot_step: AudioStreamPlayer = $MoveSounds/FootStep
 @onready var jump: AudioStreamPlayer = $MoveSounds/Jump
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
+@onready var ground_detector: RayCast2D = $GroundDetector
 
 #Steps
 var step_timer := 0.0
@@ -49,26 +50,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if  !isBushinOver && !isAttacking && !isInitializing:
-		
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 
 		velocity.x = speed * direction
-		if velocity.y > 0.1:
-			if not is_on_floor() && isInitializing:
-				anim.play("init")
-				await get_tree().create_timer(0.3).timeout
-				anim.play("air_attack")
-			else:
-				anim.play("fall")
-		else:
-			anim.play("walk")
-			if wall_detector.is_colliding():
-				if not touching_wall:
-					touching_wall = true
-					wallInteraction()
-			else:
-				touching_wall = false;
+		cloneInitializeMoves()
 			
 		if direction != 0 and is_on_floor():
 			step_timer -= delta
@@ -79,8 +65,29 @@ func _physics_process(delta: float) -> void:
 		else:
 			step_timer = 0.0	
 		
+		if ground_detector.is_colliding():
+			var collider = ground_detector.get_collider()
+			if collider.name.to_lower() == "lava":
+				destroy_bushin(true)
 		
 		move_and_slide()
+		
+func cloneInitializeMoves():
+	if velocity.y > 0.1:
+		if not is_on_floor() && isInitializing:
+			anim.play("init")
+			await get_tree().create_timer(0.3).timeout
+			anim.play("air_attack")
+		else:
+			anim.play("fall")
+	else:
+		anim.play("walk")
+		if wall_detector.is_colliding():
+			if not touching_wall:
+				touching_wall = true
+				wallInteraction()
+		else:
+			touching_wall = false;
 
 func set_direction(dir: int) -> void:
 	direction = dir
@@ -91,6 +98,7 @@ func set_direction(dir: int) -> void:
 
 # Quando a Hitbox do Clone entra na Hitbox/Area2D do Esqueleto
 func _on_hitbox_area_entered(area: Area2D) -> void:
+	print(area)
 	_try_damage_entity(area)
 	_try_damage_entity(area.get_parent())
 
@@ -176,8 +184,6 @@ func beenHit(hitbox: String):
 	match hitbox:
 		"Shuriken":
 			destroy_bushin(true)
-		"Lava":
-			destroy_bushin(true)
 			
 func whatKindOfNodeCloneHit(node: Node) -> void:
 	if not node.is_in_group("Enemies"):
@@ -188,4 +194,3 @@ func whatKindOfNodeCloneHit(node: Node) -> void:
 
 	var xp: int = node.xpGiveAway()
 	xpCloneGained = xp
-	print("XP acumulado pelo Bushin: ", xpCloneGained)

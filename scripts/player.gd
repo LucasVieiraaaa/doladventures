@@ -93,14 +93,12 @@ var combo_buffered: bool = false
 
 #Bushin Variables
 var bushin_combo: int = 0
-@export var bushin_max_combo: int = 3
+@export var bushin_max_combo: float = 2.0
 var isMakingClones: bool = false
 var isBushinCooldown: bool = false
 var clone = PLAYER_CLONE.instantiate()
 
 func _ready() -> void:
-	print("lvl", stats.level)
-	
 	stats.health = stats.base_max_health
 	rasengan_2d.visible = false
 	anim.animation_finished.connect(_on_animation_finished)
@@ -387,6 +385,10 @@ func update_direction():
 func jutsu_state(delta: float) -> void:
 	apply_gravity(delta)
 	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
+	bushin_max_combo = ((stats.level * 1.1) + 1)
+	
+	if bushin_max_combo  >= 9.0:
+		bushin_max_combo = 9.0
 
 func move(delta):
 	if isDead:
