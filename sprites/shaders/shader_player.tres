@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cepq2jrjw6222"]
+
+[ext_resource type="Shader" uid="uid://dgqif5iamnny1" path="res://sprites/shaders/shader_player_script.gdshader" id="1_jufbx"]
+
+[resource]
+shader = ExtResource("1_jufbx")

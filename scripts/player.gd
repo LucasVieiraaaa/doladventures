@@ -16,13 +16,14 @@ enum PlayerState {
 
 #Stats
 @export var stats: Stats
-
 #Health
 signal health_change()
 var whatHitYou: String
 
 #Experience
 signal experience_changed
+var initialLevel: int = 1
+@onready var level_up_icon: Sprite2D = $LevelUpIcon
 
 #Charcter Information
 signal name_character
@@ -55,6 +56,7 @@ var step_interval := 0.5
 @onready var shuriken_blocked_sound: AudioStreamPlayer = $MoveSounds/ShurikenBlockedSound
 @onready var effect_phrase_sound: AudioStreamPlayer = $MoveSounds/EffectPhraseSound
 @onready var odama_hit: AudioStreamPlayer = $Sounds/OdamaHit
+@onready var level_up_sound: AudioStreamPlayer = $MoveSounds/LevelUpSound
 
 var rasengan_on_cooldown: bool = false
 var playerHitSomething: bool = false;
@@ -104,6 +106,7 @@ var clone = PLAYER_CLONE.instantiate()
 
 func _ready() -> void:
 	stats.health = stats.base_max_health
+	initialLevel = stats.level
 	rasengan_2d.visible = false
 	anim.animation_finished.connect(_on_animation_finished)
 	go_to_idle_state()
@@ -134,6 +137,9 @@ func _physics_process(delta: float) -> void:
 			jutsu_state(delta)
 		PlayerState.attack:
 			rasengan_state(delta)
+	
+	if stats.level != initialLevel:
+		go_to_level_up_state()
 		
 	if direction != 0 and is_on_floor():
 		step_timer -= delta
@@ -210,6 +216,32 @@ func go_to_wall_state():
 
 func exit_from_duck_state():
 	set_larger_collider()
+	
+func go_to_level_up_state():
+	if initialLevel != stats.level:
+		stats.level = initialLevel
+		initialLevel = stats.level
+		var tween: Tween = create_tween()
+		level_up_sound.play() 
+		for i in range(6):
+			level_up_icon.visible = true
+			tween.tween_method(
+				func(value):
+				$AnimatedSprite2D.material.set_shader_parameter("brightness", value), 1.0,2000.0, 0.1
+			)
+			tween.tween_method(
+				func(value):
+				$AnimatedSprite2D.material.set_shader_parameter("brightness", value), 100.0,1.0, 0.1
+			)	
+		tween.finished.connect(_flash_finished)
+
+func _flash_finished():
+	level_up_icon.visible = false
+	return
+
+func level_up_state(delta):
+	apply_gravity(delta)
+	move(delta)
 	
 func go_to_dead_state():
 	getDamage()
