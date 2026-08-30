@@ -23,7 +23,7 @@ AudioManager="*uid://dj0uekomod1kj"
 
 window/size/viewport_width=288
 window/size/viewport_height=208
-window/size/mode=1
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

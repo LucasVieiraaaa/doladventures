@@ -418,17 +418,24 @@ func set_small_collider():
 	collision_shape.shape.radius = 5
 	collision_shape.shape.height = 5
 	collision_shape.position.y = 7	
+	set_hitbox_size(4,5)
 	
-	hitbox_collision_shape.shape.size.y = 4
-	hitbox_collision_shape.position.y = 5
+func set_hitbox_size(size: float, position: float):
+	hitbox_collision_shape.shape.size.y = size
+	hitbox_collision_shape.position.y = position
+
+func set_attack_area(sizey:float, sizex:float, positiony: float, positionx: float):
+	attack_area_shape.shape.size.y = sizey
+	attack_area_shape.shape.size.x = sizex
 	
+	attack_area_shape.position.y = positiony
+	attack_area_shape.position.x = positionx
+
 func set_larger_collider():
 	collision_shape.shape.radius = 6
 	collision_shape.shape.height = 16
 	collision_shape.position.y = -2	
-	
-	hitbox_collision_shape.shape.size.y = 15
-	hitbox_collision_shape.position.y = 0.5
+	set_hitbox_size(15,0.5)
 	
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemies"):
@@ -782,7 +789,6 @@ func moveWithRasengan(rasengan: String):
 
 	rasenganHitSomething(rasengan)
 	velocity = Vector2.ZERO
-	disable_attack_hitbox()
 	
 func updateRasenganPosition(number: int):
 	rasengan_direction = number
@@ -812,15 +818,9 @@ func decrease_rasengan():
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(
-		rasengan_2d,
-		"scale",
-		Vector2(0, 0),
-		0.5
-	)
+	tween.tween_property(rasengan_2d,"scale", Vector2(0, 0),0.5)
 
 	await tween.finished
-
 	rasengan_2d.visible = false
 	rasengan_2d.scale = Vector2(0.4, 0.4)
 	
@@ -836,6 +836,9 @@ func rasenganHitSomething(rasengan: String):
 			grow_rasengan(1.1,1.1,1.0, rasengan)
 		elif rasengan == "odama_rasengan":
 			odama_hit.play()
+			enable_attack_hitbox()
+			
+			set_attack_area(70,70, -14, 45)
 			shakeCamera(27, 1.2)
 			rasenganPosition(32 * rasengan_direction, -6)
 			anim.play("rasengan_hit")
@@ -847,6 +850,8 @@ func rasenganHitSomething(rasengan: String):
 		audio_fade_out(rasengan_formation)
 		stats._get_attack_normal_when_done_jutsu("rasengan")
 		anim.play("rasengan_end")
+		if rasengan == "odama_rasengan":
+			set_attack_area(35,27, -5.5, 7)
 		return
 ### END RASENGAN ###
 	
