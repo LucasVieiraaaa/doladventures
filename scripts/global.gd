@@ -3,10 +3,11 @@ extends Node
 var inventory = []
 var player : Node = null
 signal inventory_updated
+@onready var inventory_slot_scene = preload("res://scene/inventory_slot.tscn")
 
 func _ready():
-	#30 Slots
-	inventory.resize(30)
+	#08 Slots
+	inventory.resize(8)
 
 func add_item(item):
 	for i in range(inventory.size()):
