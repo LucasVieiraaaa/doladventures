@@ -1,4 +1,4 @@
-extends TextEdit
+extends Label
 
 @export var target: CharacterBody2D
 
