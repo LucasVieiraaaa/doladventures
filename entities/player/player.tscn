@@ -27,6 +27,8 @@
 [ext_resource type="AudioStream" uid="uid://baubhwm48wljf" path="res://audios/naruto/level-up.wav" id="21_t1t22"]
 [ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="26_wuv6x"]
 [ext_resource type="PackedScene" uid="uid://bambcjuajcdma" path="res://scene/inventory_ui.tscn" id="27_qpopc"]
+[ext_resource type="Script" uid="uid://dhi7whrsks83e" path="res://scripts/jutsu_bar.gd" id="28_gt4e4"]
+[ext_resource type="PackedScene" uid="uid://mulmv2aom7h7" path="res://scene/jutsu_button.tscn" id="28_wq0jh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
 radius = 6.0
@@ -1094,6 +1096,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+
+[node name="QuickTabUI" type="CanvasLayer" parent="." unique_id=226663920]
+
+[node name="JutsuBar" type="HBoxContainer" parent="QuickTabUI" unique_id=447763494]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 50.0
+grow_vertical = 0
+scale = Vector2(0.52, 0.52)
+pivot_offset = Vector2(30, -30)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+script = ExtResource("28_gt4e4")
+
+[node name="JutsuButton" parent="QuickTabUI/JutsuBar" unique_id=695204722 instance=ExtResource("28_wq0jh")]
+layout_mode = 2
+
+[node name="JutsuButton2" parent="QuickTabUI/JutsuBar" unique_id=627710162 instance=ExtResource("28_wq0jh")]
+layout_mode = 2
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
