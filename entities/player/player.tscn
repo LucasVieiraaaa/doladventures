@@ -1061,14 +1061,17 @@ theme_override_font_sizes/font_size = 8
 text = "Press \"O\" to Pick Up"
 
 [node name="InventoryUI" type="CanvasLayer" parent="." unique_id=1409359780]
+layer = 2
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="InventoryUI" unique_id=456565353]
+z_index = 19
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0.3882353)
 
 [node name="Label" type="Label" parent="InventoryUI/ColorRect" unique_id=453129175]
@@ -1085,7 +1088,12 @@ theme_override_fonts/font = ExtResource("26_wuv6x")
 text = "INVENTORY"
 
 [node name="InventoryUI" parent="InventoryUI/ColorRect" unique_id=1579962482 instance=ExtResource("27_qpopc")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

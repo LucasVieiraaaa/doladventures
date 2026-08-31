@@ -31,7 +31,7 @@ func pickup_item():
 		"name": itemName,
 		"texture": itemTexture,
 		"effect": itemEffect,
-		"schene_path": schenePath
+		"scene_path": schenePath
 	}
 	
 	if Global.player:
@@ -40,7 +40,6 @@ func pickup_item():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("aqi", body)
 	if body.is_in_group("Player"):
 		isPLayerInRange = true
 		body.interactUiNode.visible = true
@@ -50,3 +49,9 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		isPLayerInRange = false
 		body.interactUiNode.visible = false
+		
+func set_item_data(data):
+	itemType = data["type"]
+	itemName = data["name"]
+	itemEffect = data["effect"]
+	itemTexture = data["texture"]

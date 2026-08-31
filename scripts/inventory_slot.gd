@@ -40,3 +40,13 @@ func set_item(new_item):
 		item_effect.text = str("+ ", item["effect"])
 	else:
 		item_effect.text = ""
+
+
+func _on_drop_button_pressed() -> void:
+	if item != null:
+		var drop_position = Global.player.global_position
+		var drop_offset = Vector2(0,50)
+		drop_offset = drop_offset.rotated(Global.player.rotation)
+		Global.drop_item(item, drop_position + drop_offset)
+		Global.remove_item(item["type"],item["effect"])
+		usage_panel.visible = false
