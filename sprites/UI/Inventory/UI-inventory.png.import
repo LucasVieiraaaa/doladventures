@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceorpjvl6tmw0"
-path="res://.godot/imported/ramen.png-d6e59afa71946d689cf581862d6d5055.ctex"
+uid="uid://gilf1jjnrqc1"
+path="res://.godot/imported/UI-inventory.png-ee563a9387d5177ed2744de67cb7c5b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Items/ramen.png"
-dest_files=["res://.godot/imported/ramen.png-d6e59afa71946d689cf581862d6d5055.ctex"]
+source_file="res://sprites/UI/Inventory/UI-inventory.png"
+dest_files=["res://.godot/imported/UI-inventory.png-ee563a9387d5177ed2744de67cb7c5b9.ctex"]
 
 [params]
 

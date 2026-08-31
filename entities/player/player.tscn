@@ -25,6 +25,8 @@
 [ext_resource type="AudioStream" uid="uid://behmmd1ddxbi4" path="res://audios/naruto/naruto-ykaze.wav" id="19_221hk"]
 [ext_resource type="AudioStream" uid="uid://dfpl4ass036fs" path="res://audios/attacks/shuriken-hit.wav" id="20_mtric"]
 [ext_resource type="AudioStream" uid="uid://baubhwm48wljf" path="res://audios/naruto/level-up.wav" id="21_t1t22"]
+[ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="26_wuv6x"]
+[ext_resource type="PackedScene" uid="uid://bambcjuajcdma" path="res://scene/inventory_ui.tscn" id="27_qpopc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
 radius = 6.0
@@ -1024,6 +1026,66 @@ volume_db = -10.0
 [node name="ShurikenHitSound" type="AudioStreamPlayer" parent="HurtSounds" unique_id=213277535]
 stream = ExtResource("20_mtric")
 volume_db = -4.0
+
+[node name="InteractUI" type="CanvasLayer" parent="." unique_id=1232760716]
+
+[node name="ColorRect" type="ColorRect" parent="InteractUI" unique_id=1697621985]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 0.34509805)
+
+[node name="Label" type="Label" parent="InteractUI/ColorRect" unique_id=566755718]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -3.5
+offset_right = 24.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("26_wuv6x")
+theme_override_font_sizes/font_size = 8
+text = "Press \"O\" to Pick Up"
+
+[node name="InventoryUI" type="CanvasLayer" parent="." unique_id=1409359780]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="InventoryUI" unique_id=456565353]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3882353)
+
+[node name="Label" type="Label" parent="InventoryUI/ColorRect" unique_id=453129175]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.75
+offset_top = 12.0
+offset_right = 26.75
+offset_bottom = 29.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("26_wuv6x")
+text = "INVENTORY"
+
+[node name="InventoryUI" parent="InventoryUI/ColorRect" unique_id=1579962482 instance=ExtResource("27_qpopc")]
+layout_mode = 0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm5y8ipij1wts"
-path="res://.godot/imported/chakra_sandles.png-35fd5f758e0dee75fc9368044f0f91f2.ctex"
+uid="uid://du37ckc18g2e6"
+path="res://.godot/imported/UI-slot.png-f973653c4f5f6b35eba0a26e91e7257a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Items/chakra_sandles.png"
-dest_files=["res://.godot/imported/chakra_sandles.png-35fd5f758e0dee75fc9368044f0f91f2.ctex"]
+source_file="res://sprites/UI/Inventory/UI-slot.png"
+dest_files=["res://.godot/imported/UI-slot.png-f973653c4f5f6b35eba0a26e91e7257a.ctex"]
 
 [params]
 

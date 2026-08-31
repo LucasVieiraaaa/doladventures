@@ -95,7 +95,7 @@ var beenHit = false
 
 #Combo Variables
 var combo_step: int = 0
-var combo_buffered: bool = false 
+var combo_buffered: bool = false
 
 #Bushin Variables
 var bushin_combo: float = 0
@@ -104,12 +104,22 @@ var isMakingClones: bool = false
 var isBushinCooldown: bool = false
 var clone = PLAYER_CLONE.instantiate()
 
+@onready var interactUiNode = $InteractUI
+@onready var inventoryUI = $InventoryUI
+
 func _ready() -> void:
+	# Stats Set
 	stats.health = stats.base_max_health
 	initialLevel = stats.level
+	go_to_idle_state()
+	
+	# Animations set
+	interactUiNode.visible = false
 	rasengan_2d.visible = false
 	anim.animation_finished.connect(_on_animation_finished)
-	go_to_idle_state()
+	
+	# Calling Global and Stats
+	Global.set_player_reference(self)
 	health_change.emit.call_deferred()
 	experience_changed.emit.call_deferred()
 
@@ -141,6 +151,7 @@ func _physics_process(delta: float) -> void:
 	if stats.level != initialLevel:
 		go_to_level_up_state()
 		
+		
 	if direction != 0 and is_on_floor():
 		step_timer -= delta
 
@@ -148,9 +159,13 @@ func _physics_process(delta: float) -> void:
 			what_is_character_steping()
 			step_timer = step_interval
 	else:
-		step_timer = 0.0	
+		step_timer = 0.0
 			
 	move_and_slide()
+
+func _input(event):
+	if event.is_action_pressed("ui_inventory"):
+		inventoryUI.visible = !inventoryUI.visible
 
 func go_to_idle_state():
 	rasengan_2d.visible = false
@@ -222,7 +237,7 @@ func go_to_level_up_state():
 		stats.level = initialLevel
 		initialLevel = stats.level
 		var tween: Tween = create_tween()
-		level_up_sound.play() 
+		level_up_sound.play()
 		for i in range(6):
 			level_up_icon.visible = true
 			tween.tween_method(
@@ -232,7 +247,7 @@ func go_to_level_up_state():
 			tween.tween_method(
 				func(value):
 				$AnimatedSprite2D.material.set_shader_parameter("brightness", value), 100.0,1.0, 0.1
-			)	
+			)
 		tween.finished.connect(_flash_finished)
 
 func _flash_finished():
@@ -279,7 +294,7 @@ func idle_state(delta):
 	
 	if Input.is_action_just_pressed("bushin_attack_all"):
 		go_to_jutsu_state("bushin_attack_all")
-		return	
+		return
 	
 	if Input.is_action_just_pressed("bushin_attack"):
 		go_to_jutsu_state("bushin_attack")
@@ -291,7 +306,7 @@ func idle_state(delta):
 	
 	if Input.is_action_just_pressed("rasengan_normal"):
 		go_to_jutsu_state("rasengan_normal")
-		return 
+		return
 		
 func walk_state(delta):
 	apply_gravity(delta)
@@ -307,7 +322,7 @@ func walk_state(delta):
 	
 	if Input.is_action_just_pressed("duck"):
 		go_to_slide_state()
-		return	
+		return
 	
 	if Input.is_action_just_pressed("attack"):
 		go_to_attack_state()
@@ -315,7 +330,7 @@ func walk_state(delta):
 		
 	if !is_on_floor():
 		go_to_fall_state()
-		return		
+		return
 		
 func jump_state(delta):
 	apply_gravity(delta)
@@ -346,7 +361,7 @@ func fall_state(delta):
 		if velocity.y == 0:
 			go_to_idle_state()
 		else:
-			go_to_walking_state()	
+			go_to_walking_state()
 		return
 	if (left_wall_detector.is_colliding() || right_wall_detector.is_colliding()) && is_on_wall():
 		go_to_wall_state()
@@ -397,7 +412,7 @@ func wall_state(delta):
 		return
 		
 	if Input.is_action_just_pressed("jump"):
-		velocity.x = wall_jump_vellocity * direction 
+		velocity.x = wall_jump_vellocity * direction
 		go_to_jump_state()
 		return
 
@@ -449,7 +464,7 @@ func can_jump() -> bool:
 func set_small_collider():
 	collision_shape.shape.radius = 5
 	collision_shape.shape.height = 5
-	collision_shape.position.y = 7	
+	collision_shape.position.y = 7
 	set_hitbox_size(4,5)
 	
 func set_hitbox_size(size: float, position: float):
@@ -466,7 +481,7 @@ func set_attack_area(sizey:float, sizex:float, positiony: float, positionx: floa
 func set_larger_collider():
 	collision_shape.shape.radius = 6
 	collision_shape.shape.height = 16
-	collision_shape.position.y = -2	
+	collision_shape.position.y = -2
 	set_hitbox_size(15,0.5)
 	
 func _on_hitbox_area_entered(area: Area2D) -> void:
@@ -564,7 +579,7 @@ func _on_animation_finished() -> void:
 			go_to_idle_state()
 			
 	elif status == PlayerState.jutsu:
-		go_to_idle_state() 
+		go_to_idle_state()
 ###END SIMPLE COMBO LOGIC ###
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
@@ -614,9 +629,9 @@ func regularBushinJutsu():
 				bunshin.play()
 				isAudioPlaying = false;
 		status = PlayerState.jutsu
-		velocity.x = 0 
+		velocity.x = 0
 		anim.play("jutsu")
-		spawn_clone(25, "") 
+		spawn_clone(25, "")
 	
 	if (bushin_combo == bushin_max_combo) && !isBushinCooldown:
 		isBushinCooldown = true
@@ -632,7 +647,7 @@ func allBushinJutsu():
 	if bushin_combo == bushin_max_combo:
 		no_chakra.play()
 	
-	if bushin_combo == 0 && !beenHit && !isDead:	
+	if bushin_combo == 0 && !beenHit && !isDead:
 		bushin_combo = bushin_max_combo
 		tajuu_kage_bushin.play()
 		status = PlayerState.jutsu
@@ -697,7 +712,7 @@ func rasengan_state(delta):
 func go_to_rasengan_state():
 	status = PlayerState.rasengan
 
-func regularRasengan():	
+func regularRasengan():
 	
 	if rasengan_on_cooldown:
 		no_chakra.play()
@@ -769,7 +784,7 @@ func playRasenganStartAnimation():
 	anim.play("rasengan")
 	await get_tree().create_timer(0.5).timeout
 	bunshin.play()
-	spawn_clone(-22, "regular_rasengan") 
+	spawn_clone(-22, "regular_rasengan")
 	anim.pause()
 	scream_sound.play()
 	rasengan_formation.play()
@@ -901,7 +916,7 @@ func audio_fade_out(player: AudioStreamPlayer, duracao: float = 3.0) -> void:
 	tween.tween_property(player, "volume_db", -80.0, duracao)
 	tween.finished.connect(func():
 		player.stop()
-		player.volume_db = 0.0 
+		player.volume_db = 0.0
 	)
 	
 ### XP GIVE AWAY ###
