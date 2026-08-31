@@ -16,6 +16,26 @@
 [ext_resource type="PackedScene" uid="uid://d3p2u4opp7roy" path="res://scene/inventory_item.tscn" id="14_81276"]
 [ext_resource type="Texture2D" uid="uid://bfw1udt36q53f" path="res://sprites/Items/health-bottle-16x16.png" id="16_ux4dc"]
 
+[sub_resource type="Resource" id="Resource_ve786"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_0lu6w"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_i6gbm"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
+[sub_resource type="Resource" id="Resource_ux4dc"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
 [sub_resource type="Resource" id="Resource_jrd6n"]
 resource_local_to_scene = true
 script = ExtResource("8_sng2h")
@@ -27,26 +47,6 @@ script = ExtResource("8_sng2h")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
 
 [sub_resource type="Resource" id="Resource_ww6yf"]
-resource_local_to_scene = true
-script = ExtResource("8_sng2h")
-metadata/_custom_type_script = "uid://cc0enrh2rod4m"
-
-[sub_resource type="Resource" id="Resource_1it6f"]
-resource_local_to_scene = true
-script = ExtResource("8_sng2h")
-metadata/_custom_type_script = "uid://cc0enrh2rod4m"
-
-[sub_resource type="Resource" id="Resource_pp3pk"]
-resource_local_to_scene = true
-script = ExtResource("8_sng2h")
-metadata/_custom_type_script = "uid://cc0enrh2rod4m"
-
-[sub_resource type="Resource" id="Resource_b8t8i"]
-resource_local_to_scene = true
-script = ExtResource("8_sng2h")
-metadata/_custom_type_script = "uid://cc0enrh2rod4m"
-
-[sub_resource type="Resource" id="Resource_355h4"]
 resource_local_to_scene = true
 script = ExtResource("8_sng2h")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
@@ -76,31 +76,31 @@ tile_set = ExtResource("3_xwcet")
 
 [node name="Skeleton3" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
 position = Vector2(640, 80)
-stats = SubResource("Resource_jrd6n")
+stats = SubResource("Resource_ve786")
 
 [node name="Skeleton5" parent="Tiles" unique_id=560525494 instance=ExtResource("4_p1ry8")]
 position = Vector2(658, 81)
-stats = SubResource("Resource_jhlss")
+stats = SubResource("Resource_0lu6w")
 
 [node name="Skeleton8" parent="Tiles" unique_id=723576774 instance=ExtResource("4_p1ry8")]
 position = Vector2(682, 80)
-stats = SubResource("Resource_ww6yf")
+stats = SubResource("Resource_i6gbm")
 
 [node name="Skeleton4" parent="Tiles" unique_id=1582209196 instance=ExtResource("4_p1ry8")]
 position = Vector2(646, 80)
-stats = SubResource("Resource_1it6f")
+stats = SubResource("Resource_ux4dc")
 
 [node name="Skeleton6" parent="Tiles" unique_id=1320069374 instance=ExtResource("4_p1ry8")]
 position = Vector2(672, 79)
-stats = SubResource("Resource_pp3pk")
+stats = SubResource("Resource_jrd6n")
 
 [node name="Skeleton7" parent="Tiles" unique_id=2087057962 instance=ExtResource("4_p1ry8")]
 position = Vector2(695.00006, 80)
-stats = SubResource("Resource_b8t8i")
+stats = SubResource("Resource_jhlss")
 
 [node name="Skeleton2" parent="Tiles" unique_id=154928032 instance=ExtResource("4_p1ry8")]
 position = Vector2(903, 62)
-stats = SubResource("Resource_355h4")
+stats = SubResource("Resource_ww6yf")
 
 [node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=1662146049 groups=["LethalArea"]]
 z_index = 4
@@ -140,4 +140,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="InventoryItem" parent="Items" unique_id=2134280261 instance=ExtResource("14_81276")]
 position = Vector2(391, 85)
+itemType = "Consumable"
+itemName = "Health Bottle"
+itemEffect = "Health"
 itemTexture = ExtResource("16_ux4dc")
