@@ -6,12 +6,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_818uc"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="NameDisplay" type="TextEdit" unique_id=1968586722]
+[node name="NameDisplay" type="Label" unique_id=757784971]
 offset_right = 50.0
 offset_bottom = 20.0
-theme_override_colors/search_result_color = Color(1, 1, 1, 1)
-theme_override_colors/caret_color = Color(1, 1, 1, 1)
-theme_override_colors/selection_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_7sqeu")
 theme_override_font_sizes/font_size = 9
 theme_override_styles/normal = SubResource("StyleBoxFlat_818uc")
