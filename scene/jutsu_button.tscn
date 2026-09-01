@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://mulmv2aom7h7"]
 
-[ext_resource type="Texture2D" uid="uid://c1v2tsjcrosyv" path="res://icon.svg" id="1_ksyh7"]
+[ext_resource type="Texture2D" uid="uid://du37ckc18g2e6" path="res://sprites/UI/Inventory/UI-slot.png" id="1_c37ni"]
 [ext_resource type="Script" uid="uid://vuh7bqbqqijx" path="res://scripts/jutsu_button.gd" id="2_8yn8p"]
 [ext_resource type="Texture2D" uid="uid://bbtenuegqi4yu" path="res://sprites/UI/Bars/white-block.png" id="2_c37ni"]
 [ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="3_8yn8p"]
@@ -14,7 +14,7 @@ events = [SubResource("InputEventKey_4oooo")]
 offset_right = 40.0
 offset_bottom = 40.0
 shortcut = SubResource("Shortcut_lfw88")
-texture_normal = ExtResource("1_ksyh7")
+texture_normal = ExtResource("1_c37ni")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("2_8yn8p")
@@ -26,11 +26,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 5.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.9966013, 1.9966013)
+scale = Vector2(1.5, 1.5)
 step = 0.01
 fill_mode = 5
 texture_progress = ExtResource("2_c37ni")
@@ -78,6 +80,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

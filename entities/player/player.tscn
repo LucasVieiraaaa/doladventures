@@ -1109,14 +1109,16 @@ scale = Vector2(0.52, 0.52)
 pivot_offset = Vector2(30, -30)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 50
+theme_override_constants/separation = 40
 script = ExtResource("28_gt4e4")
 
 [node name="JutsuButton" parent="QuickTabUI/JutsuBar" unique_id=695204722 instance=ExtResource("28_wq0jh")]
 layout_mode = 2
+stretch_mode = 3
 
-[node name="JutsuButton2" parent="QuickTabUI/JutsuBar" unique_id=627710162 instance=ExtResource("28_wq0jh")]
+[node name="JutsuButton2" parent="QuickTabUI/JutsuBar" unique_id=1591509850 instance=ExtResource("28_wq0jh")]
 layout_mode = 2
+stretch_mode = 3
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
