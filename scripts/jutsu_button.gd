@@ -25,13 +25,14 @@ func _process(_delta: float):
 	time.text = "%3.1f" % timer.time_left
 	cooldown.value = timer.time_left
 
+func recieve_signal(key: Key, timeOut: float):
 
-func _input(event: InputEvent):
-	if event is InputEventKey:
-		if event.pressed and not event.echo:
-			if event.keycode == change_key.unicode_at(0):
-				if not disabled:
-					_on_pressed()
+	if key == KEY_Q:
+		timer.wait_time = timeOut
+		cooldown.max_value = timeOut
+
+		if not disabled:
+			_on_pressed()
 
 
 func _on_pressed() -> void:
@@ -44,6 +45,5 @@ func _on_pressed() -> void:
 
 func _on_timer_timeout() -> void:
 	disabled = false
-	time.text = ""
 	cooldown.value = 0
 	set_process(false)

@@ -107,6 +107,12 @@ var clone = PLAYER_CLONE.instantiate()
 @onready var interactUiNode = $InteractUI
 @onready var inventoryUI = $InventoryUI
 
+@onready var bushin_button_jutsu: TextureButton = $QuickTabUI/JutsuBar/JutsuButton
+@onready var rasengan_button_jutsu: TextureButton = $QuickTabUI/JutsuBar/JutsuButton2
+
+#Jutsu Bar Variables
+
+
 func _ready() -> void:
 	# Stats Set
 	stats.health = stats.base_max_health
@@ -635,7 +641,8 @@ func regularBushinJutsu():
 	
 	if (bushin_combo == bushin_max_combo) && !isBushinCooldown:
 		isBushinCooldown = true
-		await get_tree().create_timer(2.75).timeout
+		bushin_button_jutsu.recieve_signal(KEY_Q, 3.5);
+		await get_tree().create_timer(3.5).timeout
 		isBushinCooldown = false
 		bushin_combo = 0;
 	
@@ -677,6 +684,7 @@ func allBushinJutsu():
 		bunshin.play()
 
 		bunshin.volume_db = -16.0
+		bushin_button_jutsu.recieve_signal(KEY_Q, 12.0);
 		await get_tree().create_timer(12.0).timeout
 		bushin_combo = 0;
 
@@ -735,6 +743,7 @@ func regularRasengan():
 	else:
 		go_to_idle_state()
 
+	rasengan_button_jutsu.recieve_signal(KEY_Q, 5.0);
 	finishRasengan(5.0)
 	
 func finishRasengan(timer: float):
@@ -775,7 +784,8 @@ func odamaRasengan():
 		await get_tree().create_timer(2.0).timeout
 	else:
 		go_to_idle_state()
-	finishRasengan(9.0)
+	rasengan_button_jutsu.recieve_signal(KEY_Q, 16.0);
+	finishRasengan(16.0)
 		
 	
 func playRasenganStartAnimation():

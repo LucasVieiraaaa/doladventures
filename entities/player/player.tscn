@@ -29,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://bambcjuajcdma" path="res://scene/inventory_ui.tscn" id="27_qpopc"]
 [ext_resource type="Script" uid="uid://dhi7whrsks83e" path="res://scripts/jutsu_bar.gd" id="28_gt4e4"]
 [ext_resource type="PackedScene" uid="uid://mulmv2aom7h7" path="res://scene/jutsu_button.tscn" id="28_wq0jh"]
+[ext_resource type="Texture2D" uid="uid://b7qotqtg0arkx" path="res://sprites/UI/Buttons/shadow_clone_icon.png" id="30_24ehl"]
+[ext_resource type="Texture2D" uid="uid://ua3ontxjitx2" path="res://sprites/UI/Buttons/regular_rasengan.png" id="31_bwdx1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
 radius = 6.0
@@ -1103,7 +1105,8 @@ anchor_bottom = 0.5
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_right = 50.0
+offset_left = 3.0
+offset_right = 53.0
 grow_vertical = 0
 scale = Vector2(0.52, 0.52)
 pivot_offset = Vector2(30, -30)
@@ -1114,10 +1117,12 @@ script = ExtResource("28_gt4e4")
 
 [node name="JutsuButton" parent="QuickTabUI/JutsuBar" unique_id=695204722 instance=ExtResource("28_wq0jh")]
 layout_mode = 2
+texture_normal = ExtResource("30_24ehl")
 stretch_mode = 3
 
 [node name="JutsuButton2" parent="QuickTabUI/JutsuBar" unique_id=1591509850 instance=ExtResource("28_wq0jh")]
 layout_mode = 2
+texture_normal = ExtResource("31_bwdx1")
 stretch_mode = 3
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
