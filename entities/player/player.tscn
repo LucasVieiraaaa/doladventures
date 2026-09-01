@@ -905,7 +905,7 @@ material = ExtResource("5_ghoj8")
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"rasengan_moving"
+animation = &"duck"
 
 [node name="LevelUpIcon" type="Sprite2D" parent="." unique_id=1989912516]
 visible = false

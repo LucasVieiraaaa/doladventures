@@ -102,6 +102,26 @@ region = Rect2(689, 1092, 50, 61)
 atlas = ExtResource("2_igcrf")
 region = Rect2(742, 1092, 50, 61)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8b82"]
+atlas = ExtResource("2_igcrf")
+region = Rect2(336, 986, 61, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y644"]
+atlas = ExtResource("2_igcrf")
+region = Rect2(397, 986, 61, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbjwb"]
+atlas = ExtResource("2_igcrf")
+region = Rect2(458, 986, 61, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj7ml"]
+atlas = ExtResource("2_igcrf")
+region = Rect2(519, 986, 61, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewl8m"]
+atlas = ExtResource("2_igcrf")
+region = Rect2(580, 986, 61, 108)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqrof"]
 atlas = ExtResource("2_igcrf")
 region = Rect2(189, 584, 63, 66)
@@ -149,6 +169,10 @@ region = Rect2(447, 3770, 77, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ctmvl"]
 atlas = ExtResource("2_igcrf")
 region = Rect2(513, 3770, 75, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bls4j"]
+atlas = ExtResource("2_igcrf")
+region = Rect2(558, 1800, 50, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fjmc"]
 atlas = ExtResource("2_igcrf")
@@ -319,6 +343,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_w8b82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y644")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbjwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj7ml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewl8m")
+}],
+"loop": 0,
+"name": &"attack_4",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_yqrof")
 }, {
 "duration": 1.0,
@@ -381,6 +425,14 @@ animations = [{
 }],
 "loop": 0,
 "name": &"doing_odama_rasengan",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bls4j")
+}],
+"loop": 1,
+"name": &"duck",
 "speed": 5.0
 }, {
 "frames": [{
@@ -530,7 +582,7 @@ z_index = 1
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_mrmfd")
-animation = &"rasengan_end"
+animation = &"duck"
 autoplay = "walk"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1775493887]

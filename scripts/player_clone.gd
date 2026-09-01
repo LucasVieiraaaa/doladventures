@@ -26,7 +26,7 @@ var isBushinOver: bool = false
 var isAttacking: bool = false
 var isInitializing: bool = true
 var isHelpingRasegan: String = ""
-var buhsinTimeOut: float = randf_range(1.5, 4.5)
+var buhsinTimeOut: float = randf_range(2.0, 4.5)
 var xpCloneGained: int = 0
 var isDoingOdamaRasengan: bool = false
 @export var isPlayerMoving: bool = true
@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 				anim.play("rasengan_end")
 				await get_tree().create_timer(0.5).timeout
 				destroy_bushin(true)
-		
+				
 func cloneInitializeMoves():
 	if velocity.y > 0.1:
 		if not is_on_floor() && isInitializing:
@@ -158,8 +158,18 @@ func _try_damage_entity(node: Node) -> void:
 	
 	if (node.has_method("take_damage") && !isBushinOver):
 		damage_01.play()
+		var attack_number_scene = randi_range(1,4);
+		print(attack_number_scene)
 		if velocity.y == 0:
-			anim.play("attack_1")
+			match attack_number_scene:
+				1:
+					anim.play("attack_1")
+				2:
+					anim.play("attack_2")
+				3:
+					anim.play("attack_3")
+				4:
+					anim.play("attack_4")
 		else:
 			if not is_on_floor() && isInitializing:
 				anim.play("init")
@@ -214,8 +224,8 @@ func isHelpingRasengan(isHelping: String):
 	isHelpingRasegan = isHelping
 	return
 	
-func beenHit(hitbox: String):
-	match hitbox:
+func beenHit(_hitbox: String):
+	match _hitbox:
 		"Shuriken":
 			destroy_bushin(true)
 			
