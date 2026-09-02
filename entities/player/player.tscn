@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://mulmv2aom7h7" path="res://scene/jutsu_button.tscn" id="28_wq0jh"]
 [ext_resource type="Texture2D" uid="uid://b7qotqtg0arkx" path="res://sprites/UI/Buttons/shadow_clone_icon.png" id="30_24ehl"]
 [ext_resource type="Texture2D" uid="uid://ua3ontxjitx2" path="res://sprites/UI/Buttons/regular_rasengan.png" id="31_bwdx1"]
+[ext_resource type="Texture2D" uid="uid://1r1posogglm4" path="res://sprites/UI/Buttons/kurama_attack_icon.png" id="32_vewsg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdm2o"]
 radius = 6.0
@@ -1123,6 +1124,11 @@ stretch_mode = 3
 [node name="JutsuButton2" parent="QuickTabUI/JutsuBar" unique_id=1591509850 instance=ExtResource("28_wq0jh")]
 layout_mode = 2
 texture_normal = ExtResource("31_bwdx1")
+stretch_mode = 3
+
+[node name="JutsuButton3" parent="QuickTabUI/JutsuBar" unique_id=1996739517 instance=ExtResource("28_wq0jh")]
+layout_mode = 2
+texture_normal = ExtResource("32_vewsg")
 stretch_mode = 3
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

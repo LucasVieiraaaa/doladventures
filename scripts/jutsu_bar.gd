@@ -14,6 +14,7 @@ func _ready() -> void:
 
 	slots[0].change_key = "Q"
 	slots[1].change_key = "E"
+	slots[2].change_key = "R"
 
 	# Guarda as texturas originais
 	original_texture_0 = slots[0].texture_normal
