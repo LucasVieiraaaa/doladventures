@@ -10,6 +10,9 @@
 [sub_resource type="Shortcut" id="Shortcut_lfw88"]
 events = [SubResource("InputEventKey_4oooo")]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klvp7"]
+bg_color = Color(0, 0, 0, 0.5176471)
+
 [node name="JutsuButton" type="TextureButton" unique_id=695204722]
 offset_right = 40.0
 offset_bottom = 40.0
@@ -81,6 +84,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_klvp7")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

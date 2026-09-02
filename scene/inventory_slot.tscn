@@ -4,7 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://bu7rfdx2p6irs" path="res://sprites/Items/ramen-16x16.png" id="2_ga3dg"]
 [ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="3_7wmai"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7wmai"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wmai"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vewsg"]
+bg_color = Color(0, 0, 0, 0.69411767)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klvp7"]
+bg_color = Color(0, 0, 0, 0.16078432)
 
 [node name="InventorySlot" type="Control" unique_id=945205103]
 custom_minimum_size = Vector2(50, 50)
@@ -45,7 +52,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_7wmai")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7wmai")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vewsg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_klvp7")
 
 [node name="DetailsPanel" type="ColorRect" parent="." unique_id=129432952]
 visible = false
