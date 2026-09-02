@@ -7,7 +7,7 @@ signal inventory_updated
 
 func _ready():
 	#08 Slots
-	inventory.resize(6)
+	inventory.resize(5)
 
 func add_item(item):
 	for i in range(inventory.size()):

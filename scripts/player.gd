@@ -186,7 +186,7 @@ func apply_item_effect(item):
 			stats.health = stats.base_max_health
 			health_change.emit()
 		"Inventory":
-			Global.increase_inventory_size(2)
+			Global.increase_inventory_size(1)
 
 func go_to_idle_state():
 	rasengan_2d.visible = false

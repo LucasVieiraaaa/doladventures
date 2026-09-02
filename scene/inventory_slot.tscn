@@ -19,6 +19,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 50.0
 offset_bottom = 50.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_p2snw")
 
 [node name="Slot" type="ColorRect" parent="." unique_id=2079471940]
@@ -28,7 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.4862745)
+color = Color(0.8745098, 0.8980392, 0.9137255, 0.36862746)
 
 [node name="ItemIcon" type="Sprite2D" parent="Slot" unique_id=709940186]
 position = Vector2(25, 24)
