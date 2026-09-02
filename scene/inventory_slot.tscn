@@ -28,7 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.22687498, 0.23700592, 0.26741776, 0.53333336)
+color = Color(0, 0, 0, 0.4862745)
 
 [node name="ItemIcon" type="Sprite2D" parent="Slot" unique_id=709940186]
 position = Vector2(25, 24)

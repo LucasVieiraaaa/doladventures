@@ -1067,6 +1067,7 @@ text = "Press \"O\" to Pick Up"
 
 [node name="InventoryUI" type="CanvasLayer" parent="." unique_id=1409359780]
 layer = 2
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="InventoryUI" unique_id=456565353]
 z_index = 10
@@ -1099,8 +1100,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -26.999992
-offset_bottom = -26.999992
+offset_top = -32.999992
+offset_bottom = -32.999992
 scale = Vector2(0.7, 0.7)
 
 [node name="QuickTabUI" type="CanvasLayer" parent="." unique_id=226663920]
