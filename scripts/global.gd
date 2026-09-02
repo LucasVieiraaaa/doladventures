@@ -7,7 +7,7 @@ signal inventory_updated
 
 func _ready():
 	#08 Slots
-	inventory.resize(8)
+	inventory.resize(6)
 
 func add_item(item):
 	for i in range(inventory.size()):
@@ -66,4 +66,8 @@ func increase_inventory():
 	
 func set_player_reference(actual_player):
 	self.player = actual_player
+	
+func increase_inventory_size(extra_slots):
+	inventory.resize(extra_slots + inventory.size())
+	inventory_updated.emit()
 	

@@ -173,6 +173,21 @@ func _input(event):
 	if event.is_action_pressed("ui_inventory"):
 		inventoryUI.visible = !inventoryUI.visible
 
+func apply_item_effect(item):
+	match item["effect"]:
+		"Jump Boost":
+			max_jump_count = 3
+		"Health":
+			stats.health += (stats.base_max_health / 10.0)
+			health_change.emit()
+		"Experience":
+			stats.experience += 100	
+		"Ramen":
+			stats.health = stats.base_max_health
+			health_change.emit()
+		"Inventory":
+			Global.increase_inventory_size(2)
+
 func go_to_idle_state():
 	rasengan_2d.visible = false
 	if isDead:
