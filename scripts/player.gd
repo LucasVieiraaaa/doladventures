@@ -128,7 +128,6 @@ func _ready() -> void:
 	Global.set_player_reference(self)
 	health_change.emit.call_deferred()
 	experience_changed.emit.call_deferred()
-	process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _physics_process(delta: float) -> void:
 	match status:
@@ -953,9 +952,3 @@ func xpGiveAway(entity):
 		if xpGained != 0:
 			stats.experience += xpGained
 			pass
-
-func enable_during_pause():
-	process_mode = Node.PROCESS_MODE_ALWAYS
-
-func disable_during_pause():
-	process_mode = Node.PROCESS_MODE_PAUSABLE
