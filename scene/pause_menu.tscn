@@ -1,7 +1,42 @@
 [gd_scene format=3 uid="uid://5q3wq8of7ipl"]
 
 [ext_resource type="Script" uid="uid://dmagwgayt6jw1" path="res://scripts/pause_menu.gd" id="1_grdc7"]
+[ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="2_cq4tv"]
 [ext_resource type="AudioStream" uid="uid://enbyu851fbtd" path="res://audios/misc/bamboo-hit-sound-effect.mp3" id="2_me6vf"]
+
+[sub_resource type="FontVariation" id="FontVariation_qbwph"]
+base_font = ExtResource("2_cq4tv")
+variation_embolden = 0.4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q4fm"]
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
+border_width_bottom = 3
+border_color = Color(0.69099766, 0.35546857, 0.039340474, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_et5lo"]
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbwph"]
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_ug2vv"]
+base_font = ExtResource("2_cq4tv")
+variation_embolden = 0.4
+
+[sub_resource type="FontVariation" id="FontVariation_4q2vw"]
+base_font = ExtResource("2_cq4tv")
+variation_embolden = 0.4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ug2vv"]
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
+border_width_bottom = 3
+border_color = Color(0.7202103, 0.3715422, 0.043044902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1gbo"]
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cq4tv"]
+bg_color = Color(1, 0.5254902, 0.078431375, 1)
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=995015526]
 process_mode = 3
@@ -18,43 +53,98 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0, 0, 0, 0.60784316)
 
-[node name="Button" type="Button" parent="." unique_id=1700369805]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -31.0
-offset_right = 20.0
-offset_bottom = -11.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 8
-text = "RESUME"
-
-[node name="MainMenu" type="Button" parent="." unique_id=525187948]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = -4.0
-offset_right = 28.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 8
-text = "MAIN MENU"
-
 [node name="Sounds" type="Node" parent="." unique_id=874365688]
 
 [node name="BambooSound" type="AudioStreamPlayer" parent="Sounds" unique_id=493520281]
 stream = ExtResource("2_me6vf")
 volume_db = -4.0
+
+[node name="LabelControl" type="Control" parent="." unique_id=1984340543]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="LabelControl" unique_id=1594990083]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = 20.0
+offset_right = 56.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_cq4tv")
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="OptionsButton" type="Button" parent="." unique_id=1700369805]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -7.5
+offset_right = 25.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_qbwph")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_8q4fm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_et5lo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qbwph")
+text = "OPTIONS"
+
+[node name="Button" type="Button" parent="." unique_id=315154163]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -29.0
+offset_right = 25.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_ug2vv")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_8q4fm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_et5lo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qbwph")
+text = "RESUME"
+
+[node name="MainMenu" type="Button" parent="." unique_id=525187948]
+custom_maximum_size = Vector2(50, -1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = 15.0
+offset_right = 25.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_4q2vw")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_ug2vv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r1gbo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cq4tv")
+text = "MAIN MENU"
 
 [node name="FadeOut" type="ColorRect" parent="." unique_id=136057939]
 modulate = Color(1, 1, 1, 0)
@@ -66,5 +156,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[connection signal="pressed" from="OptionsButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

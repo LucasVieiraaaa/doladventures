@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bambcjuajcdma"]
 
 [ext_resource type="Script" uid="uid://kxqq8be61mqd" path="res://scripts/inventory_ui.gd" id="1_ia0un"]
-[ext_resource type="Texture2D" uid="uid://gilf1jjnrqc1" path="res://sprites/UI/Inventory/UI-inventory.png" id="2_liqm2"]
+[ext_resource type="Texture2D" uid="uid://ctqtdhjtibogh" path="res://sprites/UI/Inventory/scrollpage.png" id="2_vsf47"]
 [ext_resource type="Texture2D" uid="uid://bkviyn3yrevlt" path="res://sprites/2 - Dolabela/Naruto.png" id="3_dp107"]
+[ext_resource type="Texture2D" uid="uid://d3ei88lokp8c0" path="res://sprites/UI/Inventory/scroll.png" id="3_j1u10"]
+[ext_resource type="PackedScene" uid="uid://bqwevku1w7nxc" path="res://sprites/2 - Dolabela/character_face.tscn" id="5_j1u10"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qiwj3"]
 atlas = ExtResource("3_dp107")
@@ -50,35 +52,42 @@ grow_vertical = 2
 script = ExtResource("1_ia0un")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1207085261]
-layout_mode = 1
+layout_mode = 0
+offset_top = -5.0
 offset_right = 96.0
-offset_bottom = 64.0
+offset_bottom = 59.0
 scale = Vector2(2.1508522, 1.8299018)
-texture = ExtResource("2_liqm2")
+texture = ExtResource("2_vsf47")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=473313699]
+position = Vector2(-18, 54.000008)
+scale = Vector2(3.5684462, 3.5684462)
+texture = ExtResource("3_j1u10")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1851589846]
+position = Vector2(221, 54)
+scale = Vector2(3.5622509, 3.5622509)
+texture = ExtResource("3_j1u10")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=394909780]
+z_index = 5
 layout_mode = 1
-offset_left = 48.0
-offset_top = 18.0
-offset_right = 48.0
-offset_bottom = 18.0
-scale = Vector2(0.6899418, 0.74702877)
+offset_left = 52.000008
+offset_top = 34.0
+offset_right = 52.000008
+offset_bottom = 34.0
+scale = Vector2(0.5, 0.542)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-columns = 4
+columns = 5
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=306733056]
-layout_mode = 1
-offset_left = 8.0
-offset_top = 18.0
-offset_right = 48.0
-offset_bottom = 58.0
-scale = Vector2(0.837836, 1.9459418)
-color = Color(0.8745098, 0.8980392, 0.9137255, 0.36862746)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect" unique_id=1552972250]
-position = Vector2(17.903267, 26.722277)
-scale = Vector2(0.90045416, 0.392034)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1552972250]
+position = Vector2(27, 59)
+scale = Vector2(0.7544329, 0.7628753)
 sprite_frames = SubResource("SpriteFrames_mhk8t")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="CharacterFace" parent="." unique_id=1561527091 instance=ExtResource("5_j1u10")]
+position = Vector2(30, 25)
+scale = Vector2(0.351624, 0.351624)

@@ -1085,9 +1085,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -3.0
+offset_top = 6.0
 offset_right = 20.0
-offset_bottom = 37.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1123,23 +1123,24 @@ offset_top = -47.0
 offset_right = -77.0
 offset_bottom = -47.0
 scale = Vector2(0.7, 0.7)
+metadata/_edit_use_anchors_ = true
 
 [node name="HealthBar" parent="InventoryUI/VBoxContainer/ColorRect" unique_id=1908431738 node_paths=PackedStringArray("target") instance=ExtResource("28_8q4fm")]
 layout_mode = 0
-offset_left = -51.0
-offset_top = -32.000004
-offset_right = 34.0
-offset_bottom = -20.000004
-scale = Vector2(0.26696742, 0.55461234)
+offset_left = -21.0
+offset_top = -33.000004
+offset_right = 64.0
+offset_bottom = -21.000004
+scale = Vector2(0.59173805, 0.5759728)
 target = NodePath("../../../..")
 
 [node name="ExperienceBar" parent="InventoryUI/VBoxContainer/ColorRect" unique_id=1756704642 node_paths=PackedStringArray("target") instance=ExtResource("29_np63p")]
 layout_mode = 1
-offset_left = -51.0
-offset_top = -25.0
-offset_right = -46.0
-offset_bottom = -13.0
-scale = Vector2(0.5097952, 0.5069565)
+offset_left = 43.0
+offset_top = -33.0
+offset_right = 48.000008
+offset_bottom = -21.0
+scale = Vector2(0.6746607, 0.5742376)
 target = NodePath("../../../..")
 
 [node name="QuickTabUI" type="CanvasLayer" parent="." unique_id=226663920]

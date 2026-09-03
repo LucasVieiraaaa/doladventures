@@ -221,7 +221,7 @@ func go_to_jump_state():
 	status = PlayerState.jump
 	if jump_count == 0:
 		anim.play("jump")
-	elif jump_count == 1:
+	elif jump_count >= 1:
 		anim.play("double_jump")
 	jump.play()
 	velocity.y = JUMP_VELOCITY
@@ -564,6 +564,7 @@ func playHurt():
 	if stats.health > 0:
 		beenHit = true
 		rasengan_2d.visible = false
+		shakeCamera(5,0.2)
 		hurt_sound.play()
 		velocity = Vector2.ZERO
 		await get_tree().create_timer(1.0).timeout

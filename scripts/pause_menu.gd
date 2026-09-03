@@ -20,6 +20,8 @@ func _input(_event: InputEvent) -> void:
 			
 
 func _on_button_pressed() -> void:
+	bamboo_sound.play()
+	
 	visible = false
 	get_tree().paused = false
 	
