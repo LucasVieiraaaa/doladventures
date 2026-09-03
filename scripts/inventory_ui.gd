@@ -2,6 +2,9 @@ extends Control
 class_name Inventory
 @onready var grid_container = $GridContainer
 # Called when the node enters the scene tree for the first time.
+
+#Audios do Inventário
+
 func _ready() -> void:
 	Global.inventory_updated.connect(_on_inventory_updated)
 	_on_inventory_updated()
@@ -12,8 +15,10 @@ func _on_inventory_updated():
 		var slot = Global.inventory_slot_scene.instantiate()
 		grid_container.add_child(slot)
 		if item != null:
+			print("aqui chegou")
 			slot.set_item(item)
 		else:
+			print("aqui caiu")
 			slot.set_empty_slot();
 	
 func clear_grid_container():

@@ -9,6 +9,7 @@ extends Node2D
 
 var schenePath: String = "res://scene/inventory_item.tscn"
 var isPLayerInRange: bool = false
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,6 +23,8 @@ func _process(_delta: float) -> void:
 		iconSprite.texture = itemTexture
 	
 	if isPLayerInRange && Input.is_action_just_pressed("ui_add"):
+		audio_stream_player.play()
+		await get_tree().create_timer(0.3).timeout
 		pickup_item()	
 	
 func pickup_item():

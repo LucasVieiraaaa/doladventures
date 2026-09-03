@@ -26,9 +26,6 @@
 [ext_resource type="AudioStream" uid="uid://dfpl4ass036fs" path="res://audios/attacks/shuriken-hit.wav" id="20_mtric"]
 [ext_resource type="AudioStream" uid="uid://baubhwm48wljf" path="res://audios/naruto/level-up.wav" id="21_t1t22"]
 [ext_resource type="AudioStream" uid="uid://md18v8p1fuuw" path="res://audios/misc/InvetoryOpen.wav" id="23_np63p"]
-[ext_resource type="AudioStream" uid="uid://d4a13ul4e2ia6" path="res://audios/misc/XpGain.wav" id="24_0eo6o"]
-[ext_resource type="AudioStream" uid="uid://dleux2gkruhk8" path="res://audios/misc/HealthRegain.wav" id="24_ttr27"]
-[ext_resource type="AudioStream" uid="uid://dutx88ir8g1i" path="res://audios/misc/ChakraBootSound.wav" id="26_13wue"]
 [ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="26_wuv6x"]
 [ext_resource type="PackedScene" uid="uid://bambcjuajcdma" path="res://scene/inventory_ui.tscn" id="27_qpopc"]
 [ext_resource type="PackedScene" uid="uid://b3b3tlvyom1q5" path="res://sprites/UI/health_bar.tscn" id="28_8q4fm"]
@@ -1030,18 +1027,6 @@ volume_db = -4.0
 
 [node name="OpenInventorySound" type="AudioStreamPlayer" parent="MoveSounds" unique_id=1884025401]
 stream = ExtResource("23_np63p")
-volume_db = -4.0
-
-[node name="HpRegainSoud" type="AudioStreamPlayer" parent="MoveSounds" unique_id=1464210365]
-stream = ExtResource("24_ttr27")
-volume_db = -4.0
-
-[node name="XpGainSound" type="AudioStreamPlayer" parent="MoveSounds" unique_id=1184198215]
-stream = ExtResource("24_0eo6o")
-volume_db = -4.0
-
-[node name="ChakraBootSound" type="AudioStreamPlayer" parent="MoveSounds" unique_id=376130900]
-stream = ExtResource("26_13wue")
 volume_db = -4.0
 
 [node name="HurtSounds" type="Node" parent="." unique_id=297794617]

@@ -14,6 +14,7 @@ enum PlayerState {
 	rasengan
 }
 
+
 #Stats
 @export var stats: Stats
 #Health
@@ -57,6 +58,10 @@ var step_interval := 0.5
 @onready var effect_phrase_sound: AudioStreamPlayer = $MoveSounds/EffectPhraseSound
 @onready var odama_hit: AudioStreamPlayer = $Sounds/OdamaHit
 @onready var level_up_sound: AudioStreamPlayer = $MoveSounds/LevelUpSound
+@onready var open_inventory_sound: AudioStreamPlayer = $MoveSounds/OpenInventorySound
+@onready var xp_gain_sound: AudioStreamPlayer = $MoveSounds/XpGainSound
+@onready var hp_regain_soud: AudioStreamPlayer = $MoveSounds/HpRegainSoud
+@onready var chakra_boot_sound: AudioStreamPlayer = $MoveSounds/ChakraBootSound
 
 var rasengan_on_cooldown: bool = false
 var playerHitSomething: bool = false;
@@ -172,21 +177,29 @@ func _physics_process(delta: float) -> void:
 func _input(event):
 	if event.is_action_pressed("ui_inventory") && !isDead:
 		inventoryUI.visible = !inventoryUI.visible
+		if inventoryUI.visible:
+			open_inventory_sound.play()
+		
 
 func apply_item_effect(item):
 	match item["effect"]:
 		"Jump Boost":
 			max_jump_count = 3
+			chakra_boot_sound.play()
 		"Health":
 			stats.health += (stats.base_max_health / 10.0)
 			health_change.emit()
+			hp_regain_soud.play()
 		"Experience":
 			stats.experience += 100	
+			xp_gain_sound.play()
 		"Ramen":
 			stats.health = stats.base_max_health
 			health_change.emit()
+			hp_regain_soud.play()
 		"Inventory":
 			Global.increase_inventory_size(1)
+			chakra_boot_sound.play()
 
 func go_to_idle_state():
 	rasengan_2d.visible = false
