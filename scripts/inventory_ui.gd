@@ -15,10 +15,8 @@ func _on_inventory_updated():
 		var slot = Global.inventory_slot_scene.instantiate()
 		grid_container.add_child(slot)
 		if item != null:
-			print("aqui chegou")
 			slot.set_item(item)
 		else:
-			print("aqui caiu")
 			slot.set_empty_slot();
 	
 func clear_grid_container():
