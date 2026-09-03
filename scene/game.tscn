@@ -20,11 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://bbjgkkes0qdup" path="res://sprites/Items/experience-bottle-16x16.png" id="17_jrd6n"]
 [ext_resource type="Texture2D" uid="uid://bu7rfdx2p6irs" path="res://sprites/Items/ramen-16x16.png" id="18_jhlss"]
 
-[sub_resource type="Resource" id="Resource_ux4dc"]
-resource_local_to_scene = true
-script = ExtResource("8_sng2h")
-metadata/_custom_type_script = "uid://cc0enrh2rod4m"
-
 [sub_resource type="Resource" id="Resource_jrd6n"]
 resource_local_to_scene = true
 script = ExtResource("8_sng2h")
@@ -55,6 +50,11 @@ resource_local_to_scene = true
 script = ExtResource("8_sng2h")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
 
+[sub_resource type="Resource" id="Resource_355h4"]
+resource_local_to_scene = true
+script = ExtResource("8_sng2h")
+metadata/_custom_type_script = "uid://cc0enrh2rod4m"
+
 [node name="Game" type="Node2D" unique_id=1781356822]
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("1_ym5sv")]
@@ -80,31 +80,31 @@ tile_set = ExtResource("3_xwcet")
 
 [node name="Skeleton3" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
 position = Vector2(956.00006, 64)
-stats = SubResource("Resource_ux4dc")
+stats = SubResource("Resource_jrd6n")
 
 [node name="Skeleton5" parent="Tiles" unique_id=560525494 instance=ExtResource("4_p1ry8")]
 position = Vector2(928, 64)
-stats = SubResource("Resource_jrd6n")
+stats = SubResource("Resource_jhlss")
 
 [node name="Skeleton8" parent="Tiles" unique_id=723576774 instance=ExtResource("4_p1ry8")]
 position = Vector2(988, 64)
-stats = SubResource("Resource_jhlss")
+stats = SubResource("Resource_ww6yf")
 
 [node name="Skeleton4" parent="Tiles" unique_id=1582209196 instance=ExtResource("4_p1ry8")]
 position = Vector2(1079, 64)
-stats = SubResource("Resource_ww6yf")
+stats = SubResource("Resource_1it6f")
 
 [node name="Skeleton6" parent="Tiles" unique_id=1320069374 instance=ExtResource("4_p1ry8")]
 position = Vector2(1115, 63)
-stats = SubResource("Resource_1it6f")
+stats = SubResource("Resource_pp3pk")
 
 [node name="Skeleton7" parent="Tiles" unique_id=2087057962 instance=ExtResource("4_p1ry8")]
 position = Vector2(1049, 65)
-stats = SubResource("Resource_pp3pk")
+stats = SubResource("Resource_b8t8i")
 
 [node name="Skeleton2" parent="Tiles" unique_id=154928032 instance=ExtResource("4_p1ry8")]
 position = Vector2(1016, 64)
-stats = SubResource("Resource_b8t8i")
+stats = SubResource("Resource_355h4")
 
 [node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=1662146049 groups=["LethalArea"]]
 z_index = 4
@@ -114,9 +114,9 @@ tile_set = ExtResource("7_17rxn")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1857742715]
 
 [node name="ExperienceBar" parent="HUD" unique_id=1756704642 node_paths=PackedStringArray("target") instance=ExtResource("13_5g16k")]
-offset_left = 49.0
+offset_left = 48.0
 offset_top = 12.0
-offset_right = 134.0
+offset_right = 133.0
 offset_bottom = 24.0
 target = NodePath("../../player")
 
@@ -126,16 +126,16 @@ scale = Vector2(0.41000062, 0.41000062)
 
 [node name="HealthBar" parent="HUD" unique_id=1159617753 node_paths=PackedStringArray("target") instance=ExtResource("8_ll5lq")]
 offset_left = 9.0
-offset_top = 25.0
+offset_top = 26.0
 offset_right = 94.0
-offset_bottom = 37.0
+offset_bottom = 38.0
 target = NodePath("../../player")
 metadata/_edit_use_anchors_ = true
 
 [node name="NameDisplay" parent="HUD" unique_id=1968586722 node_paths=PackedStringArray("target") instance=ExtResource("9_yq8tf")]
-offset_left = 53.0
+offset_left = 50.0
 offset_top = 4.0
-offset_right = 103.0
+offset_right = 100.0
 offset_bottom = 24.0
 scale = Vector2(1.0020471, 1)
 target = NodePath("../../player")
@@ -145,6 +145,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="InventoryItem6" parent="Items" unique_id=2134280261 instance=ExtResource("14_81276")]
 position = Vector2(622, -91)
+itemType = "Inventory"
+itemName = "Backpack"
+itemEffect = "Inventory"
+itemTexture = ExtResource("15_jrd6n")
+
+[node name="InventoryItem9" parent="Items" unique_id=443364635 instance=ExtResource("14_81276")]
+position = Vector2(713, -92)
 itemType = "Inventory"
 itemName = "Backpack"
 itemEffect = "Inventory"
@@ -172,7 +179,7 @@ itemEffect = "Health"
 itemTexture = ExtResource("16_ux4dc")
 
 [node name="InventoryItem" parent="Items" unique_id=129066278 instance=ExtResource("14_81276")]
-position = Vector2(391, 85)
+position = Vector2(392, 85)
 itemType = "XP Gain"
 itemName = "Experience Bottle"
 itemEffect = "Experience"
@@ -180,6 +187,20 @@ itemTexture = ExtResource("17_jrd6n")
 
 [node name="InventoryItem3" parent="Items" unique_id=1282412610 instance=ExtResource("14_81276")]
 position = Vector2(55, 53)
+itemType = "HealthRegain"
+itemName = "Ramen"
+itemEffect = "Ramen"
+itemTexture = ExtResource("18_jhlss")
+
+[node name="InventoryItem7" parent="Items" unique_id=2032429907 instance=ExtResource("14_81276")]
+position = Vector2(330, 101)
+itemType = "HealthRegain"
+itemName = "Ramen"
+itemEffect = "Ramen"
+itemTexture = ExtResource("18_jhlss")
+
+[node name="InventoryItem8" parent="Items" unique_id=354011783 instance=ExtResource("14_81276")]
+position = Vector2(740, 67)
 itemType = "HealthRegain"
 itemName = "Ramen"
 itemEffect = "Ramen"

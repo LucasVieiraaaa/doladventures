@@ -2,45 +2,8 @@
 
 [ext_resource type="Script" uid="uid://kxqq8be61mqd" path="res://scripts/inventory_ui.gd" id="1_ia0un"]
 [ext_resource type="Texture2D" uid="uid://ctqtdhjtibogh" path="res://sprites/UI/Inventory/scrollpage.png" id="2_vsf47"]
-[ext_resource type="Texture2D" uid="uid://bkviyn3yrevlt" path="res://sprites/2 - Dolabela/Naruto.png" id="3_dp107"]
 [ext_resource type="Texture2D" uid="uid://d3ei88lokp8c0" path="res://sprites/UI/Inventory/scroll.png" id="3_j1u10"]
 [ext_resource type="PackedScene" uid="uid://bqwevku1w7nxc" path="res://sprites/2 - Dolabela/character_face.tscn" id="5_j1u10"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qiwj3"]
-atlas = ExtResource("3_dp107")
-region = Rect2(0, 335, 51, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
-atlas = ExtResource("3_dp107")
-region = Rect2(51, 335, 51, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bectd"]
-atlas = ExtResource("3_dp107")
-region = Rect2(102, 335, 51, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wvtmh"]
-atlas = ExtResource("3_dp107")
-region = Rect2(153, 335, 51, 57)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mhk8t"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qiwj3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_26q78")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bectd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wvtmh")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 5.0
-}]
 
 [node name="InventoryUI" type="Control" unique_id=1579962482]
 layout_mode = 3
@@ -72,21 +35,14 @@ texture = ExtResource("3_j1u10")
 [node name="GridContainer" type="GridContainer" parent="." unique_id=394909780]
 z_index = 5
 layout_mode = 1
-offset_left = 52.000008
-offset_top = 34.0
-offset_right = 52.000008
-offset_bottom = 34.0
-scale = Vector2(0.5, 0.542)
+offset_left = 26.0
+offset_top = 36.0
+offset_right = 26.0
+offset_bottom = 36.0
+scale = Vector2(0.55, 0.596)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 5
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1552972250]
-position = Vector2(27, 59)
-scale = Vector2(0.7544329, 0.7628753)
-sprite_frames = SubResource("SpriteFrames_mhk8t")
-animation = &"idle"
-autoplay = "idle"
 
 [node name="CharacterFace" parent="." unique_id=1561527091 instance=ExtResource("5_j1u10")]
 position = Vector2(30, 25)

@@ -170,7 +170,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _input(event):
-	if event.is_action_pressed("ui_inventory"):
+	if event.is_action_pressed("ui_inventory") && !isDead:
 		inventoryUI.visible = !inventoryUI.visible
 
 func apply_item_effect(item):
@@ -283,6 +283,7 @@ func go_to_dead_state():
 	getDamage()
 
 	if not isDead && stats.health == 0:
+		Global.clear_inventory()
 		status = PlayerState.dead
 		velocity.x = 0
 		isDead = true
@@ -291,6 +292,8 @@ func go_to_dead_state():
 		anim.play("dead")
 		set_small_collider()
 		reload_timer.start()
+		if inventoryUI.visible:
+			inventoryUI.visible = false
 	
 func idle_state(delta):
 	apply_gravity(delta)

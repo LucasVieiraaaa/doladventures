@@ -40,6 +40,7 @@ LethalArea=""
 WaterArea=""
 PlayerMisc=""
 Items=""
+InventorySlots=""
 
 [input]
 

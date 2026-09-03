@@ -2,18 +2,59 @@
 
 [ext_resource type="Script" uid="uid://dqeux7nwuypqc" path="res://scripts/inventory_slot.gd" id="1_p2snw"]
 [ext_resource type="Texture2D" uid="uid://bu7rfdx2p6irs" path="res://sprites/Items/ramen-16x16.png" id="2_ga3dg"]
+[ext_resource type="Texture2D" uid="uid://dt112vubf4kru" path="res://sprites/UI/Inventory/slot.png" id="2_klvp7"]
 [ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="3_7wmai"]
+[ext_resource type="Texture2D" uid="uid://ct5yqjdqbpceq" path="res://sprites/UI/Inventory/Item-info.png" id="5_3vdcn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wmai"]
 draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vewsg"]
-bg_color = Color(0, 0, 0, 0.69411767)
+bg_color = Color(0, 0, 0, 0.078431375)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klvp7"]
-bg_color = Color(0, 0, 0, 0.16078432)
+bg_color = Color(0, 0, 0, 0.05882353)
 
-[node name="InventorySlot" type="Control" unique_id=945205103]
+[sub_resource type="FontVariation" id="FontVariation_hs7bc"]
+base_font = ExtResource("3_7wmai")
+variation_embolden = 0.4
+
+[sub_resource type="FontVariation" id="FontVariation_g6el0"]
+base_font = ExtResource("3_7wmai")
+variation_embolden = 0.4
+
+[sub_resource type="FontVariation" id="FontVariation_xkyi0"]
+base_font = ExtResource("3_7wmai")
+variation_embolden = 0.4
+
+[sub_resource type="FontVariation" id="FontVariation_v6jvb"]
+base_font = ExtResource("3_7wmai")
+variation_embolden = 0.4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vdcn"]
+bg_color = Color(0.24011427, 0.70306724, 0.39892766, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hs7bc"]
+bg_color = Color(0.11012298, 0.36982986, 0.20036012, 1)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6el0"]
+bg_color = Color(0.16541272, 0.51207983, 0.28586486, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_3vdcn"]
+base_font = ExtResource("3_7wmai")
+variation_embolden = 0.4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6jvb"]
+bg_color = Color(0.8784314, 0, 0.3019608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7recw"]
+bg_color = Color(0.5370987, 0, 0.17174836, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkyi0"]
+bg_color = Color(0.735357, 0, 0.24767272, 1)
+
+[node name="InventorySlot" type="Control" unique_id=945205103 groups=["InventorySlots"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 3
 anchors_preset = 0
@@ -23,14 +64,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_p2snw")
 
-[node name="Slot" type="ColorRect" parent="." unique_id=2079471940]
+[node name="Slot" type="TextureRect" parent="." unique_id=1011870878]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8745098, 0.8980392, 0.9137255, 0.36862746)
+texture = ExtResource("2_klvp7")
 
 [node name="ItemIcon" type="Sprite2D" parent="Slot" unique_id=709940186]
 position = Vector2(25, 24)
@@ -39,10 +80,11 @@ texture = ExtResource("2_ga3dg")
 
 [node name="Quantity" type="Label" parent="Slot" unique_id=697060702]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 1.0
-offset_right = 44.0
-offset_bottom = 24.0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 48.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_7wmai")
 theme_override_font_sizes/font_size = 18
 text = "1"
@@ -58,21 +100,34 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7wmai")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vewsg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_klvp7")
 
+[node name="ItemInfo" type="TextureRect" parent="." unique_id=1114733209]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_top = 55.0
+offset_right = 100.0
+offset_bottom = 95.0
+scale = Vector2(1.4390739, 1.3262504)
+texture = ExtResource("5_3vdcn")
+
 [node name="DetailsPanel" type="ColorRect" parent="." unique_id=129432952]
 visible = false
+z_index = 4
 layout_mode = 0
-offset_top = -34.0
-offset_right = 50.0
-offset_bottom = -4.0
-color = Color(0.25882354, 0.2627451, 0.28235295, 0.79607844)
+offset_left = 4.0
+offset_top = 59.0
+offset_right = 84.0
+offset_bottom = 104.0
+color = Color(1, 1, 1, 0)
 
 [node name="ItemName" type="Label" parent="DetailsPanel" unique_id=769059319]
 layout_mode = 1
 offset_left = 2.0
-offset_right = 17.0
-offset_bottom = 9.0
-theme_override_fonts/font = ExtResource("3_7wmai")
-theme_override_font_sizes/font_size = 10
+offset_top = -1.0
+offset_right = 26.0
+offset_bottom = 12.0
+theme_override_fonts/font = SubResource("FontVariation_hs7bc")
+theme_override_font_sizes/font_size = 16
 text = "Name"
 
 [node name="ItemType" type="Label" parent="DetailsPanel" unique_id=1407174613]
@@ -80,13 +135,13 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -5.0
-offset_right = 18.0
-offset_bottom = 5.0
+offset_left = 1.0
+offset_top = -8.5
+offset_right = 22.0
+offset_bottom = 4.5
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_7wmai")
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = SubResource("FontVariation_g6el0")
+theme_override_font_sizes/font_size = 16
 text = "Type"
 
 [node name="ItemEffect" type="Label" parent="DetailsPanel" unique_id=299777403]
@@ -95,29 +150,36 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 2.0
-offset_top = -9.0
-offset_right = 19.0
+offset_top = -15.0
+offset_right = 30.0
+offset_bottom = -2.0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_7wmai")
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = SubResource("FontVariation_xkyi0")
+theme_override_font_sizes/font_size = 16
 text = "Effect"
 
 [node name="UsagePanel" type="ColorRect" parent="." unique_id=1517994295]
 visible = false
+z_index = 4
 layout_mode = 0
-offset_top = -34.0
-offset_right = 50.0
-offset_bottom = -4.0
-color = Color(0.25882354, 0.2627451, 0.28235295, 0.79607844)
+offset_left = 90.0
+offset_top = 67.0
+offset_right = 140.0
+offset_bottom = 97.0
+color = Color(0.6901961, 0.6509804, 0.5882353, 0)
 
 [node name="UseButton" type="Button" parent="UsagePanel" unique_id=1610358395]
 layout_mode = 1
-offset_top = 0.99999994
-offset_right = 62.5
-offset_bottom = 18.0
+offset_left = -2.9999998
+offset_top = -3.9999995
+offset_right = 59.5
+offset_bottom = 13.0
 scale = Vector2(0.8, 0.8)
-theme_override_fonts/font = ExtResource("3_7wmai")
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = SubResource("FontVariation_v6jvb")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_3vdcn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hs7bc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g6el0")
 text = "Use"
 
 [node name="DropButton" type="Button" parent="UsagePanel" unique_id=299210696]
@@ -125,13 +187,17 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -15.0
-offset_right = 62.5
-offset_bottom = 2.0
+offset_left = -2.9999998
+offset_top = -11.0
+offset_right = 59.5
+offset_bottom = 6.0
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
-theme_override_fonts/font = ExtResource("3_7wmai")
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = SubResource("FontVariation_3vdcn")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_v6jvb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7recw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xkyi0")
 text = "Drop"
 
 [connection signal="mouse_entered" from="ItemButton" to="." method="_on_item_button_mouse_entered"]

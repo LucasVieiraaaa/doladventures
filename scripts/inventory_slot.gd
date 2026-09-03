@@ -7,24 +7,32 @@ extends Control
 @onready var item_type =$DetailsPanel/ItemType
 @onready var item_effect =$DetailsPanel/ItemEffect
 @onready var usage_panel = $UsagePanel
+@onready var item_info: TextureRect = $"ItemInfo"
 
+var clicked: bool = false
 var item = null
 
 func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_item_button_pressed() -> void:
-	if item != null:
-		usage_panel.visible = !usage_panel.visible
+	if item == null:
+		return
 
+	if clicked:
+		close_slot()
+	else:
+		for slot in get_tree().get_nodes_in_group("InventorySlots"):
+			if slot != self:
+				slot.close_slot()
+
+		open_slot()
+		
 func _on_item_button_mouse_entered() -> void:
-	if item != null:
-		usage_panel.visible = false
-		details_panel.visible = true
+	pass
 
 func _on_item_button_mouse_exited() -> void:
-	details_panel.visible = false
-	
+	pass
 	
 func set_empty_slot():
 	icon.texture = null
@@ -53,6 +61,7 @@ func _on_drop_button_pressed() -> void:
 
 func _on_use_button_pressed() -> void:
 	usage_panel.visible = false
+	item_info.visible = false
 	
 	if item != null && item["effect"] != "":
 		if Global.player: 
@@ -60,3 +69,17 @@ func _on_use_button_pressed() -> void:
 			Global.remove_item(item["type"], item["effect"])
 		else:
 			print("notfound")
+
+func open_slot() -> void:
+	clicked = true
+
+	usage_panel.visible = true
+	item_info.visible = true
+	details_panel.visible = true
+
+func close_slot() -> void:
+	clicked = false
+
+	usage_panel.visible = false
+	item_info.visible = false
+	details_panel.visible = false

@@ -71,3 +71,8 @@ func increase_inventory_size(extra_slots):
 	inventory.resize(extra_slots + inventory.size())
 	inventory_updated.emit()
 	
+func clear_inventory():
+	if inventory != null:
+		inventory.clear();
+		inventory.resize(5)
+		return
