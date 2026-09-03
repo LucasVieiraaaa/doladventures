@@ -2,27 +2,48 @@ extends CanvasLayer
 
 @onready var bamboo_sound: AudioStreamPlayer = $Sounds/BambooSound
 @onready var fade_out: ColorRect = $FadeOut
+@onready var player: CharacterBody2D = $"../Player"
 
-# Called when the node enters the scene tree for the first time.
+enum PauseType {
+	NORMAL,
+	PLAYER_ONLY
+}
+
+var current_pause_type: PauseType = PauseType.NORMAL
+
 func _ready() -> void:
 	visible = false
 	get_tree().paused = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
-		if get_tree().paused:
-			visible = false
-			get_tree().paused = false
-		else:
-			visible = true
-			get_tree().paused = true
-			
 
-func _on_button_pressed() -> void:
+		if get_tree().paused:
+			resume_game()
+		else:
+			pause_normal()
+
+func pause_normal() -> void:
+	current_pause_type = PauseType.NORMAL
+	player.process_mode = Node.PROCESS_MODE_PAUSABLE
+	visible = true
+	get_tree().paused = true
+
+func pause_player_only() -> void:
+	current_pause_type = PauseType.PLAYER_ONLY
+	player.process_mode = Node.PROCESS_MODE_ALWAYS
+	visible = true
+	get_tree().paused = true
+
+func resume_game() -> void:
 	visible = false
 	get_tree().paused = false
-	
+	player.process_mode = Node.PROCESS_MODE_PAUSABLE
+
+func _on_button_pressed() -> void:
+	resume_game()
 
 func _on_main_menu_pressed() -> void:
 	bamboo_sound.play()
@@ -31,7 +52,7 @@ func _on_main_menu_pressed() -> void:
 
 	await tween.finished
 
-	await get_tree().create_timer(0.7).timeout
+	await get_tree().create_timer(0.7, true).timeout
 	visible = false
 	get_tree().paused = false
 
