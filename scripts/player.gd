@@ -205,7 +205,8 @@ func apply_item_effect(item):
 			hp_regain_soud.play()
 		"Experience":
 			stats.experience += 100	
-			xp_gain_sound.play()
+			if stats.level == initialLevel:
+				xp_gain_sound.play()
 		"Ramen":
 			stats.health = stats.base_max_health
 			health_change.emit()
