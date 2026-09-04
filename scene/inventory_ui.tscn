@@ -22,13 +22,19 @@ offset_bottom = 59.0
 scale = Vector2(2.1508522, 1.8299018)
 texture = ExtResource("2_vsf47")
 
+[node name="CharacterFace" parent="." unique_id=1561527091 instance=ExtResource("5_j1u10")]
+position = Vector2(30, 25)
+scale = Vector2(0.351624, 0.351624)
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=473313699]
-position = Vector2(-18, 54.000008)
+z_index = 10
+position = Vector2(25.000004, 54.000008)
 scale = Vector2(3.5684462, 3.5684462)
 texture = ExtResource("3_j1u10")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1851589846]
-position = Vector2(221, 54)
+z_index = 10
+position = Vector2(176, 54)
 scale = Vector2(3.5622509, 3.5622509)
 texture = ExtResource("3_j1u10")
 
@@ -43,7 +49,3 @@ scale = Vector2(0.55, 0.596)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 5
-
-[node name="CharacterFace" parent="." unique_id=1561527091 instance=ExtResource("5_j1u10")]
-position = Vector2(30, 25)
-scale = Vector2(0.351624, 0.351624)
