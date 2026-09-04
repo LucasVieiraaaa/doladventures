@@ -35,7 +35,7 @@ func remove_item(item_type, item_effect):
 	return false
 	
 func adjust_drop_position(pos: Vector2) -> Vector2:
-	var radius = 100.0
+	var radius = 1.0
 	var nearby_items = get_tree().get_nodes_in_group("Items")
 	
 	for item in nearby_items:
