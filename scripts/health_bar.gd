@@ -8,3 +8,4 @@ func _ready() -> void:
 
 func health_update():
 	value = target.stats.health
+	max_value = target.stats.base_max_health

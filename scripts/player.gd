@@ -930,7 +930,8 @@ func decrease_rasengan():
 	
 func rasenganHitSomething(rasengan: String):
 	if playerHitSomething:
-		clone.isPlayerMoving = false
+		if clone != null:
+			clone.isPlayerMoving = false
 		if rasengan == "regular_rasengan":
 			rasengan_hit.play()
 			shakeCamera(18, 0.4)
