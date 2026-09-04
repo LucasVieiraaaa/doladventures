@@ -12,7 +12,6 @@ var original_texture_1
 
 
 func _ready() -> void:
-	print("aqui", Global.player)
 	slots = get_children()
 
 	slots[0].change_key = "Q"

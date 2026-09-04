@@ -159,7 +159,6 @@ func _try_damage_entity(node: Node) -> void:
 	if (node.has_method("take_damage") && !isBushinOver):
 		damage_01.play()
 		var attack_number_scene = randi_range(1,4);
-		print(attack_number_scene)
 		if velocity.y == 0:
 			match attack_number_scene:
 				1:

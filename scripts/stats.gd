@@ -23,6 +23,8 @@ signal experience_changed
 @export var base_defense: float = 10.0
 @export var base_attack: float = 10.0
 
+var base_attack_before_changes: float = 0.0
+
 @export var experience: int = 0: set = _on_experience_set
 
 var level: int:
@@ -134,15 +136,12 @@ func get_xp_for_next_level() -> int:
 # =========================================================
 
 func _damage_while_doing_jutsu(jutsu_name: String):
+	base_attack_before_changes = base_attack
 	match jutsu_name:
-		"rasengan":
-			base_attack = (base_attack * 2)
+		"regular_rasengan":
+			base_attack *= 2
 		"odama_rasengan":
-			base_attack = (base_attack * 3)
+			base_attack *= 3
 	
-func _get_attack_normal_when_done_jutsu(jutsu_name: String):
-	match jutsu_name:
-		"rasengan":
-			base_attack = (base_attack / 2) 
-		"odama_rasengan":
-			base_attack = (base_attack / 3)
+func _get_attack_normal_when_done_jutsu():
+	base_attack = self.base_attack_before_changes

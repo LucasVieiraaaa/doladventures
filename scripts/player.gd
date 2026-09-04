@@ -551,7 +551,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func hit_enemy(area: Area2D):
 	if velocity.y > 0:
 		var entity = area.get_parent()
-		area.get_parent().take_damage(10)
+		area.get_parent().take_damage(stats.base_attack)
 		damage_02.play()
 		xpGiveAway(entity)
 		anim.play("air_attack")
@@ -779,8 +779,9 @@ func regularRasengan():
 	rasengan_on_cooldown = true
 	if !beenHit && !isDead:
 		playRasenganStartAnimation()
-		if beenHit || isDead:
+		if isDead:
 			finishRasengan(5.0)
+		
 		await get_tree().create_timer(2.0).timeout
 		moveWithRasengan("regular_rasengan")
 		await get_tree().create_timer(2.0).timeout
@@ -853,6 +854,7 @@ func playRasenganStartAnimation():
 func moveWithRasengan(rasengan: String):
 	anim.play("rasengan_moving")
 
+	stats._damage_while_doing_jutsu(rasengan)
 	if rasengan == "regular_rasengan":
 		if rasengan_direction == 1.0:
 			rasenganPosition(-12, -7)
@@ -860,7 +862,6 @@ func moveWithRasengan(rasengan: String):
 			rasenganPosition(8, -7)
 
 	var timer = get_tree().create_timer(0.7)
-	stats._damage_while_doing_jutsu(rasengan)
 
 	while timer.time_left > 0:
 		if not is_inside_tree():
@@ -873,11 +874,6 @@ func moveWithRasengan(rasengan: String):
 
 		if playerHitSomething:
 			break
-		if beenHit:
-			go_to_idle_state()
-			audio_fade_out(rasengan_formation)
-			stats._get_attack_normal_when_done_jutsu(rasengan)
-			return
 
 		await get_tree().process_frame
 
@@ -887,8 +883,8 @@ func moveWithRasengan(rasengan: String):
 	if timer.time_left == 0 && !playerHitSomething:
 		if clone != null:
 			clone.isCloneActionOver(rasengan)
-		stats._get_attack_normal_when_done_jutsu(rasengan)
 		audio_fade_out(rasengan_formation)
+		stats._get_attack_normal_when_done_jutsu()
 		go_to_idle_state()
 		return
 
@@ -943,7 +939,6 @@ func rasenganHitSomething(rasengan: String):
 		elif rasengan == "odama_rasengan":
 			odama_hit.play()
 			enable_attack_hitbox()
-			
 			set_attack_area(70,70, -14, 45)
 			shakeCamera(27, 1.2)
 			rasenganPosition(32 * rasengan_direction, -6)
@@ -954,8 +949,8 @@ func rasenganHitSomething(rasengan: String):
 		await get_tree().create_timer(1.0).timeout
 		decrease_rasengan()
 		audio_fade_out(rasengan_formation)
-		stats._get_attack_normal_when_done_jutsu("rasengan")
 		anim.play("rasengan_end")
+		stats._get_attack_normal_when_done_jutsu()
 		if rasengan == "odama_rasengan":
 			set_attack_area(35,27, -5.5, 7)
 		return

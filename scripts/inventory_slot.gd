@@ -67,8 +67,6 @@ func _on_use_button_pressed() -> void:
 		if Global.player: 
 			Global.player.apply_item_effect(item)
 			Global.remove_item(item["type"], item["effect"])
-		else:
-			print("notfound")
 
 func open_slot() -> void:
 	clicked = true
