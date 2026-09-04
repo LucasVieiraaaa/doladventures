@@ -185,6 +185,34 @@ itemName = "Experience Bottle"
 itemEffect = "Experience"
 itemTexture = ExtResource("17_jrd6n")
 
+[node name="InventoryItem10" parent="Items" unique_id=210275300 instance=ExtResource("14_81276")]
+position = Vector2(392, 85)
+itemType = "XP Gain"
+itemName = "Experience Bottle"
+itemEffect = "Experience"
+itemTexture = ExtResource("17_jrd6n")
+
+[node name="InventoryItem11" parent="Items" unique_id=1426449201 instance=ExtResource("14_81276")]
+position = Vector2(392, 85)
+itemType = "XP Gain"
+itemName = "Experience Bottle"
+itemEffect = "Experience"
+itemTexture = ExtResource("17_jrd6n")
+
+[node name="InventoryItem12" parent="Items" unique_id=618399816 instance=ExtResource("14_81276")]
+position = Vector2(392, 85)
+itemType = "XP Gain"
+itemName = "Experience Bottle"
+itemEffect = "Experience"
+itemTexture = ExtResource("17_jrd6n")
+
+[node name="InventoryItem13" parent="Items" unique_id=1049259104 instance=ExtResource("14_81276")]
+position = Vector2(392, 85)
+itemType = "XP Gain"
+itemName = "Experience Bottle"
+itemEffect = "Experience"
+itemTexture = ExtResource("17_jrd6n")
+
 [node name="InventoryItem3" parent="Items" unique_id=1282412610 instance=ExtResource("14_81276")]
 position = Vector2(55, 53)
 itemType = "HealthRegain"

@@ -1093,6 +1093,7 @@ text = "Press \"O\" to Pick Up"
 
 [node name="InventoryUI" type="CanvasLayer" parent="." unique_id=1409359780]
 layer = 2
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="InventoryUI" unique_id=18598251]
 anchors_preset = 15

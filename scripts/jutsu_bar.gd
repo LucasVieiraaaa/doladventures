@@ -1,5 +1,7 @@
 extends HBoxContainer
 
+class_name JutsuBar
+
 var slots: Array
 
 var normal_texture_0 = preload("res://sprites/UI/Buttons/multi_shadow_clone_icon.png")
@@ -10,6 +12,7 @@ var original_texture_1
 
 
 func _ready() -> void:
+	print("aqui", Global.player)
 	slots = get_children()
 
 	slots[0].change_key = "Q"

@@ -114,14 +114,15 @@ var clone = PLAYER_CLONE.instantiate()
 
 @onready var bushin_button_jutsu: TextureButton = $QuickTabUI/JutsuBar/JutsuButton
 @onready var rasengan_button_jutsu: TextureButton = $QuickTabUI/JutsuBar/JutsuButton2
+@onready var kurama_button_jutsu: TextureButton = $QuickTabUI/JutsuBar/JutsuButton3
 
 #Jutsu Bar Variables
-
 
 func _ready() -> void:
 	# Stats Set
 	stats.health = stats.base_max_health
 	initialLevel = stats.level
+	validadeLevel()
 	go_to_idle_state()
 	
 	# Animations set
@@ -159,9 +160,10 @@ func _physics_process(delta: float) -> void:
 		PlayerState.attack:
 			rasengan_state(delta)
 	
+	
 	if stats.level != initialLevel:
 		go_to_level_up_state()
-		
+		validadeLevel()
 		
 	if direction != 0 and is_on_floor():
 		step_timer -= delta
@@ -173,6 +175,17 @@ func _physics_process(delta: float) -> void:
 		step_timer = 0.0
 			
 	move_and_slide()
+	
+func validadeLevel():
+	if stats.level > 1:
+		rasengan_button_jutsu.visible = true
+	else:
+		rasengan_button_jutsu.visible = false
+		
+	if stats.level > 3:
+		kurama_button_jutsu.visible = true
+	else:
+		kurama_button_jutsu.visible = false
 
 func _input(event):
 	if event.is_action_pressed("ui_inventory") && !isDead:
@@ -729,10 +742,12 @@ func go_to_jutsu_state(jutsu: String):
 			allBushinJutsu()
 			return
 		"odama_rasengan":
-			odamaRasengan()
+			if stats.level > 1:
+				odamaRasengan()
 			return
 		"rasengan_normal":
-			regularRasengan()
+			if stats.level > 1:
+				regularRasengan()
 			return
 			
 ### END BUSHIN JUTSU LOGIC ###
