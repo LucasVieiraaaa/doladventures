@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dt1i743a0s85x"]
+
+[ext_resource type="Texture2D" uid="uid://hkejxvf8pbre" path="res://sprites/prefabs/level-up.png" id="1_dfeej"]
+[ext_resource type="Script" uid="uid://bsmwbh4w2xi1b" path="res://scripts/particles.gd" id="2_hliqq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx2e5"]
+atlas = ExtResource("1_dfeej")
+region = Rect2(0, 0, 823, 179)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g0080"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx2e5")
+}],
+"loop": 0,
+"name": &"lvl_up",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=1767146210]
+scale = Vector2(0.035, 0.035)
+sprite_frames = SubResource("SpriteFrames_g0080")
+animation = &"lvl_up"
+script = ExtResource("2_hliqq")

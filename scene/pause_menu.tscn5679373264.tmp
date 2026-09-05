@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://5q3wq8of7ipl"]
+
+[ext_resource type="Script" uid="uid://dmagwgayt6jw1" path="res://scripts/pause_menu.gd" id="1_grdc7"]
+[ext_resource type="AudioStream" uid="uid://enbyu851fbtd" path="res://audios/misc/bamboo-hit-sound-effect.mp3" id="2_me6vf"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=995015526]
+process_mode = 3
+layer = 5
+script = ExtResource("1_grdc7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=599817538]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 0.60784316)
+
+[node name="Button" type="Button" parent="." unique_id=1700369805]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -31.0
+offset_right = 20.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+text = "RESUME"
+
+[node name="MainMenu" type="Button" parent="." unique_id=1296463445]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 1.0
+offset_right = 20.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+text = "MAIN MENU"
+
+[node name="Sounds" type="Node" parent="." unique_id=874365688]
+
+[node name="BambooSound" type="AudioStreamPlayer" parent="Sounds" unique_id=493520281]
+stream = ExtResource("2_me6vf")
+volume_db = -4.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

@@ -9,6 +9,9 @@ const JUMP_VELOCITY = -320.0
 @onready var foot_step: AudioStreamPlayer = $MoveSounds/FootStep
 @onready var jump: AudioStreamPlayer = $MoveSounds/Jump
 @onready var damage_01: AudioStreamPlayer = $Sounds/Damage_01
+@onready var ground_detector: RayCast2D = $GroundDetector
+@onready var odama_rasengan_helper: RayCast2D = $OdamaRasenganHelper
+@onready var ray_cast_length: float = abs(odama_rasengan_helper.target_position.x)
 
 #Steps
 var step_timer := 0.0
@@ -22,37 +25,63 @@ var direction: int = 1
 var isBushinOver: bool = false
 var isAttacking: bool = false
 var isInitializing: bool = true
+var isHelpingRasegan: String = ""
+var buhsinTimeOut: float = randf_range(2.0, 4.5)
+var xpCloneGained: int = 0
+var isDoingOdamaRasengan: bool = false
+@export var isPlayerMoving: bool = true
+		
+signal bushin_destroyed(xp: int)
 
-func _ready() -> void:
+func _ready() -> void:		
+	if(isHelpingRasegan == ""):
+		isInitializing = true
+		anim.play("init")
+		velocity = Vector2.ZERO
+		await get_tree().create_timer(0.5).timeout
+		isInitializing = false
+		await get_tree().create_timer(buhsinTimeOut).timeout
+		if isBushinOver == false:
+			destroy_bushin(false)
+	elif isHelpingRasegan == "regular_rasengan":
+		helpingRegularRasengan()
+		return
+	elif  isHelpingRasegan == "odama_rasengan":
+		helpingOdamaRasengan()
+		return
+		
+func helpingRegularRasengan():
 	anim.play("init")
 	velocity = Vector2.ZERO
 	await get_tree().create_timer(0.5).timeout
-	isInitializing = false
-	# Destrói o clone após 2 segundos se ele não atingir nada
-	await get_tree().create_timer(2.2).timeout
+	anim.play("help_rasengan")
+	await get_tree().create_timer(2.0).timeout
+	destroy_bushin(true)
 	
-	if isBushinOver == false:
-		destroy_bushin(false)
+func helpingOdamaRasengan():
+	anim.play("init")
+	velocity = Vector2.ZERO
+	await get_tree().create_timer(0.4).timeout
+	anim.play("help_odama_rasengan")
+	await get_tree().create_timer(2.6).timeout
+	isDoingOdamaRasengan = true;
+
+func goMoveOdamaWithPlayer(_delta: float):
+	velocity.x = (speed + 150) * direction
+	anim.play("doing_odama_rasengan")
+	cloneInitializeMoves()
+	move_and_slide()
 
 func _physics_process(delta: float) -> void:
-	if  !isBushinOver && !isAttacking && !isInitializing:
-		
+	if  (!isBushinOver && !isAttacking && !isInitializing):
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 
 		velocity.x = speed * direction
-		if velocity.y > 0.1:
-			anim.play("fall")
-		else:
-			anim.play("walk")
-			if wall_detector.is_colliding():
-				if not touching_wall:
-					touching_wall = true
-					wallInteraction()
-			else:
-				touching_wall = false;
+		cloneInitializeMoves()
 			
 		if direction != 0 and is_on_floor():
+			odama_rasengan_helper.target_position.x = direction
 			step_timer -= delta
 
 			if step_timer <= 0:
@@ -61,8 +90,43 @@ func _physics_process(delta: float) -> void:
 		else:
 			step_timer = 0.0	
 		
+		if ground_detector.is_colliding():
+			var collider = ground_detector.get_collider()
+			if collider.name.to_lower() == "lava":
+				destroy_bushin(true)
 		
 		move_and_slide()
+	
+	if isDoingOdamaRasengan && !isBushinOver:
+		odama_rasengan_helper.target_position.x = ray_cast_length * direction
+		goMoveOdamaWithPlayer(delta)
+		if odama_rasengan_helper.is_colliding() && !isPlayerMoving:
+			if isDoingOdamaRasengan:
+				speed = -150
+				velocity.x = speed
+				anim.play("hit_odama_rasengan")
+				await get_tree().create_timer(1.0).timeout
+				anim.play("rasengan_end")
+				await get_tree().create_timer(0.5).timeout
+				destroy_bushin(true)
+				
+func cloneInitializeMoves():
+	if velocity.y > 0.1:
+		if not is_on_floor() && isInitializing:
+			anim.play("init")
+			await get_tree().create_timer(0.3).timeout
+			anim.play("air_attack")
+		else:
+			anim.play("fall")
+	else:
+		if !isDoingOdamaRasengan:
+			anim.play("walk")
+			if wall_detector.is_colliding():
+				if not touching_wall:
+					touching_wall = true
+					wallInteraction()
+			else:
+				touching_wall = false;
 
 func set_direction(dir: int) -> void:
 	direction = dir
@@ -73,17 +137,13 @@ func set_direction(dir: int) -> void:
 
 # Quando a Hitbox do Clone entra na Hitbox/Area2D do Esqueleto
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	print("aqui2", area)
 	_try_damage_entity(area)
 	_try_damage_entity(area.get_parent())
 
 # Quando o Clone colide com o corpo físico (CharacterBody2D) do Esqueleto"volume_db"
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	print("aqui123", body)
-	make_clone_jump()
-	_try_damage_entity(body)
-
-# Função auxiliar para aplicar o dano e eliminar o clone
+func _on_hitbox_body_entered(_body: Node2D) -> void:
+	return
+	
 func _try_damage_entity(node: Node) -> void:
 	if node == null:
 		isAttacking = false;
@@ -98,35 +158,53 @@ func _try_damage_entity(node: Node) -> void:
 	
 	if (node.has_method("take_damage") && !isBushinOver):
 		damage_01.play()
+		var attack_number_scene = randi_range(1,4);
 		if velocity.y == 0:
-			anim.play("attack_1")
+			match attack_number_scene:
+				1:
+					anim.play("attack_1")
+				2:
+					anim.play("attack_2")
+				3:
+					anim.play("attack_3")
+				4:
+					anim.play("attack_4")
 		else:
-			anim.play("air_attack")
-			
-		node.take_damage()
+			if not is_on_floor() && isInitializing:
+				anim.play("init")
+				await get_tree().create_timer(0.3).timeout
+				anim.play("air_attack")
+			else:
+				anim.play("air_attack")
+		
+		node.take_damage(5)
 		isAttacking = true;
+		whatKindOfNodeCloneHit(node)		
 		await get_tree().create_timer(0.7).timeout
 		isAttacking = false;
 		isBushinOver = true;
 		destroy_bushin(true)
 		
 func make_clone_jump():
-	if (velocity.y == 0):
-		anim.play("jump")
-		jump.play()
-		velocity.y = JUMP_VELOCITY
+	anim.play("jump")
+	jump.play()
+	velocity.y = JUMP_VELOCITY
 
 func destroy_bushin(didSomething: bool):
 	isBushinOver = true
+	isHelpingRasegan = ""
 	poof.play()
-	
-	if(didSomething):
+	if didSomething:
 		anim.play("dead2")
 	else:
 		anim.play("dead")
-		
 	velocity = Vector2.ZERO
+
+	if xpCloneGained > 0:
+		bushin_destroyed.emit(xpCloneGained)
+
 	await get_tree().create_timer(0.7).timeout
+	xpCloneGained = 0
 	queue_free()
 	
 func wallInteraction() -> void:
@@ -141,7 +219,32 @@ func setup_direction(new_direction: int) -> void:
 	
 	anim.flip_h = direction < 0
 	
-func beenHit(hitbox: String):
-	if hitbox == "Shuriken":
-		destroy_bushin(true)
+func isHelpingRasengan(isHelping: String):
+	isHelpingRasegan = isHelping
+	return
 	
+func beenHit(_hitbox: String):
+	match _hitbox:
+		"Shuriken":
+			destroy_bushin(true)
+			
+func whatKindOfNodeCloneHit(node: Node) -> void:
+	if not node.is_in_group("Enemies"):
+		return
+
+	if not node.has_method("xpGiveAway"):
+		return
+
+	var xp: int = node.xpGiveAway()
+	xpCloneGained = xp
+
+func isCloneActionOver(action: String):
+	match action:
+		"odama_rasengan":
+			isBushinOver = true
+			anim.stop()
+			speed = -150
+			velocity.x = speed
+			anim.play("dead")
+			await get_tree().create_timer(0.5).timeout
+			destroy_bushin(true)

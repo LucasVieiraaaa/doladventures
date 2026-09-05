@@ -1,9 +1,10 @@
 extends Area2D
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim: AnimatedSprite2D = $Shuriken
 
-var speed = 100
+var speed = 120
 var direction = 1
+@export var objectName: String = ""
 
 func _process(delta: float) -> void:
 	position.x += speed * delta * direction
@@ -16,7 +17,12 @@ func _on_self_destruct_timer_timeout() -> void:
 	queue_free()
 
 func _on_area_entered(_area: Area2D) -> void:
-	queue_free()
+	if _area.is_in_group("Player"):
+		queue_free()
 
 func _on_body_entered(_body: Node2D) -> void:
 	queue_free()
+
+func set_shuriken_name(_name: String):
+	objectName = _name
+	return

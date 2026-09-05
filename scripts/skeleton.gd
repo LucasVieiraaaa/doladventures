@@ -10,10 +10,13 @@ const shuriken = preload("uid://rprq2p5g3r0w")
 
 var status : SkeletonState
 
-const SPEED = 10.0
+var entitieName = "Skeleton"
+
+const SPEED = 20.0
 const JUMP_VELOCITY = -400.0
 var direction = 1
 var can_throw = true
+
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $Hitbox
@@ -22,6 +25,9 @@ var can_throw = true
 @onready var player_detector: RayCast2D = $PlayerDetector
 @onready var player_is_protected_detector: RayCast2D = $PlayerIsProtectedDetector
 @onready var bone_start_position: Node2D = $BoneStartPosition
+@onready var shuriken_throw_sound: AudioStreamPlayer = $Audios/ShurikenThrowSound
+
+@export var stats: Stats
 
 func _physics_process(delta: float) -> void:
 
@@ -52,10 +58,7 @@ func go_to_dead_state():
 	velocity =  Vector2.ZERO
 	
 func walk_state(_delta):
-	if anim.frame == 3 || anim.frame == 4:
-		velocity.x = SPEED * direction
-	else:
-		velocity.x = 0
+	velocity.x = SPEED * direction
 	
 	if wall_detector.is_colliding() || not 	ground_detector.is_colliding():
 		scale.x *= -1
@@ -68,8 +71,16 @@ func walk_state(_delta):
 func dead_state(_delta):
 	pass
 	
-func take_damage():
-	go_to_dead_state();
+func take_damage(damage: int):
+	if damage > 0 && ! is_dead():
+		go_to_dead_state();
+		
+func xpGiveAway() -> int:
+	if(status == SkeletonState.dead):
+		var x: int  = randi_range(5, 8)
+		return x
+	else:
+		return 0;
 	
 func go_to_attack_state():
 	status = SkeletonState.attack
@@ -84,6 +95,8 @@ func attack_state(_delta):
 
 func throw_bone():
 	var new_bone =  shuriken.instantiate()
+	new_bone.set_shuriken_name("Shuriken")
+	shuriken_throw_sound.play()
 	add_sibling(new_bone)
 	new_bone.position = bone_start_position.global_position
 	new_bone.set_direction(self.direction)

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bobo2rkwkxr1v"]
+
+[ext_resource type="Texture2D" uid="uid://b4flx4sw545dh" path="res://sprites/UI/Bars/smaller-bar.png" id="1_31tbt"]
+[ext_resource type="Texture2D" uid="uid://bn7tia6u4jk30" path="res://sprites/UI/Bars/small-experience-bar.png" id="2_j110u"]
+[ext_resource type="Script" uid="uid://6iaum5psqleu" path="res://scripts/experience_bar.gd" id="3_5gw8m"]
+[ext_resource type="FontFile" uid="uid://0vu35nhca08p" path="res://sprites/Fonts/font01.ttf" id="4_qsti0"]
+
+[node name="ExperienceBar" type="TextureProgressBar" unique_id=1756704642]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_under = ExtResource("1_31tbt")
+texture_progress = ExtResource("2_j110u")
+script = ExtResource("3_5gw8m")
+
+[node name="Label" type="Label" parent="." unique_id=1589486155]
+layout_mode = 1
+offset_left = 22.0
+offset_top = 1.0
+offset_right = 62.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("4_qsti0")
+theme_override_font_sizes/font_size = 10
