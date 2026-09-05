@@ -20,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://d0i0nejsknrrc" path="res://audios/naruto/naruto_died.wav" id="10_wvtmh"]
 [ext_resource type="AudioStream" uid="uid://b68eyhwk7x6oy" path="res://audios/jutsu/naruto-rasengan-001.wav" id="11_yqrof"]
 [ext_resource type="AudioStream" uid="uid://yug46a1h4o8h" path="res://audios/jutsu/naruto-rah.wav" id="15_3wlsy"]
+[ext_resource type="AudioStream" uid="uid://dwimrh1v0xta2" path="res://audios/attacks/swing-punch.ogg" id="15_wy7bt"]
+[ext_resource type="AudioStream" uid="uid://bpslb73bwndwq" path="res://audios/attacks/punch_hit_sound_01.mp3" id="16_geky7"]
 [ext_resource type="AudioStream" uid="uid://dwmwf0eunmamu" path="res://audios/jutsu/not-enough-chakra.wav" id="17_we0b7"]
 [ext_resource type="AudioStream" uid="uid://b8li3r8n7eiqd" path="res://audios/attacks/shuriken-blocked.wav" id="18_eyb6c"]
 [ext_resource type="AudioStream" uid="uid://behmmd1ddxbi4" path="res://audios/naruto/naruto-ykaze.wav" id="19_221hk"]
@@ -993,6 +995,14 @@ volume_db = 2.0
 [node name="OdamaHit" type="AudioStreamPlayer" parent="Sounds" unique_id=1211702610]
 stream = SubResource("AudioStreamWAV_221hk")
 volume_db = -2.0
+
+[node name="PunchSwingSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1975791388]
+stream = ExtResource("15_wy7bt")
+volume_db = -4.0
+
+[node name="PunchHitSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1563419123]
+stream = ExtResource("16_geky7")
+volume_db = -4.0
 
 [node name="MoveSounds" type="Node" parent="." unique_id=1827210184]
 

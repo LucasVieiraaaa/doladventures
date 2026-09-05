@@ -62,6 +62,8 @@ var step_interval := 0.5
 @onready var xp_gain_sound: AudioStreamPlayer = $MoveSounds/XpGainSound
 @onready var hp_regain_soud: AudioStreamPlayer = $MoveSounds/HpRegainSoud
 @onready var chakra_boot_sound: AudioStreamPlayer = $MoveSounds/ChakraBootSound
+@onready var punch_swing_sound: AudioStreamPlayer = $Sounds/PunchSwingSound
+@onready var punch_hit_sound: AudioStreamPlayer = $Sounds/PunchHitSound
 
 var rasengan_on_cooldown: bool = false
 var playerHitSomething: bool = false;
@@ -104,6 +106,7 @@ var combo_buffered: bool = false
 
 #Bushin Variables
 var bushin_combo: float = 0
+var kage_bushin_cooldown: float = 0.0
 @export var bushin_max_combo: float = 2.0
 var isMakingClones: bool = false
 var isBushinCooldown: bool = false
@@ -608,6 +611,7 @@ func killHitBox():
 
 func _on_animation_finished() -> void:
 	if status == PlayerState.attack:
+		punch_swing_sound.play()
 		if combo_step > 0 && combo_step <= 2:
 			damage_01.play()
 		elif combo_step == 3:
@@ -645,6 +649,9 @@ func pulse_attack_hitbox() -> void:
 func _on_attack_area_area_entered(area: Area2D) -> void:
 	if area != null:
 		playerHitSomething = true;
+		if combo_step != 0:
+			punch_hit_sound.play()
+			shakeCamera(2,0.1)
 	else:
 		playerHitSomething = false;
 	var entity = area.get_parent()
@@ -695,8 +702,8 @@ func regularBushinJutsu():
 	
 	if (bushin_combo == bushin_max_combo) && !isBushinCooldown:
 		isBushinCooldown = true
-		bushin_button_jutsu.recieve_signal(KEY_Q, 3.5);
-		await get_tree().create_timer(3.5).timeout
+		bushin_button_jutsu.recieve_signal(KEY_Q, 4.0);
+		await get_tree().create_timer(4.0).timeout
 		isBushinCooldown = false
 		bushin_combo = 0;
 	
@@ -705,11 +712,11 @@ func regularBushinJutsu():
 		return
 		
 func allBushinJutsu():
-	if bushin_combo == bushin_max_combo:
+	if kage_bushin_cooldown > 0.0:
 		no_chakra.play()
+		return
 	
-	if bushin_combo == 0 && !beenHit && !isDead:
-		bushin_combo = bushin_max_combo
+	if !beenHit && !isDead && kage_bushin_cooldown == 0.0:
 		tajuu_kage_bushin.play()
 		status = PlayerState.jutsu
 		anim.play("jutsu")
@@ -720,7 +727,6 @@ func allBushinJutsu():
 		while timer.time_left > 0:
 			if beenHit:
 				tajuu_kage_bushin.stop()
-				bushin_combo = 0
 				go_to_idle_state()
 				return
 			await get_tree().process_frame
@@ -738,9 +744,10 @@ func allBushinJutsu():
 		bunshin.play()
 
 		bunshin.volume_db = -16.0
+		kage_bushin_cooldown = 12.0
 		bushin_button_jutsu.recieve_signal(KEY_Q, 12.0);
 		await get_tree().create_timer(12.0).timeout
-		bushin_combo = 0;
+		kage_bushin_cooldown = 0.0
 
 func go_to_jutsu_state(jutsu: String):
 	match jutsu:
@@ -841,8 +848,9 @@ func odamaRasengan():
 		await get_tree().create_timer(2.0).timeout
 	else:
 		go_to_idle_state()
-	rasengan_button_jutsu.recieve_signal(KEY_Q, 16.0);
-	finishRasengan(16.0)
+	var rasengan_cooldown: float = 36.0
+	rasengan_button_jutsu.recieve_signal(KEY_Q, rasengan_cooldown);
+	finishRasengan(rasengan_cooldown)
 		
 	
 func playRasenganStartAnimation():

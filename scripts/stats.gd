@@ -141,7 +141,7 @@ func _damage_while_doing_jutsu(jutsu_name: String):
 		"regular_rasengan":
 			base_attack *= 2
 		"odama_rasengan":
-			base_attack *= 3
+			base_attack *= 4
 	
 func _get_attack_normal_when_done_jutsu():
 	base_attack = self.base_attack_before_changes
