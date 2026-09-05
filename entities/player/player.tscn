@@ -303,6 +303,22 @@ region = Rect2(689, 1092, 50, 61)
 atlas = ExtResource("4_fkugw")
 region = Rect2(742, 1092, 50, 61)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiwj3"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(0, 335, 51, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(51, 335, 51, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bectd"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(102, 335, 51, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvtmh"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(153, 335, 51, 57)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_abrql"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(0, 584, 63, 66)
@@ -366,22 +382,6 @@ region = Rect2(558, 1800, 50, 63)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fjmc"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(208, 490, 52, 60)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qiwj3"]
-atlas = ExtResource("4_fkugw")
-region = Rect2(0, 335, 51, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
-atlas = ExtResource("4_fkugw")
-region = Rect2(51, 335, 51, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bectd"]
-atlas = ExtResource("4_fkugw")
-region = Rect2(102, 335, 51, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wvtmh"]
-atlas = ExtResource("4_fkugw")
-region = Rect2(153, 335, 51, 57)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7thud"]
 atlas = ExtResource("4_fkugw")
@@ -545,7 +545,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ssgi7")
 }],
 "loop": 1,
-"name": &"air_attack",
+"name": &"base__air_attack",
 "speed": 7.0
 }, {
 "frames": [{
@@ -562,7 +562,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_bwdx1")
 }],
 "loop": 0,
-"name": &"attack_1",
+"name": &"base__attack_1",
 "speed": 12.0
 }, {
 "frames": [{
@@ -585,7 +585,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ttr27")
 }],
 "loop": 0,
-"name": &"attack_2",
+"name": &"base__attack_2",
 "speed": 12.0
 }, {
 "frames": [{
@@ -611,8 +611,25 @@ animations = [{
 "texture": SubResource("AtlasTexture_2h0qb")
 }],
 "loop": 0,
-"name": &"attack_3",
+"name": &"base__attack_3",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qiwj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26q78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bectd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvtmh")
+}],
+"loop": 1,
+"name": &"base__base__idle",
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -625,7 +642,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_gx6sm")
 }],
 "loop": 0,
-"name": &"damage",
+"name": &"base__damage",
 "speed": 6.0
 }, {
 "frames": [{
@@ -642,7 +659,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_50fht")
 }],
 "loop": 0,
-"name": &"dead",
+"name": &"base__dead",
 "speed": 5.0
 }, {
 "frames": [{
@@ -668,7 +685,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_gmffv")
 }],
 "loop": 0,
-"name": &"double_jump",
+"name": &"base__double_jump",
 "speed": 18.0
 }, {
 "frames": [{
@@ -676,7 +693,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_bls4j")
 }],
 "loop": 1,
-"name": &"duck",
+"name": &"base__duck",
 "speed": 5.0
 }, {
 "frames": [{
@@ -684,32 +701,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_8fjmc")
 }],
 "loop": 1,
-"name": &"fall",
+"name": &"base__fall",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qiwj3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_26q78")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bectd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wvtmh")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7thud")
 }],
 "loop": 1,
-"name": &"jump",
+"name": &"base__jump",
 "speed": 7.0
 }, {
 "frames": [{
@@ -720,7 +720,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_qpopc")
 }],
 "loop": 0,
-"name": &"jutsu",
+"name": &"base__jutsu",
 "speed": 6.0
 }, {
 "frames": [{
@@ -746,7 +746,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_cnghg")
 }],
 "loop": 0,
-"name": &"odama_rasengan_init",
+"name": &"base__odama_rasengan_init",
 "speed": 7.0
 }, {
 "frames": [{
@@ -772,7 +772,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_p22ii")
 }],
 "loop": 0,
-"name": &"rasengan",
+"name": &"base__rasengan",
 "speed": 10.0
 }, {
 "frames": [{
@@ -783,7 +783,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_sym6v")
 }],
 "loop": 0,
-"name": &"rasengan_end",
+"name": &"base__rasengan_end",
 "speed": 2.0
 }, {
 "frames": [{
@@ -800,7 +800,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_u8til")
 }],
 "loop": 0,
-"name": &"rasengan_hit",
+"name": &"base__rasengan_hit",
 "speed": 8.0
 }, {
 "frames": [{
@@ -811,7 +811,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_u8til")
 }],
 "loop": 1,
-"name": &"rasengan_hit_loop",
+"name": &"base__rasengan_hit_loop",
 "speed": 10.0
 }, {
 "frames": [{
@@ -822,7 +822,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_gv6fn")
 }],
 "loop": 1,
-"name": &"rasengan_moving",
+"name": &"base__rasengan_moving",
 "speed": 8.0
 }, {
 "frames": [{
@@ -830,7 +830,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_3wlsy")
 }],
 "loop": 1,
-"name": &"slide",
+"name": &"base__slide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -859,7 +859,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_221hk")
 }],
 "loop": 1,
-"name": &"walk",
+"name": &"base__walk",
 "speed": 7.0
 }, {
 "frames": [{
@@ -867,7 +867,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ghoj8")
 }],
 "loop": 1,
-"name": &"wall",
+"name": &"base__wall",
 "speed": 5.0
 }]
 
@@ -918,7 +918,7 @@ material = ExtResource("5_ghoj8")
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"duck"
+animation = &"base__wall"
 
 [node name="LevelUpIcon" type="Sprite2D" parent="." unique_id=1989912516]
 visible = false

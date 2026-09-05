@@ -14,12 +14,18 @@ enum PlayerState {
 	rasengan
 }
 
+enum PlayerForm{
+	base,
+	oneTail
+}
 
 #Stats
 @export var stats: Stats
 #Health
 signal health_change()
 var whatHitYou: String
+
+var playerForm: PlayerForm
 
 #Experience
 signal experience_changed
@@ -114,7 +120,6 @@ var clone = PLAYER_CLONE.instantiate()
 
 @onready var interactUiNode = $InteractUI
 @onready var inventoryUI = $InventoryUI
-
 @onready var bushin_button_jutsu: TextureButton = $QuickTabUI/JutsuBar/JutsuButton
 @onready var rasengan_button_jutsu: TextureButton = $QuickTabUI/JutsuBar/JutsuButton2
 @onready var kurama_button_jutsu: TextureButton = $QuickTabUI/JutsuBar/JutsuButton3
@@ -125,6 +130,7 @@ func _ready() -> void:
 	# Stats Set
 	stats.health = stats.base_max_health
 	initialLevel = stats.level
+	playerForm = PlayerForm.base
 	validadeLevel()
 	go_to_idle_state()
 	
@@ -162,7 +168,6 @@ func _physics_process(delta: float) -> void:
 			jutsu_state(delta)
 		PlayerState.attack:
 			rasengan_state(delta)
-	
 	
 	if stats.level != initialLevel:
 		go_to_level_up_state()
@@ -227,14 +232,14 @@ func go_to_idle_state():
 	combo_buffered = false
 	beenHit = false
 	disable_attack_hitbox()
-	anim.play("idle")
+	anim.play("base__idle")
 	
 func go_to_attack_state():
 	status = PlayerState.attack
 	combo_step = 1
 	combo_buffered = false
 	velocity.x = 0
-	anim.play("attack_1")
+	anim.play("base__attack_1")
 	enable_attack_hitbox()
 	
 func enable_attack_hitbox():
@@ -245,30 +250,30 @@ func disable_attack_hitbox():
 	
 func go_to_walking_state():
 	status = PlayerState.walk
-	anim.play("walk")
+	anim.play("base__walk")
 	
 func go_to_jump_state():
 	status = PlayerState.jump
 	if jump_count == 0:
-		anim.play("jump")
+		anim.play("base__jump")
 	elif jump_count >= 1:
-		anim.play("double_jump")
+		anim.play("base__double_jump")
 	jump.play()
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
 	
 func go_to_fall_state():
 	status = PlayerState.fall
-	anim.play("fall")
+	anim.play("base__fall")
 	
 func go_to_duck_state():
 	status = PlayerState.duck
-	anim.play("duck")
+	anim.play("base__duck")
 	set_small_collider()
 	
 func go_to_slide_state():
 	status = PlayerState.slide
-	anim.play("slide")
+	anim.play("base__slide")
 	set_small_collider()
 	
 func exit_from_slide_state():
@@ -276,7 +281,7 @@ func exit_from_slide_state():
 	
 func go_to_wall_state():
 	status = PlayerState.wall
-	anim.play("wall")
+	anim.play("base__wall")
 	velocity = Vector2.ZERO
 	jump_count = 0
 
@@ -319,7 +324,7 @@ func go_to_dead_state():
 		isDead = true
 		killHitBox()
 		died_soud.play()
-		anim.play("dead")
+		anim.play("base__dead")
 		set_small_collider()
 		reload_timer.start()
 		if inventoryUI.visible:
@@ -360,6 +365,9 @@ func idle_state(delta):
 	
 	if Input.is_action_just_pressed("rasengan_normal"):
 		go_to_jutsu_state("rasengan_normal")
+		return
+		
+	if Input.is_action_just_pressed("transformation"):
 		return
 		
 func walk_state(delta):
@@ -557,7 +565,7 @@ func hit_enemy(area: Area2D):
 		area.get_parent().take_damage(stats.base_attack)
 		damage_02.play()
 		xpGiveAway(entity)
-		anim.play("air_attack")
+		anim.play("base__air_attack")
 		velocity = Vector2.ZERO
 		pass
 	else:
@@ -593,7 +601,7 @@ func getDamage():
 			playHurt()
 	
 func playHurt():
-	anim.play("damage")
+	anim.play("base__damage")
 	if stats.health > 0:
 		beenHit = true
 		rasengan_2d.visible = false
@@ -621,12 +629,12 @@ func _on_animation_finished() -> void:
 			if combo_step == 1:
 				combo_step = 2
 				combo_buffered = false
-				anim.play("attack_2")
+				anim.play("base__attack_2")
 				pulse_attack_hitbox()
 			elif combo_step == 2:
 				combo_step = 3
 				combo_buffered = false
-				anim.play("attack_3")
+				anim.play("base__attack_3")
 				pulse_attack_hitbox()
 			elif combo_step == 3:
 				damage_02.play()
@@ -697,7 +705,7 @@ func regularBushinJutsu():
 				isAudioPlaying = false;
 		status = PlayerState.jutsu
 		velocity.x = 0
-		anim.play("jutsu")
+		anim.play("base__jutsu")
 		spawn_clone(25, "")
 	
 	if (bushin_combo == bushin_max_combo) && !isBushinCooldown:
@@ -719,7 +727,7 @@ func allBushinJutsu():
 	if !beenHit && !isDead && kage_bushin_cooldown == 0.0:
 		tajuu_kage_bushin.play()
 		status = PlayerState.jutsu
-		anim.play("jutsu")
+		anim.play("base__jutsu")
 		anim.pause()
 		
 		var timer = get_tree().create_timer(2.5)
@@ -824,7 +832,7 @@ func odamaRasengan():
 		go_to_rasengan_state()
 	rasengan_on_cooldown = true
 		
-	anim.play("odama_rasengan_init")
+	anim.play("base__odama_rasengan_init")
 	
 	# RESET DO TAMANHO
 	rasengan_2d.scale = Vector2(0.7, 0.7)
@@ -856,7 +864,7 @@ func odamaRasengan():
 func playRasenganStartAnimation():
 	rasengan_2d.scale = Vector2(0.3, 0.3)
 	
-	anim.play("rasengan")
+	anim.play("base__rasengan")
 	await get_tree().create_timer(0.5).timeout
 	bunshin.play()
 	spawn_clone(-22, "regular_rasengan")
@@ -868,7 +876,7 @@ func playRasenganStartAnimation():
 	return
 	
 func moveWithRasengan(rasengan: String):
-	anim.play("rasengan_moving")
+	anim.play("base__rasengan_moving")
 
 	stats._damage_while_doing_jutsu(rasengan)
 	if rasengan == "regular_rasengan":
@@ -949,8 +957,8 @@ func rasenganHitSomething(rasengan: String):
 			rasengan_hit.play()
 			shakeCamera(18, 0.4)
 			rasenganPosition(19 * rasengan_direction, -6)
-			anim.play("rasengan_hit")
-			anim.play("rasengan_hit_loop")
+			anim.play("base__rasengan_hit")
+			anim.play("base__rasengan_hit_loop")
 			grow_rasengan(1.1,1.1,1.0, rasengan)
 		elif rasengan == "odama_rasengan":
 			odama_hit.play()
@@ -958,14 +966,14 @@ func rasenganHitSomething(rasengan: String):
 			set_attack_area(70,70, -14, 45)
 			shakeCamera(27, 1.2)
 			rasenganPosition(32 * rasengan_direction, -6)
-			anim.play("rasengan_hit")
-			anim.play("rasengan_hit_loop")
+			anim.play("base__rasengan_hit")
+			anim.play("base__rasengan_hit_loop")
 			grow_rasengan(1.6,1.6,1.5, rasengan)
 		
 		await get_tree().create_timer(1.0).timeout
 		decrease_rasengan()
 		audio_fade_out(rasengan_formation)
-		anim.play("rasengan_end")
+		anim.play("base__rasengan_end")
 		stats._get_attack_normal_when_done_jutsu()
 		if rasengan == "odama_rasengan":
 			set_attack_area(35,27, -5.5, 7)
@@ -997,3 +1005,17 @@ func xpGiveAway(entity):
 		if xpGained != 0:
 			stats.experience += xpGained
 			pass
+
+### FORM Control
+
+func interpretateAudio(audio: String, form: PlayerForm):
+	if form == 1:
+		match audio:
+			"":
+				pass
+	
+func intepretateAnimation(animation: String, form: PlayerForm):
+	if form == 1:
+		match animation:
+			"idle":
+				pass
