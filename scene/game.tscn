@@ -45,16 +45,6 @@ resource_local_to_scene = true
 script = ExtResource("8_sng2h")
 metadata/_custom_type_script = "uid://cc0enrh2rod4m"
 
-[sub_resource type="Resource" id="Resource_b8t8i"]
-resource_local_to_scene = true
-script = ExtResource("8_sng2h")
-metadata/_custom_type_script = "uid://cc0enrh2rod4m"
-
-[sub_resource type="Resource" id="Resource_355h4"]
-resource_local_to_scene = true
-script = ExtResource("8_sng2h")
-metadata/_custom_type_script = "uid://cc0enrh2rod4m"
-
 [node name="Game" type="Node2D" unique_id=1781356822]
 
 [node name="LevelEnd" parent="." unique_id=1180091693 instance=ExtResource("1_ym5sv")]
@@ -66,7 +56,7 @@ scale = Vector2(-2.8639379, 8.309639)
 [node name="Camera" parent="." unique_id=1411746104 instance=ExtResource("1_xlg7c")]
 
 [node name="player" parent="." unique_id=701081553 instance=ExtResource("1_5kiuu")]
-position = Vector2(881, 58)
+position = Vector2(653, -95)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1750314656]
 
@@ -79,32 +69,24 @@ tile_map_data = PackedByteArray("AAAGAAgAAAAFAAEAAAANAAMAAAAFAAEAAAAQAAcAAAAOAAU
 tile_set = ExtResource("3_xwcet")
 
 [node name="Skeleton3" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
-position = Vector2(956.00006, 64)
+position = Vector2(307, 94)
 stats = SubResource("Resource_jrd6n")
 
 [node name="Skeleton5" parent="Tiles" unique_id=560525494 instance=ExtResource("4_p1ry8")]
-position = Vector2(928, 64)
+position = Vector2(94, 143)
 stats = SubResource("Resource_jhlss")
 
 [node name="Skeleton8" parent="Tiles" unique_id=723576774 instance=ExtResource("4_p1ry8")]
 position = Vector2(988, 64)
 stats = SubResource("Resource_ww6yf")
 
-[node name="Skeleton4" parent="Tiles" unique_id=1582209196 instance=ExtResource("4_p1ry8")]
-position = Vector2(1079, 64)
-stats = SubResource("Resource_1it6f")
-
 [node name="Skeleton6" parent="Tiles" unique_id=1320069374 instance=ExtResource("4_p1ry8")]
-position = Vector2(1115, 63)
-stats = SubResource("Resource_pp3pk")
-
-[node name="Skeleton7" parent="Tiles" unique_id=2087057962 instance=ExtResource("4_p1ry8")]
-position = Vector2(1049, 65)
-stats = SubResource("Resource_b8t8i")
+position = Vector2(773, -98)
+stats = SubResource("Resource_1it6f")
 
 [node name="Skeleton2" parent="Tiles" unique_id=154928032 instance=ExtResource("4_p1ry8")]
 position = Vector2(1016, 64)
-stats = SubResource("Resource_355h4")
+stats = SubResource("Resource_pp3pk")
 
 [node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=1662146049 groups=["LethalArea"]]
 z_index = 4

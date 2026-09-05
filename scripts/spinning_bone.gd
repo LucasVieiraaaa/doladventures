@@ -17,7 +17,8 @@ func _on_self_destruct_timer_timeout() -> void:
 	queue_free()
 
 func _on_area_entered(_area: Area2D) -> void:
-	queue_free()
+	if _area.is_in_group("Player"):
+		queue_free()
 
 func _on_body_entered(_body: Node2D) -> void:
 	queue_free()
