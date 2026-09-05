@@ -523,6 +523,30 @@ region = Rect2(392, 414, 56, 56)
 atlas = ExtResource("4_fkugw")
 region = Rect2(472, 1095, 59, 61)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpbfg"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(0, 4643, 76, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52mt1"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(82, 4643, 76, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wqwd"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(162, 4643, 91, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lolo7"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(252, 4643, 82, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btle8"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(336, 4643, 66, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp3no"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(408, 4643, 82, 89)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fdm2o"]
 animations = [{
 "frames": [{
@@ -869,6 +893,29 @@ animations = [{
 "loop": 1,
 "name": &"base__wall",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpbfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52mt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wqwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lolo7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btle8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp3no")
+}],
+"loop": 1,
+"name": &"onetail__idle",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhk8t"]
@@ -918,7 +965,8 @@ material = ExtResource("5_ghoj8")
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"base__idle"
+animation = &"onetail__idle"
+frame_progress = 0.035579786
 
 [node name="LevelUpIcon" type="Sprite2D" parent="." unique_id=1989912516]
 visible = false

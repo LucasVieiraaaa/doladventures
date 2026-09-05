@@ -232,7 +232,7 @@ func go_to_idle_state():
 	combo_buffered = false
 	beenHit = false
 	disable_attack_hitbox()
-	anim.play("base__idle")
+	intepretateAnimation("idle",playerForm)
 	
 func go_to_attack_state():
 	status = PlayerState.attack
@@ -368,6 +368,7 @@ func idle_state(delta):
 		return
 		
 	if Input.is_action_just_pressed("transformation"):
+		changePlayerForm(PlayerForm.oneTail)
 		return
 		
 func walk_state(delta):
@@ -1015,7 +1016,17 @@ func interpretateAudio(audio: String, form: PlayerForm):
 				pass
 	
 func intepretateAnimation(animation: String, form: PlayerForm):
-	if form == 1:
+	if form == PlayerForm.base:
 		match animation:
 			"idle":
+				anim.play("base__idle")
 				pass
+	elif form == PlayerForm.oneTail:
+		match animation:
+			"idle":
+				anim.play("onetail__idle")
+			
+
+func changePlayerForm(form: PlayerForm):
+	playerForm = form
+	return
