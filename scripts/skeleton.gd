@@ -1,13 +1,13 @@
 extends CharacterBody2D
-enum SkeletonState {
+enum KaioJorgeState {
 	walk,
 	dead,
 	attack,
 	hurt
 }
 const shuriken = preload("uid://rprq2p5g3r0w")
-var status : SkeletonState
-var entitieName = "Skeleton"
+var status : KaioJorgeState
+var entitieName = "KaioJorge"
 const SPEED = 20.0
 const JUMP_VELOCITY = -400.0
 var direction = 1
@@ -26,13 +26,13 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	match status:
-		SkeletonState.walk:
+		KaioJorgeState.walk:
 			walk_state(delta)
-		SkeletonState.dead:
+		KaioJorgeState.dead:
 			dead_state(delta)
-		SkeletonState.attack:
+		KaioJorgeState.attack:
 			attack_state(delta)
-		SkeletonState.hurt:
+		KaioJorgeState.hurt:
 			hurt_state(delta)
 
 	move_and_slide()
@@ -41,17 +41,17 @@ func _ready() -> void:
 	go_to_walk_state()
 
 func go_to_walk_state():
-	status = SkeletonState.walk
+	status = KaioJorgeState.walk
 	anim.play("walk")
 
 func go_to_dead_state():
-	status = SkeletonState.dead
+	status = KaioJorgeState.dead
 	anim.play("dead")
 	hitbox.process_mode = Node.PROCESS_MODE_DISABLED
 	velocity = Vector2.ZERO
 
 func go_to_hurt_state():
-	status = SkeletonState.hurt
+	status = KaioJorgeState.hurt
 	anim.play("hurt")
 	velocity = Vector2.ZERO
 	can_throw = true
@@ -86,14 +86,14 @@ func take_damage(damage: int):
 			go_to_hurt_state()
 
 func xpGiveAway() -> int:
-	if(status == SkeletonState.dead):
+	if(status == KaioJorgeState.dead):
 		var x: int  = randi_range(5, 8)
 		return x
 	else:
 		return 0;
 	
 func go_to_attack_state():
-	status = SkeletonState.attack
+	status = KaioJorgeState.attack
 	anim.play("attack")
 	velocity = Vector2.ZERO
 	can_throw = true;
@@ -117,4 +117,4 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		return
 
 func is_dead() -> bool:
-	return status == SkeletonState.dead
+	return status == KaioJorgeState.dead

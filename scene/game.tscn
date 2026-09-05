@@ -79,27 +79,27 @@ tile_set = ExtResource("2_33cqm")
 tile_map_data = PackedByteArray("AAAGAAgAAAAFAAEAAAANAAMAAAAFAAEAAAAQAAcAAAAOAAUAAAAQAAYAAAAOAAUAAAAQAAUAAAAOAAUAAAAQAAQAAAAOAAUAAAAWAAYAAAAOAAUAAAAWAAUAAAAOAAUAAAAWAAQAAAAOAAUAAAAQAAMAAAAOAAQAAAARAAMAAAAPAAQAAAASAAMAAAAPAAQAAAATAAMAAAAQAAQAAAAUAAMAAAAPAAQAAAAVAAMAAAARAAQAAAAWAAMAAAASAAQAAAATAAQAAAAQAAUAAAATAAUAAAAQAAUAAAATAAYAAAAQAAUAAAAHAAkAAAABAAUAAAAUAAYAAAABAAUAAAAeAAUAAAABAAUAAAAqAAUAAAABAAUAAAAgAAQAAAAFAAEAAAAoAAQAAAAFAAEAAAAGAAcAAAAFAAEAAAAOAAQAAQADAAAAAAAIAAgAAQADAAAAAAAXAAUAAQADAAAAAAD8/wMAAAAFAAUAAAD9/wMAAAAMAAUAAAAAAAEAAgAAAAAAAAADAAMAAAAFAAUAAAAEAAMAAAAFAAUAAAACAAMAAAAJAAUAAAABAAMAAAABAAUAAAAkAAQAAAAFAAEAAAAnAAUAAAADAAUAAAA=")
 tile_set = ExtResource("3_xwcet")
 
-[node name="Skeleton5" parent="Tiles" unique_id=560525494 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge5" parent="Tiles" unique_id=560525494 instance=ExtResource("4_p1ry8")]
 position = Vector2(94, 143)
 stats = SubResource("Resource_jrd6n")
 
-[node name="Skeleton6" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge6" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
 position = Vector2(1317.0001, 61)
 stats = SubResource("Resource_jhlss")
 
-[node name="Skeleton7" parent="Tiles" unique_id=1033767901 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge7" parent="Tiles" unique_id=1033767901 instance=ExtResource("4_p1ry8")]
 position = Vector2(1042, 63)
 stats = SubResource("Resource_ww6yf")
 
-[node name="Skeleton8" parent="Tiles" unique_id=867873896 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge8" parent="Tiles" unique_id=867873896 instance=ExtResource("4_p1ry8")]
 position = Vector2(489, 76)
 stats = SubResource("Resource_1it6f")
 
-[node name="Skeleton9" parent="Tiles" unique_id=156000134 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge9" parent="Tiles" unique_id=156000134 instance=ExtResource("4_p1ry8")]
 position = Vector2(750, 61)
 stats = SubResource("Resource_pp3pk")
 
-[node name="Skeleton10" parent="Tiles" unique_id=765095601 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge10" parent="Tiles" unique_id=765095601 instance=ExtResource("4_p1ry8")]
 position = Vector2(802, -97)
 stats = SubResource("Resource_b8t8i")
 

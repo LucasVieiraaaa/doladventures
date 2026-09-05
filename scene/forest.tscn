@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c5gfud2tqru4d" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/5 - Tree_row_BG_2.png" id="4_wqnte"]
 [ext_resource type="Texture2D" uid="uid://s6vhvhyqb0aq" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/4 - Tree_row_BG_1.png" id="5_v5bin"]
 [ext_resource type="Texture2D" uid="uid://g51f13uehdjp" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/3 - Bottom_leaf_piles.png" id="6_qxlj4"]
-[ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/skeleton.tscn" id="7_gwku7"]
+[ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/KaioJorge.tscn" id="7_gwku7"]
 [ext_resource type="Texture2D" uid="uid://cundaglgrhbyy" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/2 - Trees.png" id="7_jo4av"]
 [ext_resource type="PackedScene" uid="uid://dwf8ijq0ui3gx" path="res://entities/camera.tscn" id="8_qxlj4"]
 [ext_resource type="TileSet" uid="uid://b2471mry42c1b" path="res://tiles/decoration.tres" id="9_jo4av"]
@@ -129,11 +129,11 @@ next_level = "tropic"
 position = Vector2(-4.5, -79.5)
 shape = SubResource("RectangleShape2D_jxvlp")
 
-[node name="Skeleton2" parent="." unique_id=783631818 instance=ExtResource("7_gwku7")]
+[node name="KaioJorge2" parent="." unique_id=783631818 instance=ExtResource("7_gwku7")]
 position = Vector2(392, 128)
 stats = SubResource("Resource_cwbpd")
 
-[node name="Skeleton" parent="." unique_id=614385962 instance=ExtResource("7_gwku7")]
+[node name="KaioJorge" parent="." unique_id=614385962 instance=ExtResource("7_gwku7")]
 position = Vector2(174, 144)
 stats = SubResource("Resource_ysu3w")
 

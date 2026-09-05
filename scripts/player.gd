@@ -618,10 +618,12 @@ func _on_animation_finished() -> void:
 				combo_step = 2
 				combo_buffered = false
 				anim.play("attack_2")
+				pulse_attack_hitbox()
 			elif combo_step == 2:
 				combo_step = 3
 				combo_buffered = false
 				anim.play("attack_3")
+				pulse_attack_hitbox()
 			elif combo_step == 3:
 				damage_02.play()
 				go_to_idle_state()
@@ -632,6 +634,12 @@ func _on_animation_finished() -> void:
 			
 	elif status == PlayerState.jutsu:
 		go_to_idle_state()
+
+func pulse_attack_hitbox() -> void:
+	disable_attack_hitbox()
+	await get_tree().create_timer(0.2).timeout
+	if status == PlayerState.attack:
+		enable_attack_hitbox()
 ###END SIMPLE COMBO LOGIC ###
 
 func _on_attack_area_area_entered(area: Area2D) -> void:

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bi7y72mouwr30" path="res://entities/level_end.tscn" id="1_ym5sv"]
 [ext_resource type="TileSet" uid="uid://c47hqqhjal4us" path="res://tiles/terrain.tres" id="2_33cqm"]
 [ext_resource type="TileSet" uid="uid://b2471mry42c1b" path="res://tiles/decoration.tres" id="3_xwcet"]
-[ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/skeleton.tscn" id="4_p1ry8"]
+[ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/KaioJorge.tscn" id="4_p1ry8"]
 [ext_resource type="TileSet" uid="uid://cbywuvqg8pig5" path="res://tiles/lava.tres" id="7_17rxn"]
 [ext_resource type="PackedScene" uid="uid://b3b3tlvyom1q5" path="res://sprites/UI/health_bar.tscn" id="8_ll5lq"]
 [ext_resource type="Script" uid="uid://cc0enrh2rod4m" path="res://scripts/stats.gd" id="8_sng2h"]
@@ -197,131 +197,131 @@ tile_set = ExtResource("2_33cqm")
 tile_map_data = PackedByteArray("AAAGAAgAAAAFAAEAAAANAAMAAAAFAAEAAAAQAAcAAAAOAAUAAAAQAAYAAAAOAAUAAAAQAAUAAAAOAAUAAAAQAAQAAAAOAAUAAAAWAAYAAAAOAAUAAAAWAAUAAAAOAAUAAAAWAAQAAAAOAAUAAAAQAAMAAAAOAAQAAAARAAMAAAAPAAQAAAASAAMAAAAPAAQAAAATAAMAAAAQAAQAAAAUAAMAAAAPAAQAAAAVAAMAAAARAAQAAAAWAAMAAAASAAQAAAATAAQAAAAQAAUAAAATAAUAAAAQAAUAAAATAAYAAAAQAAUAAAAHAAkAAAABAAUAAAAUAAYAAAABAAUAAAAeAAUAAAABAAUAAAAqAAUAAAABAAUAAAAgAAQAAAAFAAEAAAAoAAQAAAAFAAEAAAAGAAcAAAAFAAEAAAAOAAQAAQADAAAAAAAIAAgAAQADAAAAAAAXAAUAAQADAAAAAAD8/wMAAAAFAAUAAAD9/wMAAAAMAAUAAAAAAAEAAgAAAAAAAAADAAMAAAAFAAUAAAAEAAMAAAAFAAUAAAACAAMAAAAJAAUAAAABAAMAAAABAAUAAAAkAAQAAAAFAAEAAAAnAAUAAAADAAUAAAA=")
 tile_set = ExtResource("3_xwcet")
 
-[node name="Skeleton" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_5g16k")
 
-[node name="Skeleton2" parent="Tiles" unique_id=1879817825 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge2" parent="Tiles" unique_id=1879817825 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_81276")
 
-[node name="Skeleton3" parent="Tiles" unique_id=1663893399 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge3" parent="Tiles" unique_id=1663893399 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_ve786")
 
-[node name="Skeleton4" parent="Tiles" unique_id=219395263 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge4" parent="Tiles" unique_id=219395263 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_0lu6w")
 
-[node name="Skeleton5" parent="Tiles" unique_id=2021459519 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge5" parent="Tiles" unique_id=2021459519 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_i6gbm")
 
-[node name="Skeleton6" parent="Tiles" unique_id=1884892192 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge6" parent="Tiles" unique_id=1884892192 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_ux4dc")
 
-[node name="Skeleton7" parent="Tiles" unique_id=283699322 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge7" parent="Tiles" unique_id=283699322 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_jrd6n")
 
-[node name="Skeleton8" parent="Tiles" unique_id=1484066787 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge8" parent="Tiles" unique_id=1484066787 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_jhlss")
 
-[node name="Skeleton9" parent="Tiles" unique_id=1648582920 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge9" parent="Tiles" unique_id=1648582920 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_ww6yf")
 
-[node name="Skeleton10" parent="Tiles" unique_id=663022501 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge10" parent="Tiles" unique_id=663022501 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_1it6f")
 
-[node name="Skeleton11" parent="Tiles" unique_id=40197323 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge11" parent="Tiles" unique_id=40197323 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_pp3pk")
 
-[node name="Skeleton12" parent="Tiles" unique_id=540689794 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge12" parent="Tiles" unique_id=540689794 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_b8t8i")
 
-[node name="Skeleton13" parent="Tiles" unique_id=807406541 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge13" parent="Tiles" unique_id=807406541 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_355h4")
 
-[node name="Skeleton14" parent="Tiles" unique_id=1505862374 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge14" parent="Tiles" unique_id=1505862374 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_ca6q5")
 
-[node name="Skeleton15" parent="Tiles" unique_id=1726235149 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge15" parent="Tiles" unique_id=1726235149 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_yerfe")
 
-[node name="Skeleton16" parent="Tiles" unique_id=1294793070 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge16" parent="Tiles" unique_id=1294793070 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_abp7u")
 
-[node name="Skeleton17" parent="Tiles" unique_id=1580677827 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge17" parent="Tiles" unique_id=1580677827 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_he4o3")
 
-[node name="Skeleton18" parent="Tiles" unique_id=1200130961 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge18" parent="Tiles" unique_id=1200130961 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_yk3to")
 
-[node name="Skeleton19" parent="Tiles" unique_id=505621474 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge19" parent="Tiles" unique_id=505621474 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_0halo")
 
-[node name="Skeleton20" parent="Tiles" unique_id=5021465 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge20" parent="Tiles" unique_id=5021465 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_8p2gu")
 
-[node name="Skeleton21" parent="Tiles" unique_id=1806353637 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge21" parent="Tiles" unique_id=1806353637 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_kv4hp")
 
-[node name="Skeleton22" parent="Tiles" unique_id=534089718 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge22" parent="Tiles" unique_id=534089718 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_0jy4g")
 
-[node name="Skeleton23" parent="Tiles" unique_id=821014773 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge23" parent="Tiles" unique_id=821014773 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_mm2a7")
 
-[node name="Skeleton24" parent="Tiles" unique_id=1322927354 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge24" parent="Tiles" unique_id=1322927354 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_d218c")
 
-[node name="Skeleton25" parent="Tiles" unique_id=591124530 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge25" parent="Tiles" unique_id=591124530 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_54mdx")
 
-[node name="Skeleton26" parent="Tiles" unique_id=1087371306 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge26" parent="Tiles" unique_id=1087371306 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_0pyxt")
 
-[node name="Skeleton27" parent="Tiles" unique_id=9289196 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge27" parent="Tiles" unique_id=9289196 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_o16ra")
 
-[node name="Skeleton28" parent="Tiles" unique_id=1462432251 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge28" parent="Tiles" unique_id=1462432251 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_imfdu")
 
-[node name="Skeleton29" parent="Tiles" unique_id=307832515 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge29" parent="Tiles" unique_id=307832515 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_400sm")
 
-[node name="Skeleton30" parent="Tiles" unique_id=547004052 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge30" parent="Tiles" unique_id=547004052 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_lip20")
 
-[node name="Skeleton31" parent="Tiles" unique_id=1854051333 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge31" parent="Tiles" unique_id=1854051333 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_efr1a")
 
-[node name="Skeleton32" parent="Tiles" unique_id=1227862569 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge32" parent="Tiles" unique_id=1227862569 instance=ExtResource("4_p1ry8")]
 position = Vector2(852, 61)
 stats = SubResource("Resource_x3x2e")
 

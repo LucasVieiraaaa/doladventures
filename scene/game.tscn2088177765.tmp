@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bi7y72mouwr30" path="res://entities/level_end.tscn" id="1_ym5sv"]
 [ext_resource type="TileSet" uid="uid://c47hqqhjal4us" path="res://tiles/terrain.tres" id="2_33cqm"]
 [ext_resource type="TileSet" uid="uid://b2471mry42c1b" path="res://tiles/decoration.tres" id="3_xwcet"]
-[ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/skeleton.tscn" id="4_p1ry8"]
+[ext_resource type="PackedScene" uid="uid://dnp6jnnmy2no1" path="res://entities/KaioJorge.tscn" id="4_p1ry8"]
 [ext_resource type="TileSet" uid="uid://cbywuvqg8pig5" path="res://tiles/lava.tres" id="7_17rxn"]
 [ext_resource type="PackedScene" uid="uid://b3b3tlvyom1q5" path="res://sprites/UI/health_bar.tscn" id="8_ll5lq"]
 [ext_resource type="PackedScene" uid="uid://bqwevku1w7nxc" path="res://sprites/2 - Dolabela/character_face.tscn" id="8_yq8tf"]
@@ -36,7 +36,7 @@ tile_set = ExtResource("2_33cqm")
 tile_map_data = PackedByteArray("AAAGAAgAAAAFAAEAAAANAAMAAAAFAAEAAAAQAAcAAAAOAAUAAAAQAAYAAAAOAAUAAAAQAAUAAAAOAAUAAAAQAAQAAAAOAAUAAAAWAAYAAAAOAAUAAAAWAAUAAAAOAAUAAAAWAAQAAAAOAAUAAAAQAAMAAAAOAAQAAAARAAMAAAAPAAQAAAASAAMAAAAPAAQAAAATAAMAAAAQAAQAAAAUAAMAAAAPAAQAAAAVAAMAAAARAAQAAAAWAAMAAAASAAQAAAATAAQAAAAQAAUAAAATAAUAAAAQAAUAAAATAAYAAAAQAAUAAAAHAAkAAAABAAUAAAAUAAYAAAABAAUAAAAeAAUAAAABAAUAAAAqAAUAAAABAAUAAAAgAAQAAAAFAAEAAAAoAAQAAAAFAAEAAAAGAAcAAAAFAAEAAAAOAAQAAQADAAAAAAAIAAgAAQADAAAAAAAXAAUAAQADAAAAAAD8/wMAAAAFAAUAAAD9/wMAAAAMAAUAAAAAAAEAAgAAAAAAAAADAAMAAAAFAAUAAAAEAAMAAAAFAAUAAAACAAMAAAAJAAUAAAABAAMAAAABAAUAAAAkAAQAAAAFAAEAAAAnAAUAAAADAAUAAAA=")
 tile_set = ExtResource("3_xwcet")
 
-[node name="Skeleton" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
+[node name="KaioJorge" parent="Tiles" unique_id=614385962 instance=ExtResource("4_p1ry8")]
 position = Vector2(814, 65)
 
 [node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=1662146049 groups=["LethalArea"]]
