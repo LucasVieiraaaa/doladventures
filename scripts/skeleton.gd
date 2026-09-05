@@ -12,7 +12,7 @@ var status : SkeletonState
 
 var entitieName = "Skeleton"
 
-const SPEED = 10.0
+const SPEED = 20.0
 const JUMP_VELOCITY = -400.0
 var direction = 1
 var can_throw = true
@@ -58,10 +58,7 @@ func go_to_dead_state():
 	velocity =  Vector2.ZERO
 	
 func walk_state(_delta):
-	if anim.frame == 3 || anim.frame == 4:
-		velocity.x = SPEED * direction
-	else:
-		velocity.x = 0
+	velocity.x = SPEED * direction
 	
 	if wall_detector.is_colliding() || not 	ground_detector.is_colliding():
 		scale.x *= -1
