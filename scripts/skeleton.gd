@@ -1,23 +1,17 @@
 extends CharacterBody2D
-
 enum SkeletonState {
 	walk,
 	dead,
-	attack
+	attack,
+	hurt
 }
-
 const shuriken = preload("uid://rprq2p5g3r0w")
-
 var status : SkeletonState
-
 var entitieName = "Skeleton"
-
 const SPEED = 20.0
 const JUMP_VELOCITY = -400.0
 var direction = 1
 var can_throw = true
-
-
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $Hitbox
 @onready var wall_detector: RayCast2D = $WallDetector
@@ -26,14 +20,11 @@ var can_throw = true
 @onready var player_is_protected_detector: RayCast2D = $PlayerIsProtectedDetector
 @onready var bone_start_position: Node2D = $BoneStartPosition
 @onready var shuriken_throw_sound: AudioStreamPlayer = $Audios/ShurikenThrowSound
-
 @export var stats: Stats
 
 func _physics_process(delta: float) -> void:
-
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
 	match status:
 		SkeletonState.walk:
 			walk_state(delta)
@@ -41,12 +32,14 @@ func _physics_process(delta: float) -> void:
 			dead_state(delta)
 		SkeletonState.attack:
 			attack_state(delta)
-			
+		SkeletonState.hurt:
+			hurt_state(delta)
+
 	move_and_slide()
-	
+
 func _ready() -> void:
-	go_to_walk_state() 
-	
+	go_to_walk_state()
+
 func go_to_walk_state():
 	status = SkeletonState.walk
 	anim.play("walk")
@@ -55,26 +48,43 @@ func go_to_dead_state():
 	status = SkeletonState.dead
 	anim.play("dead")
 	hitbox.process_mode = Node.PROCESS_MODE_DISABLED
-	velocity =  Vector2.ZERO
-	
+	velocity = Vector2.ZERO
+
+func go_to_hurt_state():
+	status = SkeletonState.hurt
+	anim.play("hurt")
+	velocity = Vector2.ZERO
+	can_throw = true
+	await get_tree().create_timer(0.5).timeout
+	# se morreu durante o timer, não volta a andar
+	if not is_dead():
+		go_to_walk_state()
+
 func walk_state(_delta):
 	velocity.x = SPEED * direction
-	
-	if wall_detector.is_colliding() || not 	ground_detector.is_colliding():
+
+	if wall_detector.is_colliding() || not ground_detector.is_colliding():
 		scale.x *= -1
 		direction *= -1
-		
+
 	if player_detector.is_colliding() && ! player_is_protected_detector.is_colliding():
 		go_to_attack_state()
 		return
-		
+
 func dead_state(_delta):
 	pass
-	
+
+func hurt_state(_delta):
+	pass
+
 func take_damage(damage: int):
 	if damage > 0 && ! is_dead():
-		go_to_dead_state();
-		
+		stats.health -= damage
+		if stats.health <= 0:
+			go_to_dead_state()
+		else:
+			go_to_hurt_state()
+
 func xpGiveAway() -> int:
 	if(status == SkeletonState.dead):
 		var x: int  = randi_range(5, 8)
