@@ -303,22 +303,6 @@ region = Rect2(689, 1092, 50, 61)
 atlas = ExtResource("4_fkugw")
 region = Rect2(742, 1092, 50, 61)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qiwj3"]
-atlas = ExtResource("4_fkugw")
-region = Rect2(0, 335, 51, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
-atlas = ExtResource("4_fkugw")
-region = Rect2(51, 335, 51, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bectd"]
-atlas = ExtResource("4_fkugw")
-region = Rect2(102, 335, 51, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wvtmh"]
-atlas = ExtResource("4_fkugw")
-region = Rect2(153, 335, 51, 57)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_abrql"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(0, 584, 63, 66)
@@ -382,6 +366,22 @@ region = Rect2(558, 1800, 50, 63)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fjmc"]
 atlas = ExtResource("4_fkugw")
 region = Rect2(208, 490, 52, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiwj3"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(0, 335, 51, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(51, 335, 51, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bectd"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(102, 335, 51, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvtmh"]
+atlas = ExtResource("4_fkugw")
+region = Rect2(153, 335, 51, 57)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7thud"]
 atlas = ExtResource("4_fkugw")
@@ -616,23 +616,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qiwj3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_26q78")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bectd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wvtmh")
-}],
-"loop": 1,
-"name": &"base__base__idle",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_abrql")
 }, {
 "duration": 1.0,
@@ -703,6 +686,23 @@ animations = [{
 "loop": 1,
 "name": &"base__fall",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qiwj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26q78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bectd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvtmh")
+}],
+"loop": 1,
+"name": &"base__idle",
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -918,7 +918,7 @@ material = ExtResource("5_ghoj8")
 position = Vector2(-2, -5)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_fdm2o")
-animation = &"base__wall"
+animation = &"base__idle"
 
 [node name="LevelUpIcon" type="Sprite2D" parent="." unique_id=1989912516]
 visible = false
